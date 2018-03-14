@@ -2,5 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/aiden/Downloads/wpiutil-java-3.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/aiden/Downloads/ntcore-java-4.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/aiden/Downloads/ntcore-jni-4.0.0-all.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
