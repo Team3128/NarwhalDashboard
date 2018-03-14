@@ -1,8 +1,10 @@
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -16,7 +18,14 @@ public class board {
 public void run() {
 	JFrame frame = new JFrame("Narwhalboard");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	//frame.getContentPane().add(emptyLabel, BorderLayout.CENTER);
+	frame.getContentPane().setLayout(new FlowLayout());
+	JTextField AutoDelay = new JTextField("0.0", 100);
+	JTextField textfield2 = new JTextField("Text field 2",10);
+	JTextField textfield3 = new JTextField("Text field 3",10);
+	frame.getContentPane().add(AutoDelay);
+	frame.getContentPane().add(textfield2);
+	frame.getContentPane().add(textfield3);
+	JFrame.setDefaultLookAndFeelDecorated(true);
 	frame.pack();
 	frame.setVisible(true);
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
