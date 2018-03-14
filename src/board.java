@@ -2,8 +2,10 @@
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -19,13 +21,12 @@ public void run() {
 	JFrame frame = new JFrame("Narwhalboard");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.getContentPane().setLayout(new FlowLayout());
-	JTextField AutoDelay = new JTextField("0.0", 50);
-	AutoDelay.setSize(1000, 1000);
-	JTextField textfield2 = new JTextField("Text field 2",10);
-	JTextField textfield3 = new JTextField("Text field 3",10);
+	JTextField AutoDelay = new JTextField("0.0", 10);
+	JLabel AutoTitle = new JLabel("Autonomous Delay: ");
+	AutoDelay.setFont(new Font("Arial", Font.BOLD, 32));
+	AutoTitle.setFont(new Font("Arial", Font.BOLD, 24));
+	frame.getContentPane().add(AutoTitle);
 	frame.getContentPane().add(AutoDelay);
-	frame.getContentPane().add(textfield2);
-	frame.getContentPane().add(textfield3);
 	JFrame.setDefaultLookAndFeelDecorated(true);
 	frame.pack();
 	frame.setVisible(true);
