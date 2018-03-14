@@ -19,7 +19,8 @@ public void run() {
 	JFrame frame = new JFrame("Narwhalboard");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.getContentPane().setLayout(new FlowLayout());
-	JTextField AutoDelay = new JTextField("0.0", 100);
+	JTextField AutoDelay = new JTextField("0.0", 50);
+	AutoDelay.setSize(1000, 1000);
 	JTextField textfield2 = new JTextField("Text field 2",10);
 	JTextField textfield3 = new JTextField("Text field 3",10);
 	frame.getContentPane().add(AutoDelay);
