@@ -10,11 +10,11 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
-public class Board 
+public class board 
 {
 	public static void main(String[] args)
 	{
-		new Board().run();
+		new board().run();
 	}
 	JFrame frame;
 	public void run()
@@ -29,7 +29,8 @@ public class Board
 		frame.getContentPane().add(AutoTitle);
 		frame.getContentPane().add(AutoDelay);
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		frame.pack();
+		frame.setSize(1600, 900);
+		//frame.pack();
 		frame.setVisible(true);
 		NetworkTableInstance inst = NetworkTableInstance.getDefault();
 		NetworkTable table = inst.getTable("datatable");
