@@ -29,6 +29,9 @@ public class board
 		frame.getContentPane().add(AutoTitle);
 		frame.getContentPane().add(AutoDelay);
 		JFrame.setDefaultLookAndFeelDecorated(true);
+		JLabel cow = new JLabel("cCOWWWW");
+		cow.setFont(new Font("Arial", Font.BOLD, 24));
+		frame.getContentPane().add(cow);
 		frame.setSize(1600, 900);
 		//frame.pack();
 		frame.setVisible(true);
@@ -36,8 +39,8 @@ public class board
 		NetworkTable table = inst.getTable("datatable");
 		NetworkTableEntry xEntry = table.getEntry("x");
 		NetworkTableEntry yEntry = table.getEntry("y");
-		// inst.startClientTeam(TEAM); // where TEAM=190, 294, etc, or use
-		// inst.startClient("hostname") or similar
+		NetworkTableEntry timerEntry = table.getEntry("Timer");
+		inst.startClientTeam(3128); // where TEAM=190, 294, etc, or use inst.startClient("hostname") or similar
 		inst.startDSClient(); // recommended if running on DS computer; this
 								// gets the robot IP from the DS
 		while (true)
@@ -45,6 +48,7 @@ public class board
 			try
 			{
 				Thread.sleep(1000);
+				cow.setText(table.getEntry("cow").getValue().getString());
 			}
 			catch (InterruptedException ex)
 			{
@@ -53,6 +57,7 @@ public class board
 			}
 			double x = xEntry.getDouble(0.0);
 			double y = yEntry.getDouble(0.0);
+			double MatchTimer = timerEntry.getDouble(0.0);
 			System.out.println("X: " + x + " Y: " + y);
 		}
 	}
