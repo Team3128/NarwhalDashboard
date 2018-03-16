@@ -43,7 +43,7 @@ public class board
 		// Initial parameters for Board
 		frame = new JFrame("Narwhal Dashboard");
 		try {
-            frame.setContentPane(new ImagePanel(ImageIO.read(new File("src/art/narwhalBackground.jpg"))));
+            frame.setContentPane(new ImagePanel(ImageIO.read(new File("src/art/narwhalBackground50Opacity.jpg"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
