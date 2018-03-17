@@ -4,13 +4,10 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -52,7 +49,7 @@ public class board
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		
 		// Autonomous Delay Block
-		JTextField AutoDelay = new JTextField("0.0", 10);
+		JTextField AutoDelay = new JTextField("0.0", 7);
 		JLabel AutoTitle = new JLabel("Autonomous Delay: ");
 		AutoDelay.setFont(new Font("Arial", Font.BOLD, 24));
 		AutoTitle.setFont(new Font("Arial", Font.BOLD, 24));
@@ -61,7 +58,7 @@ public class board
 		
 		// Forklift Position Block
 		JLabel forkpos = new JLabel("Forklift Position: ");
-		JTextField forkposValue = new JTextField("0.0", 10);
+		JTextField forkposValue = new JTextField("0.0", 7);
 		forkpos.setFont(new Font("Arial", Font.BOLD, 24));
 		forkposValue.setFont(new Font("Arial", Font.BOLD, 24));
 		frame.getContentPane().add(forkpos);
@@ -90,13 +87,12 @@ public class board
 		inst.startClient("10.31.28.2"); // where TEAM=190, 294, etc, or use inst.startClient("hostname") or similar
 		inst.startDSClient(); // recommended if running on DS computer; this
 		// gets the robot IP from the DS
-		
+		System.out.println("NarwhalDashboard opened.");
 		while (true)
 		{
 			try
 			{
-				System.out.println("NarwhalDashboard opened.");
-				Thread.sleep(1000);
+				Thread.sleep(300);
 				forkposValue.setText(String.valueOf(table.getEntry("forkliftPosition").getValue().getDouble()));
 				gearValue.setText(String.valueOf(table.getEntry("gearValue").getValue().getString()));
 			}
