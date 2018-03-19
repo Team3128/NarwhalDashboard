@@ -4,8 +4,11 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -76,20 +79,22 @@ public class board
 		frame.getContentPane().add(gearText);
 		frame.getContentPane().add(gearValue);
 		
-		// Camera Stream Blocks
-		Mat mat = null;
-		VideoCapture vCapture;
-		vCapture = new VideoCapture("http://youtube.com");
-	    vCapture.open("http://youtube.com");
-	    if (!vCapture.isOpened()) {
-	          System.out.println("media failed to open");
-	      } else {            
-	          while (vCapture.grab()) {
-	              vCapture.retrieve(mat);
-	              showInFrame(mat);
-	          }
-	          vCapture.release();
-	      }
+		// Camera Stream Block
+		String path = "http://google.com";
+	    URL url = null;
+		try {
+			url = new URL(path);
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		}
+	    BufferedImage image = new BufferedImage(10, 10, 10);
+		try {
+			image = ImageIO.read(url);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    JLabel label = new JLabel(new ImageIcon(image));
+	    frame.add(label);
 		
 		// Formatting block
 		frame.setSize(1600, 900);
