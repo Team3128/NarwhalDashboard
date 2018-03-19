@@ -8,10 +8,14 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import org.opencv.core.Mat;
+import org.opencv.videoio.VideoCapture;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -72,7 +76,20 @@ public class board
 		frame.getContentPane().add(gearText);
 		frame.getContentPane().add(gearValue);
 		
-		// Camera Stream Block
+		// Camera Stream Blocks
+		Mat mat = null;
+		VideoCapture vCapture;
+		vCapture = new VideoCapture("http://youtube.com");
+	    vCapture.open("http://youtube.com");
+	    if (!vCapture.isOpened()) {
+	          System.out.println("media failed to open");
+	      } else {            
+	          while (vCapture.grab()) {
+	              vCapture.retrieve(mat);
+	              showInFrame(mat);
+	          }
+	          vCapture.release();
+	      }
 		
 		// Formatting block
 		frame.setSize(1600, 900);
@@ -118,4 +135,19 @@ public class board
 		frame.pack();
 	}
 	*/
+	 private static void showInFrame(Mat mat) {
+	      JFrame mediaFrame = new JFrame("Media");
+	      mediaFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      mediaFrame.setVisible(true);
+	      mediaFrame.setSize(300,300);
+
+	      //Highgui.imwrite("google.com", mat);
+	      ImageIcon image = new ImageIcon("google.com");
+	      JLabel label = new JLabel("", image, JLabel.CENTER);
+
+	      mediaFrame.add(label);
+	      mediaFrame.repaint();
+	      mediaFrame.validate();
+	      mediaFrame.setVisible(true);
+	   }
 }

@@ -5,5 +5,6 @@
 	<classpathentry kind="lib" path="External JARS/ntcore-java-4.0.0.jar"/>
 	<classpathentry kind="lib" path="External JARS/ntcore-jni-4.0.0-all.jar"/>
 	<classpathentry kind="lib" path="External JARS/wpiutil-java-3.0.0.jar"/>
+	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
