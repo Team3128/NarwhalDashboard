@@ -9,10 +9,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -75,9 +73,6 @@ public class board
 		frame.getContentPane().add(gearValue);
 		
 		// Camera Stream Block
-		JEditorPane website = new JEditorPane();
-		website.setSize(500,500);
-		frame.add(new JScrollPane(website));
 		
 		// Formatting block
 		frame.setSize(1600, 900);
