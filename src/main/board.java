@@ -18,8 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import org.opencv.core.Mat;
-import org.opencv.videoio.VideoCapture;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -47,7 +45,7 @@ public class board
 		// Initial parameters for Board
 		frame = new JFrame("Narwhal Dashboard");
 		try {
-            frame.setContentPane(new ImagePanel(ImageIO.read(new File("src/art/narwhalBackground50Opacity.jpg"))));
+            frame.setContentPane(new ImagePanel(ImageIO.read(new File("src/art/narwhalBackgroundTest.jpg"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -93,8 +91,8 @@ public class board
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	    JLabel label = new JLabel(new ImageIcon(image));
-	    frame.add(label);
+	    //JLabel label = new JLabel(new ImageIcon(image));
+	    //frame.add(label);
 		
 		// Formatting block
 		frame.setSize(1600, 900);
