@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('assets/open-sans.ttf');
+}
+
+body {
+    font-family: 'Open Sans';
+}
+
+.squash {
+    padding: 0px;
+    margin: 0px;
+}
+
+.flexbox {
+    display: flex;
+}
+
+.flexbox.row {
+    flex-direction: row;
+}
+
+.flexbox.column {
+    flex-direction: column;
+}
+
+
+.navy {
+    background: #1b1464;
+    color: white;
+}
+
+.royal {
+    background: #072682;
+    color: white;
+}
+
+.sapphire {
+    background: #0068a5;
+    color: white;
+}
+
+.red {
+    background: #e20000;
+    color: white;
+}
+
+.orange {
+    background: #d86100;
+    color: white;
+}
+
+.green {
+    background: #00d11c;
+    color: white;
+}
+
+.purple {
+    background: #800080;
+    color: white;
+}
+
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button.red:hover {
+    background: #ac0000;
+}
+
+.button.orange:hover {
+    background: #a04800;
+}
+
+.button.green:hover {
+    background: #00ac17;
+}
+
+.button.purple:hover {
+    background: #680068;
+}
+
+.button.sapphire:hover {
+    background: #005281;
+}
