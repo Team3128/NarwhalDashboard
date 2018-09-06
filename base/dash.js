@@ -1,5 +1,9 @@
+var DISCONNECTED = 0;
+var CONNECTING = 1;
+var CONNECTED = 2;
+
 var socket;
-var connected = false;
+var state = DISCONNECTED;
 
 var autos = [];
 var json;
@@ -8,10 +12,12 @@ var autoMenuVisible = false;
 var updater = null;
 
 function toggleConnection() {
-    if (!connected) {
+    if (state == DISCONNECTED) {
         connect();
     }
     else {
+        state = DISCONNECTED;
+        
         socket.close();
         socket = null;
     }
@@ -19,13 +25,18 @@ function toggleConnection() {
 
 function connect() {
     socket = new WebSocket("ws:roborio-3128-frc.local:5800");
+
+    element('conn_button').classList.remove('red');
+    element('conn_button').classList.remove('green');
+    element('conn_button').classList.add('orange');
+    setInner('conn_button_text', 'Connecting...');
+    state = CONNECTING;
     
     socket.onopen = function(event) {
-        connected = true;
-
         console.log("Connected.")
 
         element('conn_button').classList.remove('red');
+        element('conn_button').classList.remove('orange');
         element('conn_button').classList.add('green');
         setInner('conn_button_text', 'Connected');
     };
@@ -45,11 +56,22 @@ function connect() {
     };
 
     socket.onclose = function(event) {
-        connected = false;
-        
-        element('conn_button').classList.remove('green');
-        element('conn_button').classList.add('red');
-        setInner('conn_button_text', 'Disconnected');
+        // TODO: If disconnected by robot (i.e. not due to user manually clicking the connection button,
+        // automatically try to reconnect.)
+        if (state == DISCONNECTED) {
+            element('conn_button').classList.remove('green');
+            element('conn_button').classList.remove('orange');
+            element('conn_button').classList.add('red');
+            setInner('conn_button_text', 'Disconnected');
+        }
+        else {
+            state = CONNECTING;
+
+            element('conn_button').classList.remove('green');
+            element('conn_button').classList.remove('red');
+            element('conn_button').classList.add('orange');
+            setInner('conn_button_text', 'Reconnecting...');
+        }
     };
 }
 
@@ -111,7 +133,7 @@ function buttonUp(name) {
 }
 
 function send(string_data) {
-    if (connected) {
+    if (state == CONNECTED) {
         socket.send(string_data);
         console.log("Sent \'" + string_data + "\'");
     }
