@@ -39,6 +39,7 @@ function connect() {
         element('conn_button').classList.remove('orange');
         element('conn_button').classList.add('green');
         setInner('conn_button_text', 'Connected');
+        state = CONNECTED;
     };
 
     socket.onmessage = function(event) {
