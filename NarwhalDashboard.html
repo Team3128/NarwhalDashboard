@@ -190,8 +190,12 @@
 
                 addUpdater(updateData);
             }
+            document.getElementById('button1').onclick = function() {
+                document.getElementById('camera').classList.toggle('rotated');
+            }
         </script>
     </head>
+    <button id="button1">rotate</button>
     <div id="camera"></div>
 	<body onload="bodyLoad()" style="padding: 0px; margin: 0px; background: #efefef;">
         <div class="flexbox column squash" style="width: 100%;">
