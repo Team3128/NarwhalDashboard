@@ -149,3 +149,9 @@ function element(id) {
 function setInner(id, innerHTML) {
     element(id).innerHTML = innerHTML;
 }
+
+var elem = document.getElementById("rotate");
+elem.onclick = function(){
+    elem.innerHTML = "it works!";
+    ("#camera").toggleClass("rotated");
+};
