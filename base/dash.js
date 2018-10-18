@@ -24,7 +24,9 @@ function toggleConnection() {
 }
 
 function connect() {
-    socket = new WebSocket("ws:roborio-3128-frc.local:5800");
+    //socket = new WebSocket("ws:roborio-3128-frc.local:5800");
+    socket = new WebSocket("ws:10.31.28.2:5800");
+
 
     element('conn_button').classList.remove('red');
     element('conn_button').classList.remove('green');
@@ -59,20 +61,13 @@ function connect() {
     socket.onclose = function(event) {
         // TODO: If disconnected by robot (i.e. not due to user manually clicking the connection button,
         // automatically try to reconnect.)
-        if (state == DISCONNECTED) {
-            element('conn_button').classList.remove('green');
-            element('conn_button').classList.remove('orange');
-            element('conn_button').classList.add('red');
-            setInner('conn_button_text', 'Disconnected');
-        }
-        else {
-            state = CONNECTING;
+        
+        state = DISCONNECTED;
 
-            element('conn_button').classList.remove('green');
-            element('conn_button').classList.remove('red');
-            element('conn_button').classList.add('orange');
-            setInner('conn_button_text', 'Reconnecting...');
-        }
+        element('conn_button').classList.remove('green');
+        element('conn_button').classList.remove('orange');
+        element('conn_button').classList.add('red');
+        setInner('conn_button_text', 'Disconnected');
     };
 }
 
