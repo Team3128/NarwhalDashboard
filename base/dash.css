@@ -64,7 +64,22 @@ body {
     background: #800080;
     color: white;
 }
-
+.dark_blue {
+    background: #08358e;
+    color: white;
+}
+.medium_blue {
+    background: #2159c6;
+    color: white;
+}
+.light_blue {
+    background: #4c81e8;
+    color: white;
+}
+.lightest_blue {
+    background: #77a5ff;
+    color: white;
+}
 
 .button:hover {
     cursor: pointer;
@@ -91,15 +106,7 @@ body {
 }
 
 #camera {
-    padding: 0;
-    position: fixed;
-    bottom: 25;
-    left: 940;
-    width: 30.5vw;
-    height: 38vh;
-    border-radius: 15px;
-    border: 2px solid #005281;
-    padding: 20px; 
+    border: 2px solid #96b9ff; 
     overflow: hidden;
     background-color: #333;
     background-image: url('http://roborio-3128-frc.local:1181/?action=stream');
