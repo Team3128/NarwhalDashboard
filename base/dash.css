@@ -124,3 +124,8 @@ body {
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+
+.stream {
+    display: inline-block;
+    margin-left: 10px;
+}
