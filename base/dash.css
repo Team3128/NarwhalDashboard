@@ -105,18 +105,6 @@ body {
     background: #005281;
 }
 
-#camera {
-    border: 2px solid #96b9ff; 
-    overflow: hidden;
-    background-color: #333;
-    background-image: url('10.31.28.2:1181/?action=stream');
-
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-}
-
 #camera.rotated { 
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
@@ -126,6 +114,16 @@ body {
 }
 
 .stream {
+    border: 2px solid #96b9ff; 
+    overflow: hidden;
+    background-color: #333;
+    background-image: url('10.31.28.2:1181/?action=stream');
+    border-radius: 15px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+
     display: inline-block;
     margin-left: 10px;
 }
