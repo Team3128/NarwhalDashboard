@@ -1,0 +1,24 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+// Brandard Blues(tm)
+$navy:      #1b1464;
+$royal:     #072682;
+$sapphire:  #0068a5;
+$pacific:   #0085b2;
+
+// Connection Indication Colors
+$red:       #e20000;
+$orange:    #f36d00;
+$green:     #00d11c;
+
+// Constants
+$darken-amount: 15%;
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+    "dashboard",
+    "camera"
+;

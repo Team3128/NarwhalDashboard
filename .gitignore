@@ -57,3 +57,7 @@ Temporary Items
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+_site
+.sass-cache
+.jekyll-metadata

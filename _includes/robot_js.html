@@ -1,0 +1,31 @@
+<script src="functions.js"></script>
+<script>
+    function updateData(json) { 
+        battGauge.value = json['voltage'];
+        battGauge.draw();
+
+        sel_auto = json['selected_auto']
+        if (sel_auto == "null") {
+            sel_auto = "None";
+        }
+                
+        setInner('selected_auto', sel_auto);
+        setInner('match_time', Number(json['time']).toFixed(0));
+
+        refresh(json);
+    }
+
+    function bodyLoad() {
+        var battGauge = makeGauge('batt_gauge', 160, 0, 15, [0,3,6,9,12,15], 3, [
+            {from:  0, to:  8, color: "#d60000"},
+            {from:  8, to: 12, color: "#efdb00"},
+            {from: 12, to: 15, color: "#41c603"}
+        ], "white", "white", "#0085b2", 2, 32);
+        battGauge.value = 0;
+        battGauge.draw();
+
+        initialize();
+
+        addUpdater(updateData);
+    }
+</script>

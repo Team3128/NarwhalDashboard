@@ -1,0 +1,35 @@
+---
+layout: default
+robot: guido
+permalink: /guido/
+---
+
+<div style="flex: 0 0 160px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px;">
+    <br>
+    <font style="font-size: 14pt">Forklift Height (ft)</font>
+    <br>
+    <canvas id="fork_bar"></canvas>
+</div>
+
+<div class="flexbox column squash" style="flex: 1 0 auto; align-items: stretch; padding: 0px; padding: 16px">
+    <div onmousedown='buttonDown("rezero")' onmouseup='buttonUp("rezero")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
+        <font style="font-size: 20">Rezero Forklift</font>
+    </div> 
+    <div onmousedown='buttonDown("stop_compress")' onmouseup='buttonUp("stop_compress")' class="button royal" style="flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
+        <font style="font-size: 20">Stop Compressor</font>
+    </div> 
+    <div onmousedown='buttonDown("start_compress")' onmouseup='buttonUp("start_compress")' class="button sapphire" style="flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
+        <font style="font-size: 20">Start Compressor</font>
+    </div> 
+
+    <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
+        <!--
+            TODO: Make the camera stream connect only after everything is loaded
+            and/or allow the user to manually attempt to connect
+        -->
+        <div class="button green" style="display: inline-block; border-radius: 12px; padding: 10px; padding-left: 30px; padding-right: 30px;">
+            <font style="font-size: 20">Connect to Camera</font>
+        </div> 
+        <!-- <img src="http://10.31.28.2:1181/stream.mjpg"> -->
+    </div> 
+</div>
