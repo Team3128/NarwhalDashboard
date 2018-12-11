@@ -1,5 +1,6 @@
 <script src="functions.js"></script>
 <script>
+    var battGauge;
     function updateData(json) { 
         battGauge.value = json['voltage'];
         battGauge.draw();
@@ -16,7 +17,7 @@
     }
 
     function bodyLoad() {
-        var battGauge = makeGauge('batt_gauge', 160, 0, 15, [0,3,6,9,12,15], 3, [
+        battGauge = makeGauge('batt_gauge', 160, 0, 15, [0,3,6,9,12,15], 3, [
             {from:  0, to:  8, color: "#d60000"},
             {from:  8, to: 12, color: "#efdb00"},
             {from: 12, to: 15, color: "#41c603"}
