@@ -27,18 +27,19 @@
     function toggleCamConnection() {
         var x = element('cameraStream')
         if (x.style.display === "none") {
+            x.style.display = "block";
             element('cam_conn_button').classList.remove('red');
             element('cam_conn_button').classList.remove('orange');
             element('cam_conn_button').classList.add('green');
             setInner('cam_conn_button_text', 'Camera Connected')
-
-            x.style.display = "block";
+            element('cameraStream').src = 'http://10.31.28.2:1181/stream.mjpg' 
         } else {
             x.style.display = "none";
             element('cam_conn_button').classList.remove('green');
             element('cam_conn_button').classList.remove('orange');
             element('cam_conn_button').classList.add('red');
             setInner('cam_conn_button_text', 'Camera Disconnected')
+            element('cameraStream').src = ''
         }
     }
 
