@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>
+    NarwhalDashboard: {{ page.robot }}
+</title>
+
+<link rel="shortcut icon" type="image/png" href="/../assets/icon.png"/>
+<link rel="icon" type="image/png" href="/../assets/icon.png"/>
+
+<link rel="stylesheet" href="{{ '/css/main.css' | prepend: site.baseurl }}">
+
+<html>
+    <ul>
+        <li><a href="../guido">Dashboard</a></li>
+        <li><a class="active" href="../guido/suite.html">Test Suite</a></li>
+        <li><a href="../guido/pid.html">PID</a></li>
+    </ul> 
+	<head>        
+        {% include head.html %}
+        
+
+        {% include base_js.html %}
+    </head>
+    
+</html>
