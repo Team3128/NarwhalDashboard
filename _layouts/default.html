@@ -1,9 +1,5 @@
 <html>
-    <ul>
-        <li><a class="active" href="../guido">Dashboard</a></li>
-        <li><a href="../guido/suite.html">Test Suite</a></li>
-        <li><a href="../guido/pid.html">Test Suite</a></li>
-    </ul> 
+    {% include navbar.html %}
 	<head>        
         {% include head.html %}
         
@@ -19,7 +15,7 @@
 	<body onload="bodyLoad()" class="squash" style="background: #efefef;">
         <div class="flexbox column squash" style="width: 100%;">
 			{% include header.html %}
-            
+            {% if page.url == "/guido/" %}
             <div class="flexbox row squash" style="align-items: stretch;">
                 <div class="flexbox column squash" style="flex: 0 0 50%;">
                     <div style="display: flex; align-items: center; flex-direction: row; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 16px; background: white; border-radius: 30px;">
@@ -52,6 +48,7 @@
                         {% include {{ page.robot }}_minor.html %}
                     </div>
                 </div>
+                {% endif %}
 
                 {{ content }}
             </div>
