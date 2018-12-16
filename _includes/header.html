@@ -1,9 +1,21 @@
 <div class="flexbox row navy" style="align-items: center;flex-grow: 0; padding: 10px; margin: 0px">
     <div style="flex: 1 0 auto">
-        <img style="height: 60px" src="/assets/logo.png"/>
+        <a href="/"><img style="height: 60px" src="/assets/logo.png"/></a>
     </div>
     
     <div id="conn_button" onclick='toggleConnection()' class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
         <font id="conn_button_text" style="font-size: 20; font-weight: 700">Disconnected</font>
     </div> 
+</div>
+
+<div class="flexbox row white" style="align-items: center;flex-grow: 0; padding: 0px; margin: 0px">
+    <ul class="tab_bar">
+        {% for robot in site.data.robots %}
+            {% if robot.name == page.robot %}
+                {% for tab in robot.tabs %}
+                    <li><a {% if page.tab == tab.name %}class="active"{% endif %} href="/{{ robot.permalink }}/{{ tab.permalink }}">{{ tab.name }}</a></li>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </ul>
 </div>

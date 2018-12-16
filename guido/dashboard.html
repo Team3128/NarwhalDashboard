@@ -1,9 +1,11 @@
 ---
-layout: default
-robot: guido
+layout: dashboard
+robot: Guido
+tab: Dashboard
+
 permalink: /guido/
-title: Dashboard
 ---
+
 <div style="flex: 0 0 160px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px;">
     <br>
     <font style="font-size: 14pt">Forklift Height (ft)</font>
@@ -23,15 +25,13 @@ title: Dashboard
     </div> 
 
     <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
-        <!--
-            TODO: Make the camera stream connect only after everything is loaded
-            and/or allow the user to manually attempt to connect
-        -->
+        <div id="cameraDiv">
+           <img id="cameraStream" style="max-width:55vh; border-radius: 6px; padding: 14px; padding-left: 14px; padding-right: 14px; display: none;" src="">
+        </div>
+
         <div id="cam_conn_button" onclick='toggleCamConnection()' class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
             <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Camera Disconnected</font>
         </div> 
-        <div id="cameraDiv">
-            <img id="cameraStream" style="max-width:55vh; border-radius: 6px; padding: 14px; padding-left: 14px; padding-right: 14px; display: none;" src="">
-        </div>
+
     </div> 
 </div>

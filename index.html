@@ -1,1 +1,25 @@
-<head><meta http-equiv="refresh" content="0; url=../guido/" /></head>
+---
+
+---
+
+<html>
+    <head>
+        <!-- <meta http-equiv="refresh" content="0; url=/guido/" /> -->
+        {% include head.html %}
+    </head>
+    <body class="squash" style="background: #efefef;"> 
+            <div class="flexbox row navy" style="align-items: center; flex-grow: 0; padding: 10px; margin: 0px">
+                <div style="flex: 1 0 auto">
+                    <img style="height: 60px" src="/assets/logo.png"/>
+                </div>
+            </div>
+
+            {% for robot in site.data.robots %}
+                <a href="/{{ robot.permalink }}">
+                    <div class="button royal" style="flex: 0 0 auto; border-radius: 12px; padding: 20px; margin: 20px; margin-bottom: 0px;">
+                        <font style="font-size: 20">{{ robot.name }}</font>
+                    </div>
+                </a>
+            {% endfor %}
+    </body>
+</html>

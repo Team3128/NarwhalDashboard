@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<div class="flexbox row squash" style="align-items: stretch;">
+    <div class="flexbox column squash" style="flex: 0 0 50%;">
+        <div style="display: flex; align-items: center; flex-direction: row; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 16px; background: white; border-radius: 30px;">
+            <div id="battery" style="flex: 0 0 160px; height: 160px; background: #b0b0b0; border-radius: 14px; padding: 10px; color: white; text-align: center; vertical-align: middle;">
+                <font style="font-size: 18pt; line-height: 12pt">Battery</font>
+                <canvas id="batt_gauge"></canvas>  
+            </div>
+                
+            <div style="flex: 1 0 auto; text-align: center; vertical-align: middle;">
+                <font id="match_time" style="font-size: 60pt; line-height: 64pt">0s</font>
+                <br>
+                <font style="font-size: 18pt; line-height: 20pt">Match Time Remaining</font>
+            </div>
+        </div>
+            
+        <div style="display: flex; align-items: strech; flex-direction: column; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 12px; background: #072682; border-radius: 16px;">
+            <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
+                <font style="font-weight: 300; margin-right: 8px;">Selected Auto:</font>
+                <font id="selected_auto" style="font-weight: 600; flex: 1 0 auto">No autonomous selected</font>  
+                <div onclick='toggleAutoMenu()' class="button sapphire" style="border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
+            </div>
+            <div id="auto_list" style='display: none; margin-top: 10px;'>
+                <div id="auto_choice_none" onclick="select_auto(-1)" class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
+                    None
+                </div>
+            </div>
+        </div>
+
+        <div class="flexbox row" style="align-items: center; justify-content: center; margin: 25px; margin-bottom: 0px;">
+            {% include {{ page.robot }}_minor.html %}
+        </div>
+    </div>
+
+    {{ content }}
+</div>

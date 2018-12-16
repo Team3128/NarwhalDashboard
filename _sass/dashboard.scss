@@ -1,7 +1,7 @@
 // Fonts
 @font-face {
     font-family: 'Open Sans';
-    src: url('/../assets/open-sans.ttf');
+    src: url('/assets/open-sans.ttf');
 }
 
 body {
@@ -69,6 +69,10 @@ body {
     color: white;
 }
 
+.white {
+    background: white;
+}
+
 
 // Buttons
 .button {
@@ -106,31 +110,34 @@ body {
         background: darken($green,      $darken-amount);
     }
 }
-ul {
+
+a {
+    text-decoration: none;
+}
+
+ul.tab_bar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #f3f3f3;
 }
 
-li {
+ul.tab_bar li {
     float: left;
 }
 
-li a {
+ul.tab_bar li a {
     display: block;
     color: #666;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    padding: 8px 16px;
 }
 
-li a:hover:not(.active) {
+ul.tab_bar li a:hover:not(.active) {
     background-color: #ddd;
 }
 
-li a.active {
+ul.tab_bar li a.active {
     color: white;
     background-color: #1b1464;
 }
