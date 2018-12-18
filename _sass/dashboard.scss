@@ -75,6 +75,18 @@ body {
 
 
 // Buttons
+.button.squarish {
+    line-height: 260px;
+    text-align: right;
+    flex: 0 0 27%;
+    height: 150px;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0px 0px 20px 0px;
+
+    font-size: 22pt;
+}
+
 .button {
     &:hover {
         cursor: pointer;
