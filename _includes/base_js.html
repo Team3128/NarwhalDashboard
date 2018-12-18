@@ -31,14 +31,14 @@
             element('cam_conn_button').classList.remove('red');
             element('cam_conn_button').classList.remove('orange');
             element('cam_conn_button').classList.add('green');
-            setInner('cam_conn_button_text', 'Camera Connected')
+            setInner('cam_conn_button_text', 'Disconnect from Camera')
             element('cameraStream').src = 'http://10.31.28.2:1181/stream.mjpg' 
         } else {
             x.style.display = "none";
             element('cam_conn_button').classList.remove('green');
             element('cam_conn_button').classList.remove('orange');
             element('cam_conn_button').classList.add('red');
-            setInner('cam_conn_button_text', 'Camera Disconnected')
+            setInner('cam_conn_button_text', 'Connect to Camera')
             element('cameraStream').src = ''
         }
     }
