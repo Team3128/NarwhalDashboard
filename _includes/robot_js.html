@@ -1,6 +1,9 @@
 <script src="/{{ page.robot }}/functions.js"></script>
 <script>
     var battGauge;
+    var tx;
+    var ty;
+    
     function updateData(json) { 
         battGauge.value = json['voltage'];
         battGauge.draw();
@@ -9,7 +12,8 @@
         if (sel_auto == "null") {
             sel_auto = "None";
         }
-                
+        setInner('tx', json['tx']);
+        setInner('ty', json['ty']);
         setInner('selected_auto', sel_auto);
         setInner('match_time', Number(json['time']).toFixed(0));
 
