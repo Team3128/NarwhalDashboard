@@ -62,12 +62,14 @@
             element('conn_button').classList.add('green');
             setInner('conn_button_text', 'Connected');
             state = CONNECTED;
+
+            document.getElementById("cover").style.display = 'none';
         };
 
         socket.onmessage = function(event) {
             json = JSON.parse(event.data);
 
-            if ("" + autos != "" + json['auto_programs']) {
+            if (json.hasOwnProperty('auto_programs')) {
                 autos = json['auto_programs'];
 
                 setup_auto_chooser();
@@ -96,6 +98,13 @@
             element('conn_button').classList.remove('orange');
             element('conn_button').classList.add('red');
             setInner('conn_button_text', 'Disconnected');
+
+            document.getElementById("cover").style.display = 'block';
+
+            autos = [];
+            setup_auto_chooser();
+
+            element.innerHTML = "Not Connected."
         };
     }
 
