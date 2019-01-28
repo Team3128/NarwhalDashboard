@@ -5,5 +5,14 @@
      permalink: 
    - name: Test Suite
      permalink: suite
-   - name: PID Suite
+   - name: PID Dashboard
+     permalink: pid
+- name: PreBot
+  permalink: prebot
+  tabs:
+   - name: Dashboard
+     permalink: 
+   - name: Test Suite
+     permalink: suite
+   - name: PID Dashboard
      permalink: pid
