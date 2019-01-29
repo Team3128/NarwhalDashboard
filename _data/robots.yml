@@ -14,5 +14,5 @@
      permalink: 
    - name: Test Suite
      permalink: suite
-   - name: PID Dashboard
-     permalink: pid
+   - name: Drive Callibration Utility
+     permalink: drive
