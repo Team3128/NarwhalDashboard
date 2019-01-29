@@ -16,14 +16,14 @@ permalink: /prebot/drive/
             <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
                 <tr>
                     <td width="45%">
-                        <div onmousedown='buttonDown("wheelbase")' class="button royal flexbox" style="align-items: center; height: 150px; border-radius: 12px; padding: 20px; vertical-align: middle;">
+                        <div onmousedown='buttonDown("resetEncoders")' class="button royal flexbox" style="align-items: center; height: 150px; border-radius: 12px; padding: 20px; vertical-align: middle;">
                             <div><b>Reset Drive Encoders</b></div>
                         </div> 
                     </td>
                     <td>
                         Wheel Circumference
                         <br>
-                        <span style="font-size: 50pt; line-height: 46pt;">0in</span>
+                        <span id="wheelCirc" style="font-size: 50pt; line-height: 46pt;">0in</span>
                     </td>
                 </tr>
             </table>
@@ -67,12 +67,12 @@ permalink: /prebot/drive/
                     <td>
                         Left kF
                         <br>
-                        <span style="font-size: 60pt; line-height: 50pt;">--</span>
+                        <span id="leftKf" style="font-size: 60pt; line-height: 50pt;">--</span>
                     </td>
                     <td>
                         Right kF
                         <br>
-                        <span style="font-size: 60pt; line-height: 50pt;">--</span>
+                        <span id="rightKf" style="font-size: 60pt; line-height: 50pt;">--</span>
                     </td>
                 </tr>
                 <tr>
@@ -85,12 +85,12 @@ permalink: /prebot/drive/
                         <td>
                             Left
                             <br>
-                            <span style="font-size: 60pt; line-height: 50pt;">1.0</span>
+                            <span id="leftSpeedScalar" style="font-size: 60pt; line-height: 50pt;">1.0</span>
                         </td>
                         <td>
                             Right
                             <br>
-                            <span style="font-size: 60pt; line-height: 50pt;">1.0</span>
+                            <span id="rightSpeedScalar" style="font-size: 60pt; line-height: 50pt;">1.0</span>
                         </td>
                     </tr>
             </table>
@@ -108,20 +108,26 @@ permalink: /prebot/drive/
             <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
                 <tr>
                     <td width="45%">
-                        <div onmousedown='buttonDown("wheelbase")' class="button royal flexbox" style="align-items: center; height: 250px; border-radius: 12px; padding: 20px; vertical-align: middle;">
+                        <div onmousedown='buttonDown("wheelbase")' class="button royal flexbox" style="align-items: center; height: 350px; border-radius: 12px; padding: 20px; vertical-align: middle;">
                             <div><b>Run Callibration Program</b></div>
                         </div> 
                     </td>
                     <td>
                         Calculated Effective Wheelbase
                         <br>
-                        <span style="font-size: 50pt; line-height: 46pt;">--in</span>
+                        <span id="wheelBase" style="font-size: 50pt; line-height: 46pt;">--in</span>
 
                         <br><br>
 
-                        Velocity Error
+                        Left Velocity Error
                         <br>
-                        <span style="font-size: 50pt; line-height: 46pt;">--</span>
+                        <span id ="leftVelocityError" style="font-size: 50pt; line-height: 46pt;">--</span>
+                        
+                        <br><br>
+
+                        Right Velocity Error
+                        <br>
+                        <span id="rightVelocityError" style="font-size: 50pt; line-height: 46pt;">--</span>
                     </td>
                 </tr>
             </table>
