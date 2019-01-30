@@ -9,7 +9,7 @@ permalink: /prebot/
     To be developed.
 </div>
 
-<div id="dcu">
+<div id="dcu" class="flexbox column">
     <div class="flexbox row" style="display: flex; font-size: 14pt">
         <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
             <div style="text-align: center; background: white; padding: 8px; margin: 16px 8px 0px 16px">
@@ -147,10 +147,65 @@ permalink: /prebot/
                 </table>
             </div>
         </div>
+    </div>
+
+    <div style="flex: 0 0 auto; background: white; margin: 16px;">
+        <table width="100%" cellspacing="8px">
+            <tr>
+                <td rowspan="3" style="text-align: center;">
+                    <b style="font-size: 20pt; margin-bottom: 4px;">PID Constants</b>
+                </td>
+                <td rowspan="2" style="text-align: center;">
+                    <text style="font-size: 20pt; margin-bottom: 4px;">Left</text>
+                    <br>
+                    F: <input />
+                </td>
+                <td>
+                    <b>Motion Profile</b>&nbsp&nbsp
+                    P: <input /> &nbsp
+                    I: <input /> &nbsp
+                    D: <input />
+                </td>
+                <td rowspan="2" style="text-align: center;">
+                    <span style="font-size: 20pt; margin-bottom: 4px;">Right</span>
+                    <br>
+                    F: <input />
+                </td>
+                <td>
+                    <b>Motion Profile</b>&nbsp&nbsp
+                    P: <input /> &nbsp
+                    I: <input /> &nbsp
+                    D: <input />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Velocity</b>&nbsp&nbsp
+                    P: <input /> &nbsp
+                    I: <input /> &nbsp
+                    D: <input />
+                </td>
+                <td>
+                    <b>Velocity</b>&nbsp&nbsp
+                    P: <input /> &nbsp
+                    I: <input /> &nbsp
+                    D: <input />
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2" colspan="2">
+                    <div onmousedown='saveLeftPID()' class="button sapphire" style="border-radius: 12px; padding: 10px 14px; text-align: center">
+                        <div><b>Save Left PID Constants</b></div>
+                    </div> 
+                </td>
+                <td rowspan="2" colspan="2">
+                    <div onmousedown='saveRightPID()' class="button pacific" style="border-radius: 12px; padding: 10px 14px; text-align: center">
+                        <div><b>Save Right PID Constants</b></div>
+                    </div> 
+                </td>
+            </tr>
+        </table>
         
-        <!-- <div colspan="3" style="width: 100%; background: white;">
-            <div style="text-align: center;"><b>PID</b></div>
-        </div> -->
     </div>
 </div>
 
