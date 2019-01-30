@@ -1,0 +1,32 @@
+<div style="flex: 0 0 160px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px;">
+    <br>
+    <font style="font-size: 14pt">Forklift Height (ft)</font>
+    <br>
+    <canvas id="fork_bar"></canvas>
+</div>
+
+<div class="flexbox column squash" style="flex: 0 1 100%; align-items: stretch; padding: 0px; padding: 16px">
+    <div style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 12px; margin-bottom: 12px;">
+        <div onmousedown='buttonDown("rezero")' onmouseup='buttonUp("rezero")' class="button navy squarish">
+            Rezero Forklift
+        </div> 
+        <div onmousedown='buttonDown("stop_compress")' onmouseup='buttonUp("stop_compress")' class="button royal squarish">
+            Stop Compressor
+        </div> 
+        <div onmousedown='buttonDown("start_compress")' onmouseup='buttonUp("start_compress")' class="button sapphire squarish">
+            Start Compressor
+        </div> 
+    </div>
+    
+    
+    <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
+        <div id="cam_conn_button" onclick='toggleCamConnection()' class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
+            <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
+        </div> 
+        
+        <div id="cameraDiv">
+            <img id="cameraStream" style="width:61vh; margin: 0 auto; border-radius: 6px; padding: 14px; padding-left: 14px; padding-right: 14px; display: none;" src="">
+        </div>
+        
+    </div> 
+</div>

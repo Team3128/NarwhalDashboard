@@ -12,6 +12,18 @@
     var autoMenuVisible = false;
     var updater = null;
 
+    var current_tab = "dashboard";
+
+    function setTab(id) {
+        document.getElementById(current_tab + '_tab').classList.remove('active');
+        document.getElementById(current_tab).classList.add('invisible');
+
+        current_tab = id;
+
+        document.getElementById(current_tab + '_tab').classList.add('active');
+        document.getElementById(current_tab).classList.remove('invisible');
+    }
+
     function toggleConnection() {
         if (state == DISCONNECTED) {
             connect();

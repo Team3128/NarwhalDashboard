@@ -2,17 +2,17 @@
   permalink: guido
   tabs:
    - name: Dashboard
-     permalink: 
+     id: dashboard
    - name: Test Suite
-     permalink: suite
-   - name: PID Dashboard
-     permalink: pid
+     id: test_suite
+   - name: PID Suite
+     id: pid
 - name: PreBot
   permalink: prebot
   tabs:
    - name: Dashboard
-     permalink: 
-   - name: Test Suite
-     permalink: suite
+     id: dashboard
+   - name: Auto Builder
+     id: auto
    - name: Drive Calibration Utility
-     permalink: drive
+     id: dcu

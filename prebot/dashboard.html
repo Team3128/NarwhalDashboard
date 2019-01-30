@@ -1,33 +1,199 @@
 ---
 layout: dashboard
 robot: PreBot
-tab: Dashboard
 
 permalink: /prebot/
 ---
 
-<div class="flexbox column squash" style="flex: 0 1 100%; align-items: stretch; padding: 0px; padding: 16px">
-    <!-- <div class="flexbox row" style="flex: 0 0 auto; align-items: flex-start; flex-wrap: wrap;">
-        <div onmousedown='buttonDown("rezero")' onmouseup='buttonUp("rezero")' class="button navy squarish">
-            Rezero Forklift
-        </div> 
-        <div onmousedown='buttonDown("stop_compress")' onmouseup='buttonUp("stop_compress")' class="button royal squarish">
-            Stop Compressor
-        </div> 
-        <div onmousedown='buttonDown("start_compress")' onmouseup='buttonUp("start_compress")' class="button sapphire squarish">
-            Start Compressor
-        </div> 
-    </div> -->
-    
-
-    <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
-        <div id="cam_conn_button" onclick='toggleCamConnection()' class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
-            <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
-        </div> 
-
-        <div id="cameraDiv">
-           <img id="cameraStream" style="width:61vh; margin: 0 auto; border-radius: 6px; padding: 14px; padding-left: 14px; padding-right: 14px; display: none;" src="">
-        </div>
-
-    </div> 
+<div id="auto">
+    To be developed.
 </div>
+
+<div id="dcu">
+    <div class="flexbox row" style="display: flex; font-size: 14pt">
+        <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
+            <div style="text-align: center; background: white; padding: 8px; margin: 16px 8px 0px 16px">
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 1: Wheel Circumference</b><br>
+                
+                In order to determine wheel circumference, reset the drive encoders, and push the robot (yes, by hand) exactly 100 inches.
+                <br><br>
+                <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
+                    <tr>
+                        <td width="45%">
+                            <div onmousedown='buttonDown("resetEncoders")' class="button royal flexbox" style="align-items: center; height: 150px; border-radius: 12px; padding: 20px; vertical-align: middle;">
+                                <div><b>Reset Drive Encoders</b></div>
+                            </div> 
+                        </td>
+                        <td>
+                            Wheel Circumference
+                            <br>
+                            <span id="wheelCirc" style="font-size: 50pt; line-height: 46pt;">--</span>
+                            <br>
+                            inches
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div style="background: white; padding: 8px; margin: 16px 8px 0px 16px">
+                <div style="text-align: center;">
+                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 4: Motion Profile/Motion Magic PID</b>
+                    
+                    <div onmousedown='buttonDown("pidCalDrive")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
+                        <b>100 inch Drive Test</b>
+                    </div> 
+                </div>
+
+                <ol>
+                    <li>Measure and mark a distance of 100 inches.</li>
+                    <li>Press the button to run the MotionMagic drive 100 inches program.</li>
+                    <li>Adjust the PID_kP value in the main robot class until the robot travels exactly 100 inches with no overshoot. Be sure to redeploy each time.</li>
+                </ol>
+            </div>
+        </div>
+        <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
+            <div style="text-align: center; background: white; padding: 8px; margin: 16px 8px 0px 8px">
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 2: Feed-Forward and Speed Scalars</b>
+                <br>
+                To determine both quanties, drive the robot around (on carpet) at max power with max throttle until they stop changing.
+                <br><br>
+                
+                <div onmousedown='buttonDown("resetMaxSpeed")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
+                    <b>Reset Maximum Speeds</b>
+                </div> 
+
+                <br>
+                
+                <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
+                    <tr>
+                        <td colspan="2">
+                            <b style="font-size: 20pt;">Feed-Forward</b><br>
+                            <i style="font-size: 14pt;">Note: Set these before setting Speed Scalars.</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Left kF
+                            <br>
+                            <span id="leftKf" style="font-size: 60pt; line-height: 50pt;">--</span>
+                        </td>
+                        <td>
+                            Right kF
+                            <br>
+                            <span id="rightKf" style="font-size: 60pt; line-height: 50pt;">--</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b style="font-size: 20pt;">Speed Scalars</b><br>
+                            <i style="font-size: 14pt;">Note: Do NOT apply these before determining Feed-Forward.</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Left
+                            <br>
+                            <span id="leftSpeedScalar" style="font-size: 60pt; line-height: 50pt;">1.0</span>
+                        </td>
+                        <td>
+                            Right
+                            <br>
+                            <span id="rightSpeedScalar" style="font-size: 60pt; line-height: 50pt;">1.0</span>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+        </div>
+        <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
+            <div style="text-align: center; background: white; padding: 8px; margin: 16px 16px 0px 8px">
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 3: Effective Wheelbase</b>
+                <br>
+                NOTE: To get an accurate reading, you must callibrate the velocity PID, which should be stored in the drive Talon's PID slot 1. This can be done by attempting to minimize the velocity error below.
+                <br><br>
+                Press the button and wait for a value to be displayed.
+                <br><br>
+                <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
+                    <tr>
+                        <td width="45%">
+                            <div onmousedown='buttonDown("wheelbase")' class="button royal flexbox" style="align-items: center; height: 450px; border-radius: 12px; padding: 20px; vertical-align: middle;">
+                                <div><b>Run Calibration Program</b></div>
+                            </div> 
+                        </td>
+                        <td>
+                            Calculated Effective Wheelbase
+                            <br>
+                            <span id="wheelBase" style="font-size: 50pt; line-height: 46pt;">--</span>
+                            <br>
+                            inches
+                            
+                            <br><br>
+                            
+                            Left Velocity Error
+                            <br>
+                            <span id ="leftVelocityError" style="font-size: 50pt; line-height: 46pt;">--</span>
+                            <br>
+                            nu/100ms
+                            
+                            <br><br>
+                            
+                            Right Velocity Error
+                            <br>
+                            <span id="rightVelocityError" style="font-size: 50pt; line-height: 46pt;">--</span>
+                            <br>
+                            nu/100ms
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- <div colspan="3" style="width: 100%; background: white;">
+            <div style="text-align: center;"><b>PID</b></div>
+        </div> -->
+    </div>
+</div>
+
+<!-- <div id="vision">
+    <h2>Limelight Table</h2>
+
+    <table>
+        <tr>
+        <th>Name</th>
+        <th>Unit</th>
+        <th>ID</th>
+        <th>Value</th>
+        <th>Average</th>
+        </tr>
+        <tr>
+        <td>Horizontal Offset</td>
+        <td>deg</td>
+        <td>tx</td>
+        <td id="tx">n/a</td>
+        <td id="txav">n/a</td>
+        </tr>
+        <tr>
+        <td>Skew/Rotation</td>
+        <td>deg</td>
+        <td>ts</td>
+        <td id="ts">n/a</td>
+        <td id="tsav">n/a</td>
+        </tr>
+        <tr>
+        <td>Target Area</td>
+        <td>%</td>
+        <td>ta</td>
+        <td id="ta">n/a</td>
+        <td id="taav">n/a</td>
+        </tr>
+        <tr>
+        <td>Pipeline Latency</td>
+        <td>ms</td>
+        <td>tl</td>
+        <td id="tl">n/a</td>
+        <td>---</td>
+        </tr>
+        
+        
+    </table>
+</div> -->
