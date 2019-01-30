@@ -47,7 +47,8 @@ permalink: /prebot/
                 <ol>
                     <li>Measure and mark a distance of 100 inches.</li>
                     <li>Press the button to run the MotionMagic drive 100 inches program.</li>
-                    <li>Adjust the PID_kP value in the main robot class until the robot travels exactly 100 inches with no overshoot. Be sure to redeploy each time.</li>
+                    <li>Increase the Motion Profile P gain in until the robot travels exactly 100 inches with no overshoot.</li>
+                    <li>With P gain properly tuned, you may need to add a small amount of D gain to reduce overshoot.</li>
                 </ol>
             </div>
         </div>
