@@ -14,6 +14,8 @@
 
     var current_tab = "dashboard";
 
+    var left_ids, right_ids;
+
     function setTab(id) {
         document.getElementById(current_tab + '_tab').classList.remove('active');
         document.getElementById(current_tab).classList.add('invisible');
@@ -187,11 +189,19 @@
         }
     }
 
+    function sendNum(id, value) {
+        send('numData:' + id + ':' + value)
+    }
+
     function element(id) {
         return document.getElementById(id);
     }
 
     function setInner(id, innerHTML) {
         element(id).innerHTML = innerHTML;
+    }
+
+    function getElement(id) {
+        return document.getElementById(id);
     }
 </script>

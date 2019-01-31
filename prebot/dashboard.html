@@ -159,48 +159,48 @@ permalink: /prebot/
                 <td rowspan="2" style="text-align: center;">
                     <text style="font-size: 20pt; margin-bottom: 4px;">Left</text>
                     <br>
-                    F: <input />
+                    F: <input id="l_f" value="0" />
                 </td>
                 <td>
                     <b>Motion Profile</b>&nbsp&nbsp
-                    P: <input /> &nbsp
-                    I: <input /> &nbsp
-                    D: <input />
+                    P: <input id="mp_l_p" /> &nbsp
+                    I: <input id="mp_l_i" /> &nbsp
+                    D: <input id="mp_l_d" />
                 </td>
                 <td rowspan="2" style="text-align: center;">
                     <span style="font-size: 20pt; margin-bottom: 4px;">Right</span>
                     <br>
-                    F: <input />
+                    F: <input id="r_f" />
                 </td>
                 <td>
                     <b>Motion Profile</b>&nbsp&nbsp
-                    P: <input /> &nbsp
-                    I: <input /> &nbsp
-                    D: <input />
+                    P: <input id="mp_r_p" /> &nbsp
+                    I: <input id="mp_r_i" /> &nbsp
+                    D: <input id="mp_r_d" />
                 </td>
             </tr>
             <tr>
                 <td>
                     <b>Velocity</b>&nbsp&nbsp
-                    P: <input /> &nbsp
-                    I: <input /> &nbsp
-                    D: <input />
+                    P: <input id="v_l_p" /> &nbsp
+                    I: <input id="v_l_i" /> &nbsp
+                    D: <input id="v_l_d" />
                 </td>
                 <td>
                     <b>Velocity</b>&nbsp&nbsp
-                    P: <input /> &nbsp
-                    I: <input /> &nbsp
-                    D: <input />
+                    P: <input id="v_r_p" /> &nbsp
+                    I: <input id="v_r_i" /> &nbsp
+                    D: <input id="v_r_d" />
                 </td>
             </tr>
             <tr>
                 <td rowspan="2" colspan="2">
-                    <div onmousedown='saveLeftPID()' class="button sapphire" style="border-radius: 12px; padding: 10px 14px; text-align: center">
+                    <div onmousedown='pushLeftPID()' class="button sapphire" style="border-radius: 12px; padding: 10px 14px; text-align: center">
                         <div><b>Save Left PID Constants</b></div>
                     </div> 
                 </td>
                 <td rowspan="2" colspan="2">
-                    <div onmousedown='saveRightPID()' class="button pacific" style="border-radius: 12px; padding: 10px 14px; text-align: center">
+                    <div onmousedown='pushRightPID()' class="button pacific" style="border-radius: 12px; padding: 10px 14px; text-align: center">
                         <div><b>Save Right PID Constants</b></div>
                     </div> 
                 </td>
