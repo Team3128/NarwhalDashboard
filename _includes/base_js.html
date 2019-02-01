@@ -17,13 +17,13 @@
     var left_ids, right_ids;
 
     function setTab(id) {
-        document.getElementById(current_tab + '_tab').classList.remove('active');
-        document.getElementById(current_tab).classList.add('invisible');
+        element(current_tab + '_tab').classList.remove('active');
+        element(current_tab).classList.add('invisible');
 
         current_tab = id;
 
-        document.getElementById(current_tab + '_tab').classList.add('active');
-        document.getElementById(current_tab).classList.remove('invisible');
+        element(current_tab + '_tab').classList.add('active');
+        element(current_tab).classList.remove('invisible');
     }
 
     function toggleConnection() {
@@ -77,7 +77,7 @@
             setInner('conn_button_text', 'Connected');
             state = CONNECTED;
 
-            document.getElementById("cover").style.display = 'none';
+            element("cover").style.display = 'none';
         };
 
         socket.onmessage = function(event) {
@@ -113,7 +113,7 @@
             element('conn_button').classList.add('red');
             setInner('conn_button_text', 'Disconnected');
 
-            document.getElementById("cover").style.display = 'block';
+            element("cover").style.display = 'block';
 
             autos = [];
             setup_auto_chooser();
@@ -127,9 +127,9 @@
     }
 
     function setup_auto_chooser() {
-        noneElement = document.getElementById("auto_choice_none")
+        noneElement = element("auto_choice_none")
 
-        document.getElementById("auto_list").innerHTML = noneElement.outerHTML;
+        element("auto_list").innerHTML = noneElement.outerHTML;
 
         for (var i = 0; i < autos.length; i++) {
             var element = noneElement.cloneNode(true);
@@ -138,17 +138,17 @@
             element.setAttribute('onclick', "select_auto(" + i + ")")
             element.innerHTML = autos[i]
 
-            document.getElementById("auto_list").appendChild(element);
+            element("auto_list").appendChild(element);
         }
     }
 
     function openAutoMenu() {
-        document.getElementById('auto_list').style.display = 'block';
+        element('auto_list').style.display = 'block';
         autoMenuVisible = true;
     }
 
     function closeAutoMenu() {
-        document.getElementById('auto_list').style.display = 'none';
+        element('auto_list').style.display = 'none';
         autoMenuVisible = false;
     }
 
@@ -199,9 +199,5 @@
 
     function setInner(id, innerHTML) {
         element(id).innerHTML = innerHTML;
-    }
-
-    function getElement(id) {
-        return document.getElementById(id);
     }
 </script>

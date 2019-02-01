@@ -176,7 +176,7 @@ export default class BaseGauge extends EventEmitter {
         let canvas = options.renderTo.tagName ?
             options.renderTo :
             /* istanbul ignore next: to be tested with e2e tests */
-            document.getElementById(options.renderTo);
+            element(options.renderTo);
 
         if (!(canvas instanceof HTMLCanvasElement)) {
             throw TypeError('Given gauge canvas element is invalid!');

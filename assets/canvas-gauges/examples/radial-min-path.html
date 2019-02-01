@@ -136,7 +136,7 @@
     function animateGauges() {
         document.gauges.forEach(function(gauge) {
             gauge.value = parseFloat(
-                document.getElementById('gauge-value').value) || 0;
+                element('gauge-value').value) || 0;
             setTimeout(function() {
                 console.log('new gauge value:' + gauge.value);
             }, 1510);

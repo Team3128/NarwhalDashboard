@@ -107,7 +107,7 @@ function stopGaugesAnimation() {
 }
 
 function resize() {
-    var size = parseFloat(document.getElementById('gauge-size').value) || 400;
+    var size = parseFloat(element('gauge-size').value) || 400;
 
     document.gauges.forEach(function (gauge) {
         gauge.update({ width: size, height: size });
@@ -121,7 +121,7 @@ function updateUnits() {
 }
 
 function setText() {
-    var text = document.getElementById('gauge-text').value;
+    var text = element('gauge-text').value;
 
     document.gauges.forEach(function (gauge) {
         gauge.update({ valueText: text });

@@ -53,7 +53,7 @@ Collection.prototype.get = function(id) {
             let canvas = this[i].options.renderTo.tagName ?
                 this[i].options.renderTo :
                 /* istanbul ignore next: should be tested with e2e tests */
-                document.getElementById(this[i].options.renderTo || '');
+                element(this[i].options.renderTo || '');
 
             if (canvas.getAttribute('id') === id) {
                 return this[i];

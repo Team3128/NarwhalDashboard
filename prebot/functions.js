@@ -4,25 +4,22 @@ function initialize() {
 }
 
 function refresh(json) {
-    for (var id in left_ids) {
-        getElement(id).value = json[id];
+    for (var i = 0; i < left_ids.length; i++) {
+        element(left_ids[i]).value = json[left_ids[i]];
+        element(right_ids[i]).value = json[right_ids[i]];
     }
 
-    for (var id in right_ids) {
-        getElement(id).value = json[id];
-    }
+    element('wheelCirc').innerText = Number(json['wheelCirc']).toFixed(2);
 
-    document.getElementById('wheelCirc').innerText = Number(json['wheelCirc']).toFixed(2);
+    element('leftKf').innerText = Number(json['leftKf']).toFixed(4);
+    element('rightKf').innerText = Number(json['rightKf']).toFixed(4);
 
-    document.getElementById('leftKf').innerText = Number(json['leftKf']).toFixed(4);
-    document.getElementById('rightKf').innerText = Number(json['rightKf']).toFixed(4);
+    element('leftSpeedScalar').innerText =  Number(json['leftSpeedScalar']).toFixed(4);
+    element('rightSpeedScalar').innerText =  Number(json['rightSpeedScalar']).toFixed(4);
 
-    document.getElementById('leftSpeedScalar').innerText =  Number(json['leftSpeedScalar']).toFixed(4);
-    document.getElementById('rightSpeedScalar').innerText =  Number(json['rightSpeedScalar']).toFixed(4);
-
-    document.getElementById('wheelBase').innerText = json['wheelBase'];
-    document.getElementById('leftVelocityError').innerText = json['leftVelocityError'];
-    document.getElementById('rightVelocityError').innerText = json['rightVelocityError'];
+    element('wheelBase').innerText = json['wheelBase'];
+    element('leftVelocityError').innerText = json['leftVelocityError'];
+    element('rightVelocityError').innerText = json['rightVelocityError'];
 }
 
 function pushLeftPID() {
@@ -33,9 +30,10 @@ function pushRightPID() {
     sendConstants(right_ids);
 }
 
-function sendConstants(ids) {
-    for (var id in ids) {
-        console.log(getElement(id).value);
-        sendNum(id, getElement(id).value);
+function sendConstants(field_ids) {
+    for (var i = 0; i < field_ids.length; i++) {
+        var id = field_ids[i];
+
+        sendNum(id, element(id).value);
     }
 }
