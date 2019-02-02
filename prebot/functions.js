@@ -1,6 +1,6 @@
 function initialize() {
-    left_ids = ['l_f', 'mp_l_p', 'mp_l_i', 'mp_l_d', 'v_l_p', 'v_l_i', 'v_l_d'];
-    right_ids = ['r_f', 'mp_r_p', 'mp_r_i', 'mp_r_d', 'v_r_p', 'v_r_i', 'v_r_d'];
+    left_ids = ['l_f', 'l_mp_p', 'l_mp_i', 'l_mp_d', 'l_v_p', 'l_v_i', 'l_v_d'];
+    right_ids = ['r_f', 'r_mp_p', 'r_mp_i', 'r_mp_d', 'r_v_p', 'r_v_i', 'r_v_d'];
 }
 
 function refresh(json) {
@@ -23,17 +23,21 @@ function refresh(json) {
 }
 
 function pushLeftPID() {
-    sendConstants(left_ids);
+    sendNum('leftPID', getPIDConstants(left_ids));
 }
 
 function pushRightPID() {
-    sendConstants(right_ids);
+    sendNum('rightPID', getPIDConstants(rigth_ids));
 }
 
-function sendConstants(field_ids) {
-    for (var i = 0; i < field_ids.length; i++) {
-        var id = field_ids[i];
+function getPIDConstants(field_ids) {
+    var data = "";
 
-        sendNum(id, element(id).value);
+    for (var i = 0; i < field_ids.length; i++) {
+        data += element(field_ids[i]).value;
+
+        if (i != field_ids.length - 1) {
+            data += ',';
+        }
     }
 }
