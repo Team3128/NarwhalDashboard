@@ -21,7 +21,7 @@
         {% for robot in site.data.robots %}
             {% if robot.name == page.robot %}
                 {% for tab in robot.tabs %}
-                    element("{{ tab.id }}").classList.add('invisible');
+                    getElement("{{ tab.id }}").classList.add('invisible');
                 {% endfor %}
             {% endif %}
         {% endfor %}
