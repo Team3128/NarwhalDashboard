@@ -20,8 +20,8 @@ function refresh(json) {
     getElement('rightSpeedScalar').innerText =  Number(json['rightSpeedScalar']).toFixed(4);
 
     getElement('wheelBase').innerText = json['wheelBase'];
-    getElement('leftVelocityError').innerText = json['leftVelocityError'];
-    getElement('rightVelocityError').innerText = json['rightVelocityError'];
+    getElement('leftVelocityError').innerText = Number(json['leftVelocityError']).toFixed(1);
+    getElement('rightVelocityError').innerText = Number(json['rightVelocityError']).toFixed(1);
 }
 
 function updatePID(json) {
