@@ -15,6 +15,7 @@
     var current_tab = "dashboard";
 
     var left_ids, right_ids;
+    var recievedFirstJSON = false;
 
     function getElement(id) {
         return document.getElementById(id);
@@ -78,18 +79,20 @@
         
         socket.onopen = function(event) {
             console.log("Connected.")
-
-            getElement('conn_button').classList.remove('red');
-            getElement('conn_button').classList.remove('orange');
-            getElement('conn_button').classList.add('green');
-            setInner('conn_button_text', 'Connected');
-            state = CONNECTED;
-
-            getElement("cover").style.display = 'none';
         };
 
         socket.onmessage = function(event) {
             json = JSON.parse(event.data);
+
+            if (!recievedFirstJSON) {
+                getElement('conn_button').classList.remove('red');
+                getElement('conn_button').classList.remove('orange');
+                getElement('conn_button').classList.add('green');
+                setInner('conn_button_text', 'Connected');
+                state = CONNECTED;
+
+                getElement("cover").style.display = 'none';
+            }
 
             if (json.hasOwnProperty('auto_programs')) {
                 autos = json['auto_programs'];
@@ -115,6 +118,7 @@
             // automatically try to reconnect.)
             
             state = DISCONNECTED;
+            recievedFirstJSON = false;
 
             getElement('conn_button').classList.remove('green');
             getElement('conn_button').classList.remove('orange');
