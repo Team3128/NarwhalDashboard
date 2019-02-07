@@ -19,7 +19,7 @@ function refresh(json) {
     getElement('leftSpeedScalar').innerText =  Number(json['leftSpeedScalar']).toFixed(4);
     getElement('rightSpeedScalar').innerText =  Number(json['rightSpeedScalar']).toFixed(4);
 
-    getElement('wheelBase').innerText = json['wheelBase'];
+    getElement('wheelBase').innerText = Number(json['wheelBase']).toFixed(2);
     getElement('leftVelocityError').innerText = Number(json['leftVelocityError']).toFixed(1);
     getElement('rightVelocityError').innerText = Number(json['rightVelocityError']).toFixed(1);
 }
