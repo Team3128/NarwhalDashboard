@@ -4,7 +4,7 @@ function initialize() {
     initDCU();
 
     scoring_height = 'mid';
-    game_element = 'hatch';
+    game_element = 'hatch_panel';
 }
 
 function refresh(json) {
