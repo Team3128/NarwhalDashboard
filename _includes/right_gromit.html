@@ -1,29 +1,41 @@
-<div style="flex: 0 0 160px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px;">
-    <br>
-    <font style="font-size: 14pt">Lift Height (ft)</font>
-    <br>
-    <canvas id="fork_bar"></canvas>
+<div style="flex: 0 0 240px; margin-bottom: 12px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px; font-size: 20pt">
+    <b>Rocket<br>Scoring Height</b>
+    <div id="top_indicator" class="button grey" style="height: 20%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
+        High
+    </div>
+    <div id="mid_indicator" class="button green" style="height: 20%; border-radius: 12px; padding: 8px; margin-bottom: 8px;">
+        Middle
+    </div>
+    <div id="low_indicator" class="button grey" style="height: 20%; border-radius: 12px; padding: 8px; margin-bottom: 8px;">
+        Low
+    </div>
 </div>
 
 <div class="flexbox column squash" style="flex: 0 1 100%; align-items: stretch; padding: 0px; padding: 16px">
     <div style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 12px; margin-bottom: 12px;">
-        <div onmousedown='buttonDown("rezero")' onmouseup='buttonUp("rezero")' class="button navy squarish">
-            Rezero Lift
+        <div onclick='buttonDown("fourbar_cargo_intake")' class="button navy squarish h150">
+            <b>Four Bar</b>
+            Cargo Intake
         </div>
-        <div onclick='buttonDown("stop_compress")' class="button royal squarish">
-            Stop Compressor
+        <div onclick='buttonDown("fourbar_low")' class="button royal squarish h150">
+            <b>Four Bar</b>
+            Low
         </div>
-        <div onclick='buttonDown("start_compress")' class="button sapphire squarish">
-            Start Compressor
+        <div onclick='buttonDown("fourbar_high")' class="button sapphire squarish h150">
+            <b>Four Bar</b>
+            High
         </div>
-        <div onclick='buttonDown("fourbar_cargo_intake")' class="button pacific squarish">
-            Four Bar Cargo Intake
+        <div onclick='buttonDown("lift_low")' class="button pacific squarish h150">
+            <b>Lift</b>
+            Low
         </div>
-        <div onclick='buttonDown("fourbar_low")' class="button sapphire squarish">
-            Four Bar Low
+        <div onclick='buttonDown("lift_mid")' class="button sapphire squarish h150">
+            <b>Lift</b>
+            Mid
         </div>
-        <div onclick='buttonDown("fourbar_high")' class="button royal squarish">
-            Four Bar High
+        <div onclick='buttonDown("lift_top")' class="button royal squarish h150">
+            <b>Lift</b>
+            Top
         </div>
     </div>
     

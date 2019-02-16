@@ -87,27 +87,34 @@ body {
     background: white;
 }
 
-
-// Buttons
-.button.squarish {
-    display: flex;
-    flex-direction: column;
-
-    justify-content: flex-end;
-
-    text-align: right;
-    height: 150px;
-    border-radius: 12px;
-    padding: 20px;
-
-    font-size: 22pt;
+.grey {
+    background: grey;
+    color: white;
 }
 
+
+// Buttons
 .button {
     &:hover {
         cursor: pointer;
     }
 
+    &.squarish {
+        display: flex;
+        flex-direction: column;
+    
+        justify-content: flex-end;
+    
+        text-align: right;
+        border-radius: 12px;
+        padding: 20px;
+    
+        font-size: 22pt;
+
+        &.h150 {
+            height: 150px;
+        }
+    }
 
     &.navy:hover {
         background: darken($navy,       $darken-amount);
@@ -136,6 +143,10 @@ body {
     
     &.green:hover {
         background: darken($green,      $darken-amount);
+    }
+
+    &.grey:hover {
+        background: darken(grey,      $darken-amount);
     }
 }
 
