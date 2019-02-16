@@ -1,0 +1,208 @@
+<div id="dcu" class="flexbox column">
+    <div class="flexbox row" style="display: flex; font-size: 14pt">
+        <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
+            <div style="text-align: center; background: white; padding: 8px; margin: 16px 8px 0px 16px">
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 1: Wheel Circumference</b><br>
+                
+                In order to determine wheel circumference, reset the drive encoders, and push the robot (yes, by hand) exactly 100 inches.
+                <br><br>
+                <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
+                    <tr>
+                        <td width="45%">
+                            <div onmousedown='buttonDown("resetEncoders")' class="button royal flexbox" style="align-items: center; height: 150px; border-radius: 12px; padding: 20px; vertical-align: middle;">
+                                <div><b>Reset Drive Encoders</b></div>
+                            </div> 
+                        </td>
+                        <td>
+                            Wheel Circumference
+                            <br>
+                            <span id="wheelCirc" style="font-size: 50pt; line-height: 46pt;">--</span>
+                            <br>
+                            inches
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div style="background: white; padding: 8px; margin: 16px 8px 0px 16px">
+                <div style="text-align: center;">
+                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 4: Motion Profile/Motion Magic PID</b>
+                    
+                    <div onmousedown='buttonDown("pidCalDrive")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
+                        <b>100 inch Drive Test</b>
+                    </div> 
+                </div>
+
+                <ol>
+                    <li>Measure and mark a distance of 100 inches.</li>
+                    <li>Press the button to run the MotionMagic drive 100 inches program.</li>
+                    <li>Increase the Motion Profile P gain in until the robot travels exactly 100 inches with no overshoot.</li>
+                    <li>With P gain properly tuned, you may need to add a small amount of D gain to reduce overshoot.</li>
+                </ol>
+            </div>
+        </div>
+        <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
+            <div style="text-align: center; background: white; padding: 8px; margin: 16px 8px 0px 8px">
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 2: Feed-Forward and Speed Scalars</b>
+                <br>
+                To determine both quanties, drive the robot around (on carpet) at max power with max throttle until they stop changing.
+                <br><br>
+                
+                <div onmousedown='buttonDown("resetMaxSpeed")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
+                    <b>Reset Maximum Speeds</b>
+                </div> 
+
+                <br>
+                
+                <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
+                    <tr>
+                        <td colspan="2">
+                            <b style="font-size: 20pt;">Feed-Forward</b><br>
+                            <i style="font-size: 14pt;">Note: Set these before setting Speed Scalars.</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Left kF
+                            <br>
+                            <span id="leftKf" style="font-size: 60pt; line-height: 50pt;">--</span>
+                        </td>
+                        <td>
+                            Right kF
+                            <br>
+                            <span id="rightKf" style="font-size: 60pt; line-height: 50pt;">--</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b style="font-size: 20pt;">Speed Scalars</b><br>
+                            <i style="font-size: 14pt;">Note: Do NOT apply these before determining Feed-Forward.</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Left
+                            <br>
+                            <span id="leftSpeedScalar" style="font-size: 60pt; line-height: 50pt;">1.0</span>
+                        </td>
+                        <td>
+                            Right
+                            <br>
+                            <span id="rightSpeedScalar" style="font-size: 60pt; line-height: 50pt;">1.0</span>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+        </div>
+        <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
+            <div style="text-align: center; background: white; padding: 8px; margin: 16px 16px 0px 8px">
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 3: Effective Wheelbase</b>
+                <br>
+                NOTE: To get an accurate reading, you must callibrate the velocity PID, which should be stored in the drive Talon's PID slot 1. This can be done by attempting to minimize the velocity error below.
+                <br><br>
+                Press the button and wait for a value to be displayed.
+                <br><br>
+                <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
+                    <tr>
+                        <td width="45%">
+                            <div onmousedown='buttonDown("wheelbase")' class="button royal flexbox" style="align-items: center; height: 450px; border-radius: 12px; padding: 20px; vertical-align: middle;">
+                                <div><b>Run Calibration Program</b></div>
+                            </div> 
+                        </td>
+                        <td>
+                            Calculated Effective Wheelbase
+                            <br>
+                            <span id="wheelBase" style="font-size: 50pt; line-height: 46pt;">--</span>
+                            <br>
+                            inches
+                            
+                            <br><br>
+                            
+                            Left Velocity Error
+                            <br>
+                            <span id ="leftVelocityError" style="font-size: 50pt; line-height: 46pt;">--</span>
+                            <br>
+                            nu/100ms
+                            
+                            <br><br>
+                            
+                            Right Velocity Error
+                            <br>
+                            <span id="rightVelocityError" style="font-size: 50pt; line-height: 46pt;">--</span>
+                            <br>
+                            nu/100ms
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div style="flex: 0 0 auto; background: white; margin: 16px;">
+        <table width="100%" cellspacing="8px">
+            <tr>
+                <td rowspan="3" style="text-align: center;">
+                    <b style="font-size: 20pt; margin-bottom: 4px;">PID Constants</b>
+                </td>
+                <td rowspan="2" style="text-align: center;">
+                    <text style="font-size: 20pt; margin-bottom: 4px;">Left</text>
+                    <br>
+                    F: <input id="l_f" />
+                </td>
+                <td>
+                    <b>Motion Profile</b>&nbsp&nbsp
+                    <div class="flexbox row" style="flex-wrap: wrap;">
+                        <div>P: <input id="l_mp_p" /> &nbsp</div>
+                        <div>I: <input id="l_mp_i" /> &nbsp</div>
+                        <div>D: <input id="l_mp_d" /> &nbsp</div>
+                    </div>
+                </td>
+                <td rowspan="2" style="text-align: center;">
+                    <span style="font-size: 20pt; margin-bottom: 4px;">Right</span>
+                    <br>
+                    F: <input id="r_f" />
+                </td>
+                <td>
+                    <b>Motion Profile</b>&nbsp&nbsp
+                    <div class="flexbox row" style="flex-wrap: wrap;">
+                        <div>P: <input id="r_mp_p" /> &nbsp</div>
+                        <div>I: <input id="r_mp_i" /> &nbsp</div>
+                        <div>D: <input id="r_mp_d" /> &nbsp</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Velocity</b>&nbsp&nbsp
+                    <div class="flexbox row" style="flex-wrap: wrap;">
+                        <div>P: <input id="l_v_p" /> &nbsp</div>
+                        <div>I: <input id="l_v_i" /> &nbsp</div>
+                        <div>D: <input id="l_v_d" /> &nbsp</div>
+                    </div>
+                </td>
+                <td>
+                    <b>Velocity</b>&nbsp&nbsp
+                    <div class="flexbox row" style="flex-wrap: wrap;">
+                        <div>P: <input id="r_v_p" /> &nbsp</div>
+                        <div>I: <input id="r_v_i" /> &nbsp</div>
+                        <div>D: <input id="r_v_d" /> &nbsp</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2" colspan="2">
+                    <div onclick='pushLeftPID()' class="button sapphire" style="border-radius: 12px; padding: 10px 14px; text-align: center">
+                        <div><b>Save Left PID Constants</b></div>
+                    </div> 
+                </td>
+                <td rowspan="2" colspan="2">
+                    <div onclick='pushRightPID()' class="button pacific" style="border-radius: 12px; padding: 10px 14px; text-align: center">
+                        <div><b>Save Right PID Constants</b></div>
+                    </div> 
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+</div>

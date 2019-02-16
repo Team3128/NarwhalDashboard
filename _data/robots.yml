@@ -16,3 +16,12 @@
      id: auto
    - name: Drive Calibration Utility
      id: dcu
+- name: Gromit
+  permalink: gromit
+  tabs:
+   - name: Dashboard
+     id: dashboard
+   - name: Auto Builder
+     id: auto
+   - name: Drive Calibration Utility
+     id: dcu
