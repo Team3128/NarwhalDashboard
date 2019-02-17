@@ -27,3 +27,8 @@
      id: debug
    - name: Drive Calibration Utility
      id: dcu
+- name: GromitTab
+  permalink: gromittab
+  tabs:
+    - name: Dashboard
+      id: dashboard

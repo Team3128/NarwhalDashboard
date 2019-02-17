@@ -1,0 +1,43 @@
+---
+layout: default
+robot: GromitTab
+
+permalink: /gromittab/
+---
+
+<canvas id="batt_gauge" class="invisible"></canvas>
+
+<div id="dashboard" style="padding: 24px;">
+    <div style="text-align: center; font-size: 24pt; font-weight: bolder">
+        Loaded Game Element
+    </div>
+    <div style="width: 100%; flex: 0 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 12px; margin-bottom: 12px;">
+        <div id="cargo_indicator" onclick='buttonDown("setElement_cargo")' class="button squarish grey" style="justify-content: center; text-align: center;">
+            <img src="/gromit/cargo.png" style="width: 120px;"/>
+        </div>
+        <div id="hatch_panel_indicator" onclick='buttonDown("setElement_hatch")' class="button squarish green" style="justify-content: center; text-align: center;">
+            <img src="/gromit/hatchpanel.png" style="width: 120px;"/>
+        </div>
+        <div id="none_indicator" onclick='buttonDown("setElement_none")' class="button squarish grey" style="padding: 12px; justify-content: center; text-align: center;">
+            No Game Element
+        </div>
+    </div>
+    
+    <div style="text-align: center; font-size: 24pt; font-weight: bolder">
+        Scoring Target
+    </div>
+    <div style="width: 100%; flex: 0 0 auto; display: grid; grid-template-columns: repeat(1, 1fr); grid-gap: 8px; margin-bottom: 12px;">
+        <div id="top_indicator" onclick='buttonDown("setTarget_rocket_top")' class="button grey squarish" style="justify-content: center; height: 54px; text-align: center; font-size: 22pt;">
+            Rocket High
+        </div>
+        <div id="mid_indicator" onclick='buttonDown("setTarget_rocket_mid")' class="button green squarish" style="justify-content: center; height: 54px; text-align: center; font-size: 22pt;">
+            Rocket Middle
+        </div>
+        <div id="low_indicator" onclick='buttonDown("setTarget_rocket_low")' class="button grey squarish" style="justify-content: center; height: 54px; text-align: center; font-size: 22pt;">
+            Rocket Low
+        </div>
+        <div id="ship_indicator" onclick='buttonDown("setTarget_cargo_ship")' class="button grey squarish" style="justify-content: center; height: 54px; text-align: center; font-size: 22pt;">
+            Cargo Ship/Loading Station
+        </div>
+    </div>
+</div>
