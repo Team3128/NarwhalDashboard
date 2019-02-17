@@ -1,4 +1,4 @@
-var scoring_height, game_element;
+var scoring_target, game_element;
 
 function initialize() {
     initDCU();
@@ -10,14 +10,14 @@ function initialize() {
 function refresh(json) {
     updateDCU();
 
-    if (json['scoring_height'] != scoring_height) {
-        getElement(scoring_height + '_indicator').classList.remove('green');
-        getElement(scoring_height + '_indicator').classList.add('grey');
+    if (json['scoring_target'] != scoring_target) {
+        getElement(scoring_target + '_indicator').classList.remove('green');
+        getElement(scoring_target + '_indicator').classList.add('grey');
 
-        scoring_height = json['scoring_height'];
+        scoring_target = json['scoring_target'];
 
-        getElement(scoring_height + '_indicator').classList.remove('grey');
-        getElement(scoring_height + '_indicator').classList.add('green');
+        getElement(scoring_target + '_indicator').classList.remove('grey');
+        getElement(scoring_target + '_indicator').classList.add('green');
     }
 
     if (json['game_element'] != game_element) {
