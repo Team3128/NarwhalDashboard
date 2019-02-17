@@ -2,14 +2,14 @@
     Loaded Game Element
 </div>
 <div style="width: 100%; flex: 0 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 12px;">
-    <div id="cargo_indicator" class="button squarish grey" style="justify-content: center; text-align: center;">
+    <div id="cargo_indicator" onclick='buttonDown("setElement_cargo")' class="button squarish grey" style="justify-content: center; text-align: center;">
         <img src="/gromit/cargo.png" style="width: 160px;"/>
     </div>
-    <div id="hatch_panel_indicator" class="button squarish green" style="justify-content: center; text-align: center;">
+    <div id="hatch_panel_indicator" onclick='buttonDown("setElement_hatch")' class="button squarish green" style="justify-content: center; text-align: center;">
         <img src="/gromit/hatchpanel.png" style="width: 160px;"/>
     </div>
 </div>
-<div id="none_indicator" class="button squarish grey" style="justify-content: center; text-align: center; margin-bottom: 24px;">
+<div id="none_indicator" onclick='buttonDown("setElement_none")' class="button squarish grey" style="justify-content: center; text-align: center; margin-bottom: 24px;">
     No Game Element
 </div>
 
