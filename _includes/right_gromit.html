@@ -12,20 +12,28 @@
 </div>
 
 <div class="flexbox column squash" style="flex: 0 1 100%; align-items: stretch; padding: 0px; padding: 16px">
-    <div style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 12px;">
-        <div onclick='buttonDown("climb_12")' class="button navy squarish h150">
-            <b>Climb</b>
-            Depot/HAB1 to HAB2
+    <div class="flexbox row">
+        <div id="gear_indicator" class="button orange squarish" style="flex: 1 0 10%; justify-content: center; font-size: 36pt; text-align: center; padding: 8px; margin-bottom: 12px; margin-right: 12px;">
+            Low<br>Gear
         </div>
-        <div onclick='buttonDown("climb_23")' class="button royal squarish h150">
-            <b>Climb</b>
-            HAB2 to HAB3
+        <div class="flexbox column" style="flex: 1 0 auto">
+            <div style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 12px">
+                <div onclick='buttonDown("climb_12")' class="button navy squarish h150">
+                    <b>Climb</b>
+                    Depot/HAB1 to HAB2
+                </div>
+                <div onclick='buttonDown("climb_23")' class="button royal squarish h150">
+                    <b>Climb</b>
+                    HAB2 to HAB3
+                </div>
+            </div>
+            
+            <div onclick='buttonDown("cancel_climb")' class="button red squarish" style="text-align: center; font-size: 16pt; padding: 8px;margin-bottom: 12px;">
+                Cancel Climb
+            </div>
         </div>
     </div>
-
-    <div onclick='buttonDown("cancel_climb")' class="button red squarish" style="text-align: center; font-size: 16pt; padding: 8px;margin-bottom: 12px;">
-        Cancel Climb
-    </div>
+    
     
     <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
         <div id="cam_conn_button" onclick='toggleCamConnection()' class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
