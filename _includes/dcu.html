@@ -99,42 +99,45 @@
             <div style="text-align: center; background: white; padding: 8px; margin: 16px 16px 0px 8px">
                 <b style="font-size: 20pt; margin-bottom: 4px;">Step 3: Effective Wheelbase</b>
                 <br>
-                NOTE: To get an accurate reading, you must callibrate the velocity PID, which should be stored in the drive Talon's PID slot 1. This can be done by attempting to minimize the velocity error below.
+                To determine the effective wheelbase of the robot, change the left and right applied powers and run the program. Run the program a couple of times to get a feel for what the ballpark wheelbase should be.
                 <br><br>
-                Press the button and wait for a value to be displayed.
+                Then, only add values in this range to the average (throw out anything that seems like an outlier). 
                 <br><br>
-                <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
-                    <tr>
-                        <td width="45%">
-                            <div onmousedown='buttonDown("wheelbase")' class="button royal flexbox" style="align-items: center; height: 450px; border-radius: 12px; padding: 20px; vertical-align: middle;">
-                                <div><b>Run Calibration Program</b></div>
-                            </div> 
-                        </td>
-                        <td>
-                            Calculated Effective Wheelbase
-                            <br>
-                            <span id="wheelBase" style="font-size: 50pt; line-height: 46pt;">--</span>
-                            <br>
-                            inches
-                            
-                            <br><br>
-                            
-                            Left Velocity Error
-                            <br>
-                            <span id ="leftVelocityError" style="font-size: 50pt; line-height: 46pt;">--</span>
-                            <br>
-                            nu/100ms
-                            
-                            <br><br>
-                            
-                            Right Velocity Error
-                            <br>
-                            <span id="rightVelocityError" style="font-size: 50pt; line-height: 46pt;">--</span>
-                            <br>
-                            nu/100ms
-                        </td>
-                    </tr>
-                </table>
+
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 8px;">
+                    <text style="font-size: 24pt">Left Power</text>
+                    <text style="font-size: 24pt">Right Power</text> 
+                    <input id="l_pow" style="font-size: 24pt; width: 100%"/>
+                    <input id="r_pow" style="font-size: 24pt; width: 100%"/>
+                </div>
+
+                <text style="font-size: 16pt">Duration (ms):</text> 
+                <input id="l_pow" style="font-size: 16pt; width: 100%; margin-bottom: 12px;"/>
+
+                <div onclick="wheelbase()" class="button navy flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;; margin-bottom: 24px;">
+                    <div><b>Run Calibration Program</b></div>
+                </div> 
+
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px;">
+                    <text style="font-size: 18pt;">Most Recent<br>Wheelbase</text>
+                    <text style="font-size: 18pt;">Running Average Wheelbase</text>
+
+                    <div>
+                        <div id="prev_wb" style="font-size: 50pt; line-height: 46pt;">--</div>
+                        inches
+                    </div>                    
+                    <div>
+                        <div id="avg_wb" style="font-size: 50pt; line-height: 46pt;">--</div>
+                        inches
+                    </div>
+
+                    <div onclick="buttonDown('add_wb_to_avg')" class="button sapphire flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;">
+                        <div><b>Add to Average</b></div>
+                    </div> 
+                    <div onclick="buttonDown('reset_wb_avg')" class="button royal flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;">
+                        <div><b>Reset Average</b></div>
+                    </div> 
+                </div>
             </div>
         </div>
     </div>

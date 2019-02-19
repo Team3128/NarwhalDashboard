@@ -21,9 +21,8 @@
         getElement('leftSpeedScalar').innerText =  Number(json['leftSpeedScalar']).toFixed(4);
         getElement('rightSpeedScalar').innerText =  Number(json['rightSpeedScalar']).toFixed(4);
 
-        getElement('wheelBase').innerText = Number(json['wheelBase']).toFixed(2);
-        getElement('leftVelocityError').innerText = Number(json['leftVelocityError']).toFixed(1);
-        getElement('rightVelocityError').innerText = Number(json['rightVelocityError']).toFixed(1);
+        getElement('avg_wb').innerText = Number(json['avg_wb']).toFixed(2);
+        getElement('prev_wb').innerText = Number(json['prev_wb']).toFixed(1);
     }
 
     function updatePID(json) {
@@ -60,6 +59,10 @@ function getPIDConstants(field_ids) {
     }
 
     return data;
+}
+
+function wheelbase() {
+    sendNum('calc_wb', getElement('l_pow').value + ',' + getElement('r_pow').value + ',' + getElement('wb_dur'));
 }
 
 </script>
