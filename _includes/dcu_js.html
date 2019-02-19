@@ -15,11 +15,11 @@
 
         getElement('wheelCirc').innerText = Number(json['wheelCirc']).toFixed(2);
 
-        getElement('leftKf').innerText = Number(json['leftKf']).toFixed(4);
-        getElement('rightKf').innerText = Number(json['rightKf']).toFixed(4);
+        getElement('left_max_speed').innerText = Number(json['left_max_speed']).toFixed(1);
+        getElement('right_max_speed').innerText = Number(json['right_max_speed']).toFixed(1);
 
-        getElement('leftSpeedScalar').innerText =  Number(json['leftSpeedScalar']).toFixed(4);
-        getElement('rightSpeedScalar').innerText =  Number(json['rightSpeedScalar']).toFixed(4);
+        getElement('leftSpeedScalar').innerText =  Number(json['leftSpeedScalar']).toFixed(3);
+        getElement('rightSpeedScalar').innerText =  Number(json['rightSpeedScalar']).toFixed(3);
 
         getElement('avg_wb').innerText = Number(json['avg_wb']).toFixed(2);
         getElement('prev_wb').innerText = Number(json['prev_wb']).toFixed(1);
