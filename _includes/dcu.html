@@ -1,5 +1,5 @@
 <div id="dcu" class="flexbox column">
-    <div class="flexbox row" style="display: flex; font-size: 14pt">
+    <div class="flexbox column" style="display: flex; font-size: 14pt">
         <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
             <div style="text-align: center; background: white; padding: 8px; margin: 16px 8px 0px 16px">
                 <b style="font-size: 20pt; margin-bottom: 4px;">Step 1: Wheel Circumference</b><br>
@@ -20,23 +20,6 @@
                         </td>
                     </tr>
                 </table>
-            </div>
-            
-            <div style="background: white; padding: 8px; margin: 16px 8px 0px 16px">
-                <div style="text-align: center;">
-                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 4: Motion Profile/Motion Magic PID</b>
-                    
-                    <div onmousedown='buttonDown("pidCalDrive")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
-                        <b>100 inch Drive Test</b>
-                    </div> 
-                </div>
-
-                <ol>
-                    <li>Measure and mark a distance of 100 inches.</li>
-                    <li>Press the button to run the MotionMagic drive 100 inches program.</li>
-                    <li>Increase the Motion Profile P gain in until the robot travels exactly 100 inches with no overshoot.</li>
-                    <li>With P gain properly tuned, you may need to add a small amount of D gain to reduce overshoot.</li>
-                </ol>
             </div>
         </div>
         <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
@@ -143,6 +126,69 @@
                         <div><b>Reset Average</b></div>
                     </div> 
                 </div>
+            </div>
+        </div>
+        <div style="flex: 1 1 33%; padding: 0px; margin: 0px">
+            <div style="text-align: center; background: white; padding: 8px; margin: 16px 16px 0px 8px">
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 4: PPF Multiplier</b>
+                <br>
+                To determine the respective ppf multipliers(Left/Right) of the robot, change the left and right applied powers and run the program. Run the program with increments of 0.05 starting from -1 to 1 for both sides.
+                <br><br>
+                Then, add the values to the csv string by clicking the button below, which will then get printed when you select the button: "Print CSV"
+                <br><br>
+
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 8px;">
+                    <div>
+                        <text style="font-size: 24pt">Left Power</text>
+                        <br>
+                        <input id="l_pow_ffp" style="font-size: 24pt; width: 100%"/>
+                    </div>
+                    <div>
+                        <text style="font-size: 24pt">Right Power</text>
+                        <br>
+                        <input id="r_pow_ffp" style="font-size: 24pt; width: 100%"/>
+                    </div>
+                </div>
+
+                <text style="font-size: 16pt">Duration (ms):</text> 
+                <input id="ffp_dur" style="font-size: 16pt; width: 100%; margin-bottom: 12px;"/>
+
+                <div onclick="ffpCalibration()" class="button navy flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;; margin-bottom: 24px;">
+                    <div><b>Run Calibration Program</b></div>
+                </div> 
+
+                <text style="font-size: 18pt;">Most Recent<br>FFP(L/R)</text>
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px;">
+                    <div>
+                        <div id="prev_ffpL" style="font-size: 50pt; line-height: 46pt;">--</div>
+                    </div>                    
+                    <div>
+                        <div id="prev_ffpR" style="font-size: 50pt; line-height: 46pt;">--</div>
+                    </div>
+
+                    <div onclick="buttonDown('printCSV')" class="button sapphire flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;">
+                        <div><b>Print CSV</b></div>
+                    </div> 
+                    <div onclick="buttonDown('remLast')" class="button royal flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;">
+                        <div><b>Remove Last Pair</b></div>
+                    </div> 
+                </div>
+            </div>
+            <div style="background: white; padding: 8px; margin: 16px 8px 0px 16px">
+                <div style="text-align: center;">
+                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 5: Motion Profile/Motion Magic PID</b>
+                    
+                    <div onmousedown='buttonDown("pidCalDrive")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
+                        <b>100 inch Drive Test</b>
+                    </div> 
+                </div>
+
+                <ol>
+                    <li>Measure and mark a distance of 100 inches.</li>
+                    <li>Press the button to run the MotionMagic drive 100 inches program.</li>
+                    <li>Increase the Motion Profile P gain in until the robot travels exactly 100 inches with no overshoot.</li>
+                    <li>With P gain properly tuned, you may need to add a small amount of D gain to reduce overshoot.</li>
+                </ol>
             </div>
         </div>
     </div>

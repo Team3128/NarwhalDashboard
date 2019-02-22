@@ -62,7 +62,10 @@ function getPIDConstants(field_ids) {
 }
 
 function wheelbase() {
-    sendNum('calc_wb', getElement('l_pow').value + ',' + getElement('r_pow').value + ',' + getElement('wb_dur'));
+    sendNum('calc_wb', getElement('l_pow').value + ',' + getElement('r_pow').value + ',' + getElement('wb_dur').value);
+}
+function ffpCalibration() {
+    sendNum('calc_ffp', getElement('l_pow_ffp').value + ',' + getElement('r_pow_ffp').value + ',' + getElement('ffp_dur').value);
 }
 
 </script>
