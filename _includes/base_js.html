@@ -20,6 +20,10 @@
         return document.getElementById(id);
     }
 
+    function setNumber(id, decimal_places) {
+        getElement(id).innerText = Number(json[id]).toFixed(decimal_places);
+    }
+
     function setInner(id, innerHTML) {
         getElement(id).innerHTML = innerHTML;
     }
@@ -40,12 +44,12 @@
         }
         else {
             state = DISCONNECTED;
-            
+
             socket.close();
             socket = null;
         }
     }
-    
+
     function toggleCamConnection() {
         var x = getElement('cameraStream')
         if (x.style.display === "none") {
@@ -54,7 +58,7 @@
             getElement('cam_conn_button').classList.remove('orange');
             getElement('cam_conn_button').classList.add('green');
             setInner('cam_conn_button_text', 'Disconnect from Camera')
-            getElement('cameraStream').src = 'limelight.local:5800' 
+            getElement('cameraStream').src = 'limelight.local:5800'
             // http://10.31.28.2:1181/stream.mjpg
         } else {
             x.style.display = "none";
@@ -75,12 +79,12 @@
         getElement('conn_button').classList.add('orange');
         setInner('conn_button_text', 'Connecting...');
         state = CONNECTING;
-        
-        socket.onopen = function(event) {
+
+        socket.onopen = function (event) {
             console.log("Connected.")
         };
 
-        socket.onmessage = function(event) {
+        socket.onmessage = function (event) {
             json = JSON.parse(event.data);
 
             if (!recievedFirstJSON) {
@@ -104,7 +108,7 @@
                 if (sel_auto == "null") {
                     sel_auto = "None";
                 }
-    
+
                 setInner('selected_auto', sel_auto);
                 setInner('match_time', Number(json['time']).toFixed(0));
 
@@ -112,10 +116,10 @@
             }
         };
 
-        socket.onclose = function(event) {
+        socket.onclose = function (event) {
             // TODO: If disconnected by robot (i.e. not due to user manually clicking the connection button,
             // automatically try to reconnect.)
-            
+
             state = DISCONNECTED;
             recievedFirstJSON = false;
 

@@ -13,16 +13,20 @@
     function updateDCU() {
         updatePID(json);
 
-        getElement('wheelCirc').innerText = Number(json['wheelCirc']).toFixed(2);
+        setNumber('wheelCirc', 2);
 
-        getElement('left_max_speed').innerText = Number(json['left_max_speed']).toFixed(1);
-        getElement('right_max_speed').innerText = Number(json['right_max_speed']).toFixed(1);
+        setNumber('left_max_speed', 0);
+        setNumber('right_max_speed', 0);
 
-        getElement('leftSpeedScalar').innerText =  Number(json['leftSpeedScalar']).toFixed(3);
-        getElement('rightSpeedScalar').innerText =  Number(json['rightSpeedScalar']).toFixed(3);
+        setNumber('leftSpeedScalar', 3);
+        setNumber('rightSpeedScalar', 3);
 
-        getElement('avg_wb').innerText = Number(json['avg_wb']).toFixed(2);
-        getElement('prev_wb').innerText = Number(json['prev_wb']).toFixed(1);
+        setNumber('avg_wb', 2);
+        setNumber('prev_wb', 1);
+
+        setNumber('avg_w', 2);
+        setNumber('avg_ffpmL', 6);
+        setNumber('avg_ffpmR', 6);
     }
 
     function updatePID(json) {
