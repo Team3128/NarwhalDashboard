@@ -133,7 +133,7 @@
             </div>
             <div style="background: white; padding: 8px; margin: 0px 0px 16px 0px">
                 <div style="text-align: center;">
-                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 5: Motion Profile/Motion Magic PID</b>
+                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 5: Motion Profile/MotionMagic PID</b>
                     
                     <div onmousedown='buttonDown("pidCalDrive")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
                         <b>100 inch Drive Test</b>
@@ -146,6 +146,48 @@
                     <li>Increase the Motion Profile P gain in until the robot travels exactly 100 inches with no overshoot.</li>
                     <li>With P gain properly tuned, you may need to add a small amount of D gain to reduce overshoot.</li>
                 </ol>
+
+                <div style="text-align: center;">
+                    <b style="font-size: 18pt; margin-bottom: 4px;">Left</b>
+                </div>
+
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 16px; font-size: 18pt;">
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">P:</div>
+                        <input id="l_mp_p" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">I:</div>
+                        <input id="l_mp_i" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">D:</div>
+                        <input id="l_mp_d" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <b style="font-size: 18pt; margin-bottom: 4px;">Right</b>
+                </div>
+
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 16px; font-size: 18pt;">
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">P:</div>
+                        <input id="r_mp_p" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">I:</div>
+                        <input id="r_mp_i" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">D:</div>
+                        <input id="r_mp_d" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                </div>
+
+                <div onclick='pushPID()' class="button pacific" style="border-radius: 12px; margin: 12px 0px 0px 0px; padding: 10px 14px; text-align: center">
+                    <div><b>Save PID Constants</b></div>
+                </div> 
             </div>
         </div>
         <div style="padding: 0px; margin: 0px">
@@ -199,72 +241,5 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div style="flex: 0 0 auto; background: white; margin: 16px;">
-        <table width="100%" cellspacing="8px">
-            <tr>
-                <td rowspan="3" style="text-align: center;">
-                    <b style="font-size: 20pt; margin-bottom: 4px;">PID Constants</b>
-                </td>
-                <td rowspan="2" style="text-align: center;">
-                    <text style="font-size: 20pt; margin-bottom: 4px;">Left</text>
-                    <br>
-                    F: <input id="l_f" />
-                </td>
-                <td>
-                    <b>Motion Profile</b>&nbsp&nbsp
-                    <div class="flexbox row" style="flex-wrap: wrap;">
-                        <div>P: <input id="l_mp_p" /> &nbsp</div>
-                        <div>I: <input id="l_mp_i" /> &nbsp</div>
-                        <div>D: <input id="l_mp_d" /> &nbsp</div>
-                    </div>
-                </td>
-                <td rowspan="2" style="text-align: center;">
-                    <span style="font-size: 20pt; margin-bottom: 4px;">Right</span>
-                    <br>
-                    F: <input id="r_f" />
-                </td>
-                <td>
-                    <b>Motion Profile</b>&nbsp&nbsp
-                    <div class="flexbox row" style="flex-wrap: wrap;">
-                        <div>P: <input id="r_mp_p" /> &nbsp</div>
-                        <div>I: <input id="r_mp_i" /> &nbsp</div>
-                        <div>D: <input id="r_mp_d" /> &nbsp</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Velocity</b>&nbsp&nbsp
-                    <div class="flexbox row" style="flex-wrap: wrap;">
-                        <div>P: <input id="l_v_p" /> &nbsp</div>
-                        <div>I: <input id="l_v_i" /> &nbsp</div>
-                        <div>D: <input id="l_v_d" /> &nbsp</div>
-                    </div>
-                </td>
-                <td>
-                    <b>Velocity</b>&nbsp&nbsp
-                    <div class="flexbox row" style="flex-wrap: wrap;">
-                        <div>P: <input id="r_v_p" /> &nbsp</div>
-                        <div>I: <input id="r_v_i" /> &nbsp</div>
-                        <div>D: <input id="r_v_d" /> &nbsp</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td rowspan="2" colspan="2">
-                    <div onclick='pushLeftPID()' class="button sapphire" style="border-radius: 12px; padding: 10px 14px; text-align: center">
-                        <div><b>Save Left PID Constants</b></div>
-                    </div> 
-                </td>
-                <td rowspan="2" colspan="2">
-                    <div onclick='pushRightPID()' class="button pacific" style="border-radius: 12px; padding: 10px 14px; text-align: center">
-                        <div><b>Save Right PID Constants</b></div>
-                    </div> 
-                </td>
-            </tr>
-        </table>
-        
     </div>
 </div>
