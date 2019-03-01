@@ -54,6 +54,9 @@ function getPIDConstants() {
 
     return data;
 }
+function visionPID() {
+    sendNum('visionPID', getElement('visionPID_kP').value + ',' + getElement('visionPID_kI').value + ',' + getElement('visionPID_kD').value);
+}
 
 function wheelbase() {
     sendNum('calc_wb', getElement('l_pow').value + ',' + getElement('r_pow').value + ',' + getElement('wb_dur').value);
