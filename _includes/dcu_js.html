@@ -7,7 +7,7 @@
                    'r_f', 'r_mp_p', 'r_mp_i', 'r_mp_d'];
         drive_pid_vals =  [-1, -1, -1, -1, -1, -1, -1, -1];
 
-        vision_pid_ids = ['v_p', 'v_i', 'v_d'];
+        vision_pid_ids = ['vision_p', 'vision_i', 'vision_d'];
         vision_pid_vals =  [-1, -1, -1];
     }
 
@@ -15,13 +15,13 @@
         updateDrivePID(json);
         updateVisionPID(json);
 
-        setNumber('wheelCirc', 2);
+        setNumber('wheel_circumference', 2);
 
         setNumber('left_max_speed', 0);
         setNumber('right_max_speed', 0);
 
-        setNumber('leftSpeedScalar', 3);
-        setNumber('rightSpeedScalar', 3);
+        setNumber('left_scalar', 3);
+        setNumber('right_scalar', 3);
 
         // setNumber('avg_wb', 2);
         // setNumber('prev_wb', 1);
