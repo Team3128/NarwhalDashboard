@@ -22,7 +22,36 @@
                 </table>
             </div>
 
-            <div style="padding: 0px; margin: 0px">
+            <div style="text-align: center; background: white;  padding: 8px; margin: 0px 0px 16px 0px;">
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 4: Vision PID</b>
+                <br>
+                To tune the PID loop for the vision horizontal alignment.
+                <br>
+
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 12px; margin-bottom: 8px;">
+                    <div>
+                        <text style="font-size: 24pt">kP</text>
+                        <br>
+                        <input id="visionPID_kP" style="font-size: 24pt; width: 100%"/>
+                    </div>
+                    <div>
+                        <text style="font-size: 24pt">kI</text>
+                        <br>
+                        <input id="visionPID_pI" style="font-size: 24pt; width: 100%"/>
+                    </div>
+                    <div>
+                        <text style="font-size: 24pt">kD</text>
+                        <br>
+                        <input id="visionPID_pD" style="font-size: 24pt; width: 100%"/>
+                    </div>
+                </div>
+
+                <div onclick="pushVisionPID()" class="button navy flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center">
+                    <div><b>Save Vision PID Constants</b></div>
+                </div> 
+            </div>
+
+            <!-- <div style="padding: 0px; margin: 0px">
                 <div style="text-align: center; background: white; padding: 8px; margin: 0px 0px 16px 0px">
                     <b style="font-size: 20pt; margin-bottom: 4px;">Step 4: Feed-Forward Power Multiplier</b>
                     <br>
@@ -75,26 +104,25 @@
                         </div> 
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div style="padding: 0px; margin: 0px">
             <div style="text-align: center; background: white; padding: 8px; margin: 0px 0px 16px 0px">
                 <div>
-                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 2: Max Speeds and Speed Scalars</b>
+                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 2: Velocity-Based Components</b>
                 </div>
-                <br><br>
-                <div onmousedown='buttonDown("resetMaxSpeed")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
+                The following elements are based on the velocities of the drive sides in various scenarios.
+
+                <div onmousedown='buttonDown("resetMaxSpeed")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px; margin: 12px 0px 8px;">
                     <b>Reset Values</b>
                 </div> 
-
-                <br>
                 
                 <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
                     <tr>
                         <td colspan="2">
-                            <b style="font-size: 20pt;">Maximum Speed</b>
+                            <b style="font-size: 20pt;">Part I: Maximum Speed</b>
                             <div style="font-size: 14pt;">
-                                Drive the robot in place by turning the joystick hard to the left; reset, then turn hard to the right. Take the lesser of the four speeds as the maximum speed for autonomous driving.
+                                Place the robot on the ground. Drive the robot in place by turning the joystick hard to the left; reset, then turn hard to the right. Take a value comfortably less than the least of the four speeds as the maximum speed for autonomous driving.
                             </div>
                         </td>
                     </tr>
@@ -112,9 +140,27 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <b style="font-size: 20pt;">Speed Scalars</b>
+                            <b style="font-size: 20pt;">Part II: MotionMagic Feed-Forward Power</b>
                             <div style="font-size: 14pt;">
-                                Drive the robot full speed forward and record the scalars. Note: Do NOT apply these before determining Max Speed and Feed-Forward.
+                                Place the robot on blocks. Drive the robot at maximum motor power; ensure to try a variety of twists to sweep the full range of motion.
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Left</div>
+                            <div id="left_calculated_kf" style="font-size: 60pt; line-height: 50pt;">--</div>
+                        </td>
+                        <td>
+                            <div>Right</div>
+                            <div id="right_calculated_kf" style="font-size: 60pt; line-height: 50pt;">--</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b style="font-size: 20pt;">Part III: Speed Scalars</b>
+                            <div style="font-size: 14pt;">
+                                Place the robot on the ground. Drive the robot maximum motor power; ensure to try a variety of twists to sweep the full range of motion.
                             </div>
                         </td>
                     </tr>
@@ -131,67 +177,9 @@
                 </table>
                 <br>
             </div>
-            <div style="background: white; padding: 8px; margin: 0px 0px 16px 0px">
-                <div style="text-align: center;">
-                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 5: Motion Profile/MotionMagic PID</b>
-                    
-                    <div onmousedown='buttonDown("pidCalDrive")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
-                        <b>100 inch Drive Test</b>
-                    </div> 
-                </div>
-
-                <ol>
-                    <li>Measure and mark a distance of 100 inches.</li>
-                    <li>Press the button to run the MotionMagic drive 100 inches program.</li>
-                    <li>Increase the Motion Profile P gain in until the robot travels exactly 100 inches with no overshoot.</li>
-                    <li>With P gain properly tuned, you may need to add a small amount of D gain to reduce overshoot.</li>
-                </ol>
-
-                <div style="text-align: center;">
-                    <b style="font-size: 18pt; margin-bottom: 4px;">Left</b>
-                </div>
-
-                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 16px; font-size: 18pt;">
-                    <div class="flexbox row" style="align-items: center;">
-                        <div style="margin-right: 4px;">P:</div>
-                        <input id="l_mp_p" style="font-size: 24pt; flex: 1 1 100%" />
-                    </div>
-                    <div class="flexbox row" style="align-items: center;">
-                        <div style="margin-right: 4px;">I:</div>
-                        <input id="l_mp_i" style="font-size: 24pt; flex: 1 1 100%" />
-                    </div>
-                    <div class="flexbox row" style="align-items: center;">
-                        <div style="margin-right: 4px;">D:</div>
-                        <input id="l_mp_d" style="font-size: 24pt; flex: 1 1 100%" />
-                    </div>
-                </div>
-
-                <div style="text-align: center;">
-                    <b style="font-size: 18pt; margin-bottom: 4px;">Right</b>
-                </div>
-
-                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 16px; font-size: 18pt;">
-                    <div class="flexbox row" style="align-items: center;">
-                        <div style="margin-right: 4px;">P:</div>
-                        <input id="r_mp_p" style="font-size: 24pt; flex: 1 1 100%" />
-                    </div>
-                    <div class="flexbox row" style="align-items: center;">
-                        <div style="margin-right: 4px;">I:</div>
-                        <input id="r_mp_i" style="font-size: 24pt; flex: 1 1 100%" />
-                    </div>
-                    <div class="flexbox row" style="align-items: center;">
-                        <div style="margin-right: 4px;">D:</div>
-                        <input id="r_mp_d" style="font-size: 24pt; flex: 1 1 100%" />
-                    </div>
-                </div>
-
-                <div onclick='pushPID()' class="button pacific" style="border-radius: 12px; margin: 12px 0px 0px 0px; padding: 10px 14px; text-align: center">
-                    <div><b>Save PID Constants</b></div>
-                </div> 
-            </div>    
         </div>
         <div style="padding: 0px; margin: 0px">
-            <div style="text-align: center; background: white;  padding: 8px; margin: 0px 0px 16px 0px;">
+            <!-- <div style="text-align: center; background: white;  padding: 8px; margin: 0px 0px 16px 0px;">
                 <b style="font-size: 20pt; margin-bottom: 4px;">Step 3: Effective Wheelbase</b>
                 <br>
                 To determine the effective wheelbase of the robot, change the left and right applied powers and run the program. Run the program a couple of times to get a feel for what the ballpark wheelbase should be.
@@ -239,36 +227,74 @@
                         <div><b>Reset Average</b></div>
                     </div> 
                 </div>
-            </div>
-            <div style="padding: 0px; margin: 0px">
-                <div style="text-align: center; background: white;  padding: 8px; margin: 0px 0px 16px 0px;">
-                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 6: Vision PID</b>
-                    <br>
-                    To tune the PID loop for the vision horizontal alignment.
-                    <br>
-    
-                    <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 12px; margin-bottom: 8px;">
-                        <div>
-                            <text style="font-size: 24pt">kP</text>
-                            <br>
-                            <input id="visionPID_kP" style="font-size: 24pt; width: 100%"/>
-                        </div>
-                        <div>
-                            <text style="font-size: 24pt">kI</text>
-                            <br>
-                            <input id="visionPID_pI" style="font-size: 24pt; width: 100%"/>
-                        </div>
-                        <div>
-                            <text style="font-size: 24pt">kD</text>
-                            <br>
-                            <input id="visionPID_pD" style="font-size: 24pt; width: 100%"/>
-                        </div>
-                    </div>
-    
-                    <div onclick="visionPID()" class="button navy flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;; margin-bottom: 24px;">
-                        <div><b>Send Vision PID Values</b></div>
+            </div> -->
+            
+            <div style="background: white; padding: 8px; margin: 0px 0px 16px 0px">
+                <div style="text-align: center;">
+                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 3: MotionMagic PID</b>
+                    
+                    <div onmousedown='buttonDown("pidCalDrive")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
+                        <b>100 inch Drive Test</b>
                     </div> 
                 </div>
+
+                <ol>
+                    <li>Measure and mark a distance of 100 inches.</li>
+                    <li>Use the feed-forward constants determined in step 2</li>
+                    <li>Press the button to run the MotionMagic drive 100 inches program.</li>
+                    <li>Increase the Motion Profile P gain in until the robot travels exactly 100 inches with no overshoot.</li>
+                    <li>With P gain properly tuned, you may need to add a small amount of D gain to reduce overshoot and oscillations.</li>
+                </ol>
+
+                <div style="text-align: center;">
+                    <b style="font-size: 18pt; margin-bottom: 4px;">Left</b>
+                </div>
+
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 8px; font-size: 18pt;">
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">kF:</div>
+                        <input id="l_mp_f" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">kP:</div>
+                        <input id="l_mp_p" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">kI:</div>
+                        <input id="l_mp_i" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">kD:</div>
+                        <input id="l_mp_d" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <b style="font-size: 18pt; margin-bottom: 4px;">Right</b>
+                </div>
+
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 8px; font-size: 18pt;">
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">kF:</div>
+                        <input id="r_mp_f" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">kP:</div>
+                        <input id="r_mp_p" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">kI:</div>
+                        <input id="r_mp_i" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                    <div class="flexbox row" style="align-items: center;">
+                        <div style="margin-right: 4px;">kD:</div>
+                        <input id="r_mp_d" style="font-size: 24pt; flex: 1 1 100%" />
+                    </div>
+                </div>
+
+                <div onclick='pushDrivePID()' class="button pacific" style="border-radius: 12px; margin: 12px 0px 0px 0px; padding: 10px 14px; text-align: center">
+                    <div><b>Save PID Constants</b></div>
+                </div> 
             </div>
         </div>
     </div>

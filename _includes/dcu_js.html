@@ -1,15 +1,19 @@
 <script>
-    var pid_ids, pid_vals;
+    var drive_pid_ids, drive_pid_vals;
+    var vision_pid_ids, vision_pid_vals;
 
     function initDCU() {
-        pid_ids = [/*'l_f',*/ 'l_mp_p', 'l_mp_i', 'l_mp_d', /*'l_v_p', 'l_v_i', 'l_v_d'*/
-            /*'r_f',*/ 'r_mp_p', 'r_mp_i', 'r_mp_d' /*, 'r_v_p', 'r_v_i', 'r_v_d'*/];
+        drive_pid_ids = ['l_f', 'l_mp_p', 'l_mp_i', 'l_mp_d',
+                   'r_f', 'r_mp_p', 'r_mp_i', 'r_mp_d'];
+        drive_pid_vals =  [-1, -1, -1, -1, -1, -1, -1, -1];
 
-        pid_vals =  [-1, -1, -1, -1, -1, -1];
+        vision_pid_ids = ['v_p', 'v_i', 'v_d'];
+        vision_pid_vals =  [-1, -1, -1];
     }
 
     function updateDCU() {
-        updatePID(json);
+        updateDrivePID(json);
+        updateVisionPID(json);
 
         setNumber('wheelCirc', 2);
 
@@ -19,50 +23,70 @@
         setNumber('leftSpeedScalar', 3);
         setNumber('rightSpeedScalar', 3);
 
-        setNumber('avg_wb', 2);
-        setNumber('prev_wb', 1);
+        // setNumber('avg_wb', 2);
+        // setNumber('prev_wb', 1);
 
-        setNumber('avg_w', 2);
-        setNumber('avg_ffpmL', 6);
-        setNumber('avg_ffpmR', 6);
+        // setNumber('avg_w', 2);
+        // setNumber('avg_ffpmL', 6);
+        // setNumber('avg_ffpmR', 6);
     }
 
-    function updatePID(json) {
-        for (var i = 0; i < 7; i++) {
-            if (pid_vals[i] != json[pid_vals[i]]) {
-                pid_vals[i] = json[pid_vals[i]];
+    function updateDrivePID(json) {
+        for (var i = 0; i < drive_pid_ids.length; i++) {
+            if (drive_pid_vals[i] != json[drive_pid_ids[i]]) {
+                drive_pid_vals[i] = json[drive_pid_ids[i]];
                 
-                getElement(pid_ids[i]).value = Number(pid_vals[i]).toFixed(4);
+                getElement(drive_pid_ids[i]).value = Number(drive_pid_vals[i]).toFixed(4);
             }
         }
     }
+    function pushDrivePID() {
+        sendNum('drivePID', getInputDrivePID());
+    }
+    function getInputDrivePID() {
+        var data = "";
 
-function pushPID() {
-    sendNum('drivePID', getPIDConstants());
-}
+        for (var i = 0; i < drive_pid_ids.length; i++) {
+            data += getElement(drive_pid_ids[i]).value;
 
-function getPIDConstants() {
-    var data = "";
-
-    for (var i = 0; i < pid_ids.length; i++) {
-        data += getElement(pid_ids[i]).value;
-
-        if (i != pid_ids.length - 1) {
-            data += ',';
+            if (i != drive_pid_ids.length - 1) {
+                data += ',';
+            }
         }
+
+        return data;
     }
 
-    return data;
-}
-function visionPID() {
-    sendNum('visionPID', getElement('visionPID_kP').value + ',' + getElement('visionPID_kI').value + ',' + getElement('visionPID_kD').value);
-}
+    function updateVisionPID(json) {
+        for (var i = 0; i < vision_pid_ids.length; i++) {
+            if (vision_pid_vals[i] != json[vision_pid_ids[i]]) {
+                vision_pid_vals[i] = json[vision_pid_ids[i]];
+                
+                getElement(vision_pid_ids[i]).value = Number(vision_pid_vals[i]).toFixed(4);
+            }
+        }
+    }
+    function pushVisionPID() {
+        sendNum('visionPID', getInputVisionPID());
+    }
+    function getInputDrivePID() {
+        var data = "";
 
-function wheelbase() {
-    sendNum('calc_wb', getElement('l_pow').value + ',' + getElement('r_pow').value + ',' + getElement('wb_dur').value);
-}
-function ffpCalibration() {
-    sendNum('calc_ffp', getElement('l_pow_ffp').value + ',' + getElement('r_pow_ffp').value + ',' + getElement('ffp_dur').value);
-}
+        for (var i = 0; i < vision_pid_ids.length; i++) {
+            data += getElement(vision_pid_ids[i]).value;
 
+            if (i != vision_pid_ids.length - 1) {
+                data += ',';
+            }
+        }
+
+        return data;
+    }
+
+    // function wheelbase() {
+    //     sendNum('calc_wb', getElement('l_pow').value + ',' + getElement('r_pow').value + ',' + getElement('wb_dur').value);
+    // }
+    // function ffpCalibration() {
+    //     sendNum('calc_ffp', getElement('l_pow_ffp').value + ',' + getElement('r_pow_ffp').value + ',' + getElement('ffp_dur').value);
+    // }
 </script>
