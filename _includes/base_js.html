@@ -50,22 +50,22 @@
         }
     }
 
-    function toggleCamConnection() {
+    function toggleCamConnection(address) {
         var x = getElement('cameraStream')
         if (x.style.display === "none") {
             x.style.display = "block";
             getElement('cam_conn_button').classList.remove('red');
             getElement('cam_conn_button').classList.remove('orange');
             getElement('cam_conn_button').classList.add('green');
-            setInner('cam_conn_button_text', 'Disconnect from Camera')
-            getElement('cameraStream').src = 'limelight.local:5800'
-            // http://10.31.28.2:1181/stream.mjpg
+            setInner('cam_conn_button_text', 'Hide Camera Stream')
+            getElement('cameraStream').src = address;
+            //'http://10.31.28.2:1181/stream.mjpg'
         } else {
             x.style.display = "none";
             getElement('cam_conn_button').classList.remove('green');
             getElement('cam_conn_button').classList.remove('orange');
             getElement('cam_conn_button').classList.add('red');
-            setInner('cam_conn_button_text', 'Connect to Camera')
+            setInner('cam_conn_button_text', 'Show Camera Stream')
             getElement('cameraStream').src = ''
         }
     }
@@ -73,7 +73,8 @@
     function connect() {
         //socket = new WebSocket("ws:roborio-3128-frc.local:5800");
         socket = new WebSocket("ws:10.31.28.2:5805");
-
+        //socket = new WebSocket("ws:roborio-3128-frc.local:5805");
+        
         getElement('conn_button').classList.remove('red');
         getElement('conn_button').classList.remove('green');
         getElement('conn_button').classList.add('orange');

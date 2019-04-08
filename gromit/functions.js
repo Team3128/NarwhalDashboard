@@ -3,6 +3,9 @@ var gear;
 
 var gear_indicator;
 
+var top_ll_indic, bot_ll_indic;
+var top_ll_conn, bot_ll_conn;
+
 function initialize() {
     initDCU();
 
@@ -12,6 +15,12 @@ function initialize() {
     gear = 'false';
 
     gear_indicator = getElement('gear_indicator');
+
+    top_ll_indic = getElement('top_ll_indic');
+    bot_ll_indic = getElement('bot_ll_indic');
+
+    top_ll_conn = 'false';
+    bot_ll_conn = 'false';
 }
 
 function refresh(json) {
@@ -53,5 +62,30 @@ function refresh(json) {
             gear_indicator.innerHTML = "High<br>Gear";
         }
     }
-    
+
+    if (json['top_ll_conn'] != top_ll_conn) {
+        top_ll_conn = json['top_ll_conn'];
+
+        if (top_ll_conn != 'true') {
+            top_ll_indic.classList.remove('green');
+            top_ll_indic.classList.add('red');
+        }
+        else {
+            top_ll_indic.classList.remove('red');
+            top_ll_indic.classList.add('green');
+        }
+    }
+
+    if (json['bot_ll_conn'] != bot_ll_conn) {
+        bot_ll_conn = json['bot_ll_conn'];
+
+        if (bot_ll_conn != 'true') {
+            bot_ll_indic.classList.remove('green');
+            bot_ll_indic.classList.add('red');
+        }
+        else {
+            bot_ll_indic.classList.remove('red');
+            bot_ll_indic.classList.add('green');
+        }
+    }
 }
