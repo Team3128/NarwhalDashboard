@@ -3,8 +3,8 @@ var gear;
 
 var gear_indicator;
 
-var top_ll_indic, bot_ll_indic;
-var top_ll_conn, bot_ll_conn;
+var top_ll_indic, bot_ll_indic, align_indic;
+var top_ll_conn, bot_ll_conn, align_status;
 
 function initialize() {
     initDCU();
@@ -18,9 +18,12 @@ function initialize() {
 
     top_ll_indic = getElement('top_ll_indic');
     bot_ll_indic = getElement('bot_ll_indic');
+    align_indic = getElement('align_indic');
 
     top_ll_conn = 'false';
     bot_ll_conn = 'false';
+
+    align_status = 'blind';
 }
 
 function refresh(json) {
@@ -76,8 +79,8 @@ function refresh(json) {
         }
     }
 
-    if (json['bot_ll_conn'] != bot_ll_conn) {
-        bot_ll_conn = json['bot_ll_conn'];
+    if (json['bot_ll_conn'] != bot_ll_indic) {
+        bot_ll_indic = json['bot_ll_conn'];
 
         if (bot_ll_conn != 'true') {
             bot_ll_indic.classList.remove('green');
@@ -86,6 +89,26 @@ function refresh(json) {
         else {
             bot_ll_indic.classList.remove('red');
             bot_ll_indic.classList.add('green');
+        }
+    }
+
+    if (json['align_status'] != align_status) {
+        align_status = json['align_status'];
+
+        if (align_status == 'blind') {
+            align_indic.classList.remove('green');
+            align_indic.classList.remove('orange');
+            align_indic.classList.add('red');
+        }
+        else if(align_conn == 'searching'){
+            align_indic.classList.remove('red');
+            align_indic.classList.remove('green');
+            align_indic.classList.add('orange');
+        }
+        else {
+            align_indic.classList.remove('red');
+            align_indic.classList.remove('orange');
+            align_indic.classList.add('green');
         }
     }
 }

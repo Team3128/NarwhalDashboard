@@ -40,13 +40,18 @@
                 <b>Limelight Connection Status</b>
             </div> 
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 4px;">
-                <div id="top_ll_indic" style="margin: 0px 8px 8px 0px;" class="button red navy squarish">
+                <div id="top_ll_indic" style="margin: 0px 8px 8px 0px; text-align: center;" class="button red navy squarish">
                     Top
                 </div>
-                <div id="bot_ll_indic" style="margin: 4px 8px 8px 0px;" class="button red navy squarish">
+                <div id="bot_ll_indic" style="margin: 4px 8px 8px 0px; text-align: center;" class="button red navy squarish">
                     Bottom
                 </div>
-            </div>          
+            </div>  
+            <div style="display: grid; grid-template-columns: 1; grid-gap: 4px;">
+                <div id="align_indic" style="margin: 4px 8px 8px 0px; text-align: center;" class="button yellow navy squarish">
+                    Alignment Status
+                </div>
+            </div>              
         </div>
         <div class="stream" style="text-align: center; flex: 5 0 500px; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
             <div id="cam_conn_button" onclick="toggleCamConnection('http://limelight-top.local:5800/')" class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
