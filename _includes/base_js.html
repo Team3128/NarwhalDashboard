@@ -50,23 +50,51 @@
         }
     }
 
+    // function toggleCamConnection(addresses, ids) {
+    //     for(var i = 0; i < addresses.length; i++) {
+    //         var camera_stream = getElement(ids[i]);
+    //         if (camera_stream.style.display === "none") {
+    //             camera_stream.style.display = "block";
+    //             if(i == 0){
+    //                 getElement('cam_conn_button').classList.remove('red');
+    //                 getElement('cam_conn_button').classList.remove('orange');
+    //                 getElement('cam_conn_button').classList.add('green');
+    //                 setInner('cam_conn_button_text', 'Hide Camera Stream');
+    //                 camera_stream.style = 'width: 100%; margin: 8px 0px 0px 0px; display: none;';
+    //             }
+    //             camera_stream.src = addresses[i];
+    //             //'http://10.31.28.2:1181/stream.mjpg'
+    //         } else {
+    //             camera_stream.style.display = "none";
+    //             if(i == 0){
+    //                 getElement('cam_conn_button').classList.remove('green');
+    //                 getElement('cam_conn_button').classList.remove('orange');
+    //                 getElement('cam_conn_button').classList.add('red');
+    //                 setInner('cam_conn_button_text', 'Show Camera Stream');
+    //                 camera_stream.style = 'width: 0%; margin: 8px 0px 0px 0px; display: none;';
+    //             }
+    //             camera_stream.src = '';
+    //         }
+    //     }
+    // }
+
     function toggleCamConnection(address) {
-        var x = getElement('cameraStream')
-        if (x.style.display === "none") {
-            x.style.display = "block";
+        var camera_stream = getElement("top_stream");
+        if (camera_stream.style.display === "none") {
+            camera_stream.style.display = "block";
             getElement('cam_conn_button').classList.remove('red');
             getElement('cam_conn_button').classList.remove('orange');
             getElement('cam_conn_button').classList.add('green');
-            setInner('cam_conn_button_text', 'Hide Camera Stream')
-            getElement('cameraStream').src = address;
+            setInner('cam_conn_button_text', 'Hide Camera Stream');
+            camera_stream.src = address;
             //'http://10.31.28.2:1181/stream.mjpg'
         } else {
-            x.style.display = "none";
+            camera_stream.style.display = "none";
             getElement('cam_conn_button').classList.remove('green');
             getElement('cam_conn_button').classList.remove('orange');
             getElement('cam_conn_button').classList.add('red');
-            setInner('cam_conn_button_text', 'Show Camera Stream')
-            getElement('cameraStream').src = ''
+            setInner('cam_conn_button_text', 'Show Camera Stream');
+            camera_stream.src = '';
         }
     }
 

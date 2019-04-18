@@ -48,19 +48,24 @@
                 </div>
             </div>  
             <div style="display: grid; grid-template-columns: 1; grid-gap: 4px;">
-                <div id="align_indic" style="margin: 4px 8px 8px 0px; text-align: center;" class="button yellow navy squarish">
+                <div id="align_indic" style="margin: 4px 8px 8px 0px; text-align: center;" class="button h200 yellow navy squarish">
                     Alignment Status
                 </div>
             </div>              
         </div>
         <div class="stream" style="text-align: center; flex: 5 0 500px; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
-            <div id="cam_conn_button" onclick="toggleCamConnection('http://limelight-top.local:5800/')" class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
+            <div id="cam_conn_button" onclick="toggleCamConnection(['http://limelight-top.local:5800/', 'http://limelight-bottom.local:5800/'], ['top_stream', 'bottom_stream'])" class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
                 <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
             </div> 
             
             <div>
-                <img id="cameraStream" style="width: 100%; margin: 8px 0px 0px 0px; display: none;" src="">
+                <img id="top_stream" style="width: 100%; margin: 8px 0px 0px 0px; display: none;" src="">
             </div>
+            <!--
+                <div>
+                <img id="bottom_stream" style="width: 100%; margin: 8px 0px 0px 0px; display: none;" src="">
+            </div>
+            -->
         </div> 
     </div>
     

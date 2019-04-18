@@ -20,10 +20,15 @@ function initialize() {
     bot_ll_indic = getElement('bot_ll_indic');
     align_indic = getElement('align_indic');
 
+    //bottom_stream = getElement('bottom_stream');
+    //top_stream = getElement('top_stream');
+
     top_ll_conn = 'false';
     bot_ll_conn = 'false';
 
     align_status = 'blind';
+
+    stream_status = 'top';
 }
 
 function refresh(json) {
@@ -79,8 +84,8 @@ function refresh(json) {
         }
     }
 
-    if (json['bot_ll_conn'] != bot_ll_indic) {
-        bot_ll_indic = json['bot_ll_conn'];
+    if (json['bot_ll_conn'] !=  bot_ll_conn) {
+        bot_ll_conn = json['bot_ll_conn'];
 
         if (bot_ll_conn != 'true') {
             bot_ll_indic.classList.remove('green');
@@ -100,15 +105,31 @@ function refresh(json) {
             align_indic.classList.remove('orange');
             align_indic.classList.add('red');
         }
-        else if(align_conn == 'searching'){
+        else if(align_status == 'searching'){
             align_indic.classList.remove('red');
             align_indic.classList.remove('green');
             align_indic.classList.add('orange');
         }
-        else {
+        else if(align_status == 'feedback') {
             align_indic.classList.remove('red');
             align_indic.classList.remove('orange');
             align_indic.classList.add('green');
         }
+
+        /*if(json['streamLL'] != stream_status){
+            stream_status = json[streamLL];
+
+            if (stream_status == 'top'){
+                top_stream.style = "width: 100%; margin: 8px 0px 0px 0px; display: none;";
+                bottom_stream.style = "width: 0%; margin: 8px 0px 0px 0px; display: none;";
+            } else if(stream_status == 'bottom'){
+                bottom_stream.style = "width: 100%; margin: 8px 0px 0px 0px; display: none;";
+                top_stream.style = "width: 0%; margin: 8px 0px 0px 0px; display: none;";
+            } else {
+                top_stream.style = "width: 100%; margin: 8px 0px 0px 0px; display: none;";
+                bottom_stream.style = "width: 100%; margin: 8px 0px 0px 0px; display: none;";
+            }
+        }*/
+
     }
 }
