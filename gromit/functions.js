@@ -83,6 +83,7 @@ function refresh(json) {
             top_ll_indic.classList.add('green');
         }
     }
+    
 
     if (json['bot_ll_conn'] !=  bot_ll_conn) {
         bot_ll_conn = json['bot_ll_conn'];
