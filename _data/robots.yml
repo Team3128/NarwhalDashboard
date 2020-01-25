@@ -12,8 +12,8 @@
   tabs:
    - name: Dashboard
      id: dashboard
-   - name: Auto Builder
-     id: auto
+   - name: Debug
+     id: debug
    - name: Drive Calibration Utility
      id: dcu
 - name: Gromit
