@@ -1,20 +1,43 @@
 function initialize() {
     //initDCU(); 
-    ErrorCatcher = 'true';
+    ErrorCatcherCAN = 'true';
+    ErrorCatcherCAN = getElement('ErrorValueCAN');
 
-    ErrorCatcher = getElement('ErrorValue');
+    ErrorCatcherEncoder = 'true';
+    ErrorCatcherEncoder = getElement('ErrorValueEncoder');
+
+    ErrorCatcherLimelight = 'true';
+    ErrorCatcherLimelight = getElement('ErrorValueLimelight');
 }
 
 function refresh(json) {
    // updateDCU();
 
 
-    if (json['ErrorCatcher'] != ErrorCatcher.innerHTML) {
+    if (json['ErrorCatcherCAN'] != ErrorCatcherCAN.innerHTML) {
         
-        ErrorCatcher.innerHTML = json['ErrorCatcher'];
+        ErrorCatcherCAN.innerHTML = json['ErrorCatcherCAN'];
 
     }
-    if(ErrorCatcher.innerHTML == "undefined"){
-        ErrorCatcher.innerHTML = 'ErrorCatcher has not been run yet'
+    if(ErrorCatcherCAN.innerHTML == "undefined"){
+        ErrorCatcherCAN.innerHTML = 'ErrorCatcher has not been run yet'
+    }
+
+    if (json['ErrorCatcherEncoder'] != ErrorCatcherEncoder.innerHTML) {
+        
+        ErrorCatcherEncoder.innerHTML = json['ErrorCatcherEncoder'];
+
+    }
+    if(ErrorCatcherEncoder.innerHTML == "undefined"){
+        ErrorCatcherEncoder.innerHTML = 'ErrorCatcher has not been run yet'
+    }
+
+    if (json['ErrorCatcherLimelight'] != ErrorCatcherLimelight.innerHTML) {
+        
+        ErrorCatcherLimelight.innerHTML = json['ErrorCatcherLimelight'];
+
+    }
+    if(ErrorCatcherLimelight.innerHTML == "undefined"){
+        ErrorCatcherLimelight.innerHTML = 'ErrorCatcher has not been run yet'
     }
 }
