@@ -3,8 +3,8 @@ function initialize() {
     ErrorCatcherCAN = 'true';
     ErrorCatcherCAN = getElement('ErrorValueCAN');
 
-    ErrorCatcherEncoder = 'true';
-    ErrorCatcherEncoder = getElement('ErrorValueEncoder');
+    ErrorCatcherBridge = 'true';
+    ErrorCatcherBridge = getElement('ErrorValueBridge');
 
     ErrorCatcherLimelight = 'true';
     ErrorCatcherLimelight = getElement('ErrorValueLimelight');
@@ -23,13 +23,13 @@ function refresh(json) {
         ErrorCatcherCAN.innerHTML = 'ErrorCatcher has not been run yet'
     }
 
-    if (json['ErrorCatcherEncoder'] != ErrorCatcherEncoder.innerHTML) {
+    if (json['ErrorCatcherBridge'] != ErrorCatcherBridge.innerHTML) {
         
-        ErrorCatcherEncoder.innerHTML = json['ErrorCatcherEncoder'];
+        ErrorCatcherBridge.innerHTML = json['ErrorCatcherBridge'];
 
     }
-    if(ErrorCatcherEncoder.innerHTML == "undefined"){
-        ErrorCatcherEncoder.innerHTML = 'ErrorCatcher has not been run yet'
+    if(ErrorCatcherBridge.innerHTML == "undefined"){
+        ErrorCatcherBridge.innerHTML = 'Bridge is not connected or ErrorCatcher has not been runs'
     }
 
     if (json['ErrorCatcherLimelight'] != ErrorCatcherLimelight.innerHTML) {
@@ -38,6 +38,6 @@ function refresh(json) {
 
     }
     if(ErrorCatcherLimelight.innerHTML == "undefined"){
-        ErrorCatcherLimelight.innerHTML = 'ErrorCatcher has not been run yet'
+        ErrorCatcherLimelight.innerHTML = 'Limelight not found'
     }
 }
