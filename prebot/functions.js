@@ -8,6 +8,9 @@ function initialize() {
 
     ErrorCatcherLimelight = 'true';
     ErrorCatcherLimelight = getElement('ErrorValueLimelight');
+
+    ErrorCatcherMovement = 'true';
+    ErrorCatcherMovement = getElement('ErrorValueMovement');
 }
 
 function refresh(json) {
@@ -40,4 +43,14 @@ function refresh(json) {
     if(ErrorCatcherLimelight.innerHTML == "undefined"){
         ErrorCatcherLimelight.innerHTML = 'Limelight not found'
     }
+
+    if (json['ErrorCatcherMovement'] != ErrorCatcherMovement.innerHTML) {
+        
+        ErrorCatcherMovement.innerHTML = json['ErrorCatcherMovement'];
+
+    }
+    if(ErrorCatcherMovement.innerHTML == "undefined"){
+        ErrorCatcherMovement.innerHTML = 'Movement has not been run yet'
+    }
+    
 }
