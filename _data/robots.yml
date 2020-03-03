@@ -7,8 +7,8 @@
      id: test_suite
    - name: PID Suite
      id: pid
-- name: PreBot
-  permalink: prebot
+- name: Cheems
+  permalink: cheems
   tabs:
    - name: Dashboard
      id: dashboard
