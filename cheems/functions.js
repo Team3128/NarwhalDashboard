@@ -50,7 +50,7 @@ function refresh(json) {
 
     }
     if(ErrorCatcherBridge.innerHTML == "undefined"){
-        ErrorCatcherBridge.innerHTML = 'Bridge is not connected or ErrorCatcher has not been runs'
+        ErrorCatcherBridge.innerHTML = 'Bridge is not connected or ErrorCatcher has not been run'
     }
 
     if (json['ErrorCatcherLimelight'] != ErrorCatcherLimelight.innerHTML) {
