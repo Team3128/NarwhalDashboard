@@ -38,34 +38,7 @@ function refresh(json) {
     } else {
         hopper_indicator.src = "/cheems/assets/error_ball.png";
     }
-
-    if (json['SetStateLong'] != SetStateLong.innerHTML) {
-        getElement(SetStateLong).classList.remove('green');
-        getElement(SetStateLong).classList.add('grey');
-        
-        SetStateLong.innerHTML = json['SetStateLong'];
-
-        getElement(SetStateLong).classList.remove('grey');
-        getElement(SetStateLong).classList.add('green');
-    }
-    if (json['SetStateMid'] != SetStateMid.innerHTML) {
-        getElement(SetStateMid).classList.remove('green');
-        getElement(SetStateMid).classList.add('grey');
-        
-        SetStateMid.innerHTML = json['SetStateMid'];
-
-        getElement(SetStateMid).classList.remove('grey');
-        getElement(SetStateMid).classList.add('green');
-    }
-    if (json['SetStateShort'] != SetStateShort.innerHTML) {
-        getElement(SetStateShort).classList.remove('green');
-        getElement(SetStateShort).classList.add('grey');
-        
-        SetStateShort.innerHTML = json['SetStateShort'];
-
-        getElement(SetStateShort).classList.remove('grey');
-        getElement(SetStateShort).classList.add('green');
-    }
+    
     if (json['shooting_state'] != shooting_state){
         getElement('SetState'+shooting_state).classList.remove('green');
         getElement('SetState'+shooting_state).classList.add('grey');
