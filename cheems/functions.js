@@ -1,13 +1,16 @@
+var shooting_state;
+
 function initialize() {
     //initDCU(); 
 
     ball_count = getElement('ball_count');
     hopper_indicator = getElement('hopper_indicator');
 
-    shooting_state = getElement('shooting_state');
-    SetStateLong = 'true';
-    SetStateMid = 'true';
-    SetStateShort = 'true';
+    //shooting_state = getElement('shooting_state');
+    shooting_state = "Mid";
+    // SetStateLong = 'true';
+    // SetStateMid = 'true';
+    // SetStateShort = 'true';
 
     ErrorCatcherCAN = 'true';
     ErrorCatcherCAN = getElement('ErrorValueCAN');
