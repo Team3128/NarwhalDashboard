@@ -32,3 +32,8 @@
   tabs:
     - name: Dashboard
       id: dashboard
+- name: Grogu
+  permalink: grogu
+  tabs:
+    - name: Dashboard
+      id: dashboard

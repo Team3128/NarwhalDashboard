@@ -1,0 +1,71 @@
+<div class="flexbox column squash" style="flex: 0 1 100%; align-items: stretch; padding: 0px; padding: 16px">    
+    <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
+        <div id="cam_conn_button" onclick="toggleCamConnection('10.31.28.25:5800')" class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
+            <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
+        </div> 
+        
+        <div id="cameraDiv">
+            <img id="cameraStream" style="width:61vh; margin: 0 auto; border-radius: 6px; padding: 14px; padding-left: 14px; padding-right: 14px; display: none;" src="">
+        </div>
+    </div> 
+    <div style="flex: 0 0 10px; margin-bottom: 0px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px; padding-bottom: 0px; font-size: 20pt">
+        <b>Align Mode<br>
+    </div>
+    <div style="flex: 0 0 240px; display: grid; text-align: center; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 12px; font-size: 20pt">
+        <div id="VisionAlign" onclick='buttonDown("VisionAlign")' class="button green" style="height: 50%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
+            Vision Align
+        </div>
+        <div id="ManualAlign" onclick='buttonDown("ManualAlign")' class="button grey" style="height: 50%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
+            Manual Align
+        </div>
+    </div>
+    <div style="flex: 0 0 240px; margin-bottom: 12px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px; font-size: 20pt">
+        <b>Shooting Ranges<br>
+        <div id="SetStateShort" onclick='buttonDown("SetStateShort")' class="button grey" style="height: 20%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
+            Short Range
+        </div>
+        <div id="SetStateMid" onclick='buttonDown("SetStateMid")' class="button green" style="height: 20%; border-radius: 12px; padding: 8px; margin-bottom: 8px;">
+            Mid Range
+        </div>
+        <div id="SetStateLong" onclick='buttonDown("SetStateLong")' class="button grey" style="height: 20%; border-radius: 12px; padding: 8px; margin-bottom: 8px;">
+            Long Range
+        </div>
+    </div>
+
+    <!-- <div id="ErrorCatcher" onclick='buttonDown("ErrorCatcher")' class="button grey" style="height: 20%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
+        ErrorCatcher
+    </div>
+
+    <p id="ErrorValue">ErrorCatcher has not been run yet</p>
+    -->
+
+    <!-- <div style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 12px; margin-bottom: 24px;">
+        <div onclick='buttonDown("g_10_08")' class="button navy squarish h150">
+            g 1.0/0.8
+        </div>
+        <div onclick='buttonDown("g_10_06")' class="button navy squarish h150">
+            g 1.0/0.6
+        </div>
+        <div onclick='buttonDown("g_10_04")' class="button navy squarish h150">
+            g 1.0/0.4
+        </div>
+        <div onclick='buttonDown("g_10_02")' class="button navy squarish h150">
+            g 1.0/0.2
+        </div>
+        <div onclick='buttonDown("g_08_10")' class="button navy squarish h150">
+            g 0.8/1.0
+        </div>
+        <div onclick='buttonDown("g_06_10")' class="button navy squarish h150">
+            g 0.6/1.0
+        </div>
+        <div onclick='buttonDown("g_04_10")' class="button navy squarish h150">
+            g 0.4/1.0
+        </div>
+        <div onclick='buttonDown("g_02_10")' class="button navy squarish h150">
+            g 0.2/1.0
+        </div>
+        <div onclick='buttonDown("flushCSV")' class="button navy squarish h150">
+            Flush CSV
+        </div>
+    </div> -->
+</div>

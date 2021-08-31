@@ -29,6 +29,10 @@
     }
 
     function setTab(id) {
+
+        toggleConnection();
+        console.log("Here");
+
         getElement(current_tab + '_tab').classList.remove('active');
         getElement(current_tab).classList.add('invisible');
 
@@ -36,6 +40,8 @@
 
         getElement(current_tab + '_tab').classList.add('active');
         getElement(current_tab).classList.remove('invisible');
+
+        //toggleConnection();
     }
 
     function toggleConnection() {
@@ -85,7 +91,7 @@
             getElement('cam_conn_button').classList.remove('red');
             getElement('cam_conn_button').classList.remove('orange');
             getElement('cam_conn_button').classList.add('green');
-            setInner('cam_conn_button_text', 'Hide Camera Stream');
+            setInner('cam_conn_button_text', 'Hide Camera StreacYm');
             camera_stream.src = address;
             //'http://10.31.28.2:1181/stream.mjpg'
         } else {
