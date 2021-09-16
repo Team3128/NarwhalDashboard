@@ -7,7 +7,13 @@
     var state = DISCONNECTED;
 
     var autos = [];
+    var limelights = [];
+    var limelightsOptions = [];
     var json;
+
+    var sel_auto;
+    var sel_limelight;
+    var sel_pipeline;
 
     var autoMenuVisible = false;
     var updater = null;
@@ -29,9 +35,6 @@
     }
 
     function setTab(id) {
-
-        toggleConnection();
-        console.log("Here");
 
         getElement(current_tab + '_tab').classList.remove('active');
         getElement(current_tab).classList.add('invisible');
@@ -91,7 +94,7 @@
             getElement('cam_conn_button').classList.remove('red');
             getElement('cam_conn_button').classList.remove('orange');
             getElement('cam_conn_button').classList.add('green');
-            setInner('cam_conn_button_text', 'Hide Camera StreacYm');
+            setInner('cam_conn_button_text', 'Hide Camera Stream');
             camera_stream.src = address;
             //'http://10.31.28.2:1181/stream.mjpg'
         } else {
@@ -138,13 +141,37 @@
                 setup_auto_chooser();
             }
 
+            //--------------------------------------------
+            if (json.hasOwnProperty('limelights')) {
+                limelights = json['limelights'];
+
+                setup_limelights();
+            }
+
+            if (json.hasOwnProperty('limelightsOptions')) {
+                limelightsOptions = json['limelightsOptions'];
+
+                setup_pipelines();
+            }
+
             if (updater != null) {
                 sel_auto = json['selected_auto']
                 if (sel_auto == "null") {
                     sel_auto = "None";
                 }
+                sel_limelight = json['selected_limelight']
+                if (sel_limelight == "null") {
+                    sel_limelight = "None";
+                }
+                sel_pipeline = json['selected_pipeline']
+                if (sel_pipeline == "null") {
+                    sel_pipeline = "None";
+                }
 
                 setInner('selected_auto', sel_auto);
+                setInner('selected_limelight', sel_limelight);
+                setInner('selected_pipeline', sel_pipeline);
+
                 setInner('match_time', Number(json['time']).toFixed(0));
 
                 updater(json);
@@ -166,9 +193,14 @@
             getElement("cover").style.display = 'block';
 
             autos = [];
+            limelights = [];
+            pipelines = [];
+
             setup_auto_chooser();
 
             getElement('selected_auto').innerHTML = "Not Connected."
+            getElement('selected_limelight').innerHTML = "Not Connected."
+            getElement('selected_pipeline').innerHTML = "Not Connected."
         };
     }
 
@@ -192,14 +224,68 @@
         }
     }
 
+    //----------------------------------------------
+    function setup_limelights() {
+
+        noneElement = getElement("limelights_none");
+
+        getElement("limelight_list").innerHTML = noneElement.outerHTML;
+
+        for (var i = 0; i < limelights; i++) {
+            var element = noneElement.cloneNode(true);
+
+            element.id = "limelight_choice_" + i;
+            element.setAttribute('onclick', "select_limelight(" + i + ")");
+            element.innerHTML = limelights[i];
+
+            getElement("limelight_list").appendChild(element);
+        }
+
+        noneElement = getElement("limelights_none");
+
+        getElement("pipeline_list").innerHTML = noneElement.outerHTML;
+
+        for (var i = 0; i < limelightsOptions; i++) {
+            var element = noneElement.cloneNode(true);
+
+            element.id = "pipeline_choice_" + i;
+            element.setAttribute('onclick', "select_pipeline(" + i + ")");
+            element.innerHTML = limelightsOptions[i];
+
+            getElement("pipeline_list").appendChild(element);
+        }
+    }
+
     function openAutoMenu() {
         getElement('auto_list').style.display = 'block';
         autoMenuVisible = true;
     }
 
+    //-----------------------------------------------
+    function openLimelightMenu() {
+        getElement('limelight_list').style.display = 'block';
+        limelightMenuVisible = true;
+    }
+
+    function pipelineMenu() {
+        getElement('pipeline_list').style.display = 'block';
+        pipelineMenuVisible = true;
+    }
+
     function closeAutoMenu() {
         getElement('auto_list').style.display = 'none';
         autoMenuVisible = false;
+    }
+
+    //----------------------------------------------
+    function closeLimelightMenu() {
+        getElement('limelight_list').style.display = 'none';
+        limelightMenuVisible = false;
+    }
+
+    function closePipelineMenu() {
+        getElement('limelight_list').style.display = 'none';
+        limelightMenuVisible = false;
     }
 
     function toggleAutoMenu() {
@@ -211,6 +297,24 @@
         }
     }
 
+    function toggleLimelightMenu() {
+        if (!limelightMenuVisible) {
+            openLimelightMenu();
+        }
+        else {
+            closeLimelightMenu();
+        }
+    }
+
+    function togglePipelineMenu() {
+        if (!limelightMenuVisible) {
+            openPipelineMenu();
+        }
+        else {
+            closePipelineMenu();
+        }
+    }
+
     function select_auto(i) {
         if (i == "-1") {
             send("selectAuto:null");
@@ -219,6 +323,17 @@
             send("selectAuto:" + autos[Number(i)]);
         }
         closeAutoMenu();
+    }
+
+    //--------------------------------------
+    function select_pipeline(i) {
+        if (i == "-1") {
+            send("selectPipeline:null");
+        }
+        else {
+            send("selectPipeline:" + limelights[Number(i)]);
+        }
+        closeLimelightMenu();
     }
 
     function buttonDown(name) {
@@ -242,4 +357,5 @@
     function sendNum(id, value) {
         send('numData:' + id + ':' + value)
     }
+
 </script>

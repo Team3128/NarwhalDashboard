@@ -11,7 +11,19 @@
         if (sel_auto == "null") {
             sel_auto = "None";
         }
+        sel_limelight = json['selected_limelight']
+        if (sel_limelight == "null") {
+            sel_limelight = "None";
+        }
+        sel_pipeline = json['selected_pipeline']
+        if (sel_pipeline == "null") {
+            sel_pipeline = "None";
+        }
+
         setInner('selected_auto', sel_auto);
+        setInner('selected_limelight', sel_limelight);
+        setInner('selected_pipeline', sel_pipeline);
+        
         setInner('match_time', Number(json['time']).toFixed(0));
 
         refresh(json);
