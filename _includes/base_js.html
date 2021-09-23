@@ -7,14 +7,24 @@
     var state = DISCONNECTED;
 
     var autos = [];
+    var limelights = [];
+    var limelightsOptions = [];
     var json;
 
+    var sel_auto;
+    var sel_limelight;
+    var sel_pipeline;
+
     var autoMenuVisible = false;
+    var limelightMenuVisible = false;
+    var pipelineMenuVisible = false;
     var updater = null;
 
     var current_tab = "dashboard";
 
     var recievedFirstJSON = false;
+    
+    //var noneElement = "";
 
     function getElement(id) {
         return document.getElementById(id);
@@ -29,9 +39,6 @@
     }
 
     function setTab(id) {
-
-        toggleConnection();
-        console.log("Here");
 
         getElement(current_tab + '_tab').classList.remove('active');
         getElement(current_tab).classList.add('invisible');
@@ -84,24 +91,37 @@
     //     }
     // }
 
+    function toggleToSelectedLimelight(){
+        toggleCamConnection("http://"+sel_limelight+".local:5800");
+    }
+
     function toggleCamConnection(address) {
         var camera_stream = getElement("top_stream");
         if (camera_stream.style.display === "none") {
-            camera_stream.style.display = "block";
-            getElement('cam_conn_button').classList.remove('red');
-            getElement('cam_conn_button').classList.remove('orange');
-            getElement('cam_conn_button').classList.add('green');
-            setInner('cam_conn_button_text', 'Hide Camera StreacYm');
-            camera_stream.src = address;
-            //'http://10.31.28.2:1181/stream.mjpg'
+            connectToCam(address);
         } else {
-            camera_stream.style.display = "none";
-            getElement('cam_conn_button').classList.remove('green');
-            getElement('cam_conn_button').classList.remove('orange');
-            getElement('cam_conn_button').classList.add('red');
-            setInner('cam_conn_button_text', 'Show Camera Stream');
-            camera_stream.src = '';
+            disconnectCam();
         }
+    }
+
+    function connectToCam(address){
+        var camera_stream = getElement("top_stream");
+        camera_stream.style.display = "block";
+        getElement('cam_conn_button').classList.remove('red');
+        getElement('cam_conn_button').classList.remove('orange');
+        getElement('cam_conn_button').classList.add('green');
+        setInner('cam_conn_button_text', 'Hide Camera Stream');
+        camera_stream.src = address;
+    }
+
+    function disconnectCam(){
+        var camera_stream = getElement("top_stream");
+        camera_stream.style.display = "none";
+        getElement('cam_conn_button').classList.remove('green');
+        getElement('cam_conn_button').classList.remove('orange');
+        getElement('cam_conn_button').classList.add('red');
+        setInner('cam_conn_button_text', 'Show Camera Stream');
+        camera_stream.src = '';
     }
 
     function connect() {
@@ -138,14 +158,44 @@
                 setup_auto_chooser();
             }
 
+            //--------------------------------------------
+            if (json.hasOwnProperty('limelights')) {
+                limelights = json['limelights'];
+            
+                setup_limelights();
+            }
+
+            if (json.hasOwnProperty('limelightsOptions')) {
+                limelightsOptions = json['limelightsOptions'];
+
+                setup_pipelines();
+            }
+
+            //console.log(json);
+
             if (updater != null) {
+
                 sel_auto = json['selected_auto']
                 if (sel_auto == "null") {
                     sel_auto = "None";
                 }
 
+                sel_limelight = json['selected_limelight']
+                if (sel_limelight == "null") {
+                    sel_limelight = "None";
+                }
+                sel_pipeline = json['selected_pipeline']
+                if (sel_pipeline == "null") {
+                    sel_pipeline = "None";
+                }
+
                 setInner('selected_auto', sel_auto);
+                setInner('selected_limelight', sel_limelight);
+                setInner('selected_pipeline', sel_pipeline);
+
                 setInner('match_time', Number(json['time']).toFixed(0));
+
+                console.log(json);
 
                 updater(json);
             }
@@ -166,9 +216,15 @@
             getElement("cover").style.display = 'block';
 
             autos = [];
+            limelights = [];
+            limelightsOptions = [];
+
             setup_auto_chooser();
+            setup_limelights();
 
             getElement('selected_auto').innerHTML = "Not Connected."
+            getElement('selected_limelight').innerHTML = "Not Connected."
+            getElement('selected_pipeline').innerHTML = "Not Connected."
         };
     }
 
@@ -192,14 +248,71 @@
         }
     }
 
+    //----------------------------------------------
+    function setup_limelights() {
+
+        noneElement = "";
+        noneElement = getElement("limelight_choice_none");
+
+        getElement("limelight_list").innerHTML = noneElement.outerHTML;
+
+        for (var i = 0; i < limelights.length; i++) {
+            var element = noneElement.cloneNode(true);
+
+            element.id = "limelight_choice_" + i;
+            element.setAttribute('onclick', "select_limelight(" + i + ")");
+            element.innerHTML = limelights[i];
+
+            getElement("limelight_list").appendChild(element);
+        }
+    }
+
+    function setup_pipelines(){
+
+        noneElement = "";
+        noneElement = getElement("pipeline_choice_none");
+
+        for (var i = 0; i < limelightsOptions.length; i++) {
+            var element = noneElement.cloneNode(true);
+
+            element.id = "pipeline_choice_" + i;
+            element.setAttribute('onclick', "select_pipeline(" + i + ")");
+            element.innerHTML = limelightsOptions[i];
+
+            getElement("pipeline_list").appendChild(element);
+        }
+    }
+
     function openAutoMenu() {
         getElement('auto_list').style.display = 'block';
         autoMenuVisible = true;
     }
 
+    //-----------------------------------------------
+    function openLimelightMenu() {
+        getElement('limelight_list').style.display = 'block';
+        limelightMenuVisible = true;
+    }
+
+    function openPipelineMenu() {
+        getElement('pipeline_list').style.display = 'block';
+        pipelineMenuVisible = true;
+    }
+
     function closeAutoMenu() {
         getElement('auto_list').style.display = 'none';
         autoMenuVisible = false;
+    }
+
+    //----------------------------------------------
+    function closeLimelightMenu() {
+        getElement('limelight_list').style.display = 'none';
+        limelightMenuVisible = false;
+    }
+
+    function closePipelineMenu() {
+        getElement('pipeline_list').style.display = 'none';
+        pipelineMenuVisible = false;
     }
 
     function toggleAutoMenu() {
@@ -211,6 +324,24 @@
         }
     }
 
+    function toggleLimelightMenu() {
+        if (!limelightMenuVisible) {
+            openLimelightMenu();
+        }
+        else {
+            closeLimelightMenu();
+        }
+    }
+
+    function togglePipelineMenu() {
+        if (!pipelineMenuVisible) {
+            openPipelineMenu();
+        }
+        else {
+            closePipelineMenu();
+        }
+    }
+
     function select_auto(i) {
         if (i == "-1") {
             send("selectAuto:null");
@@ -219,6 +350,25 @@
             send("selectAuto:" + autos[Number(i)]);
         }
         closeAutoMenu();
+    }
+    function select_limelight(i) {
+        if (i == "-1") {
+            send("selectLimelight:null");
+        }
+        else {
+            send("selectLimelight:" + limelights[Number(i)]);
+        }
+        disconnectCam();
+        closeLimelightMenu();
+    }
+    function select_pipeline(i) {
+        if (i == "-1") {
+            send("selectPipeline:null");
+        }
+        else {
+            send("selectPipeline:" + limelightsOptions[Number(i)]);
+        }
+        closePipelineMenu();
     }
 
     function buttonDown(name) {
@@ -242,4 +392,5 @@
     function sendNum(id, value) {
         send('numData:' + id + ':' + value)
     }
+
 </script>
