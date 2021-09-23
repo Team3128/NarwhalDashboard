@@ -16,10 +16,13 @@
             sel_limelight = "None";
         }
         sel_pipeline = json['selected_pipeline']
-        if (sel_pipeline == "null") {
+        if (sel_pipeline == undefined) {
             sel_pipeline = "None";
         }
 
+        //toggleToSelectedLimelight();
+
+        //sel_limelight = "pog";
         setInner('selected_auto', sel_auto);
         setInner('selected_limelight', sel_limelight);
         setInner('selected_pipeline', sel_pipeline);

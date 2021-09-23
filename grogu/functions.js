@@ -3,45 +3,16 @@ var shooting_state;
 function initialize() {
     //initDCU(); 
 
-    ball_count = getElement('ball_count');
-    hopper_indicator = getElement('hopper_indicator');
-
     //shooting_state = getElement('shooting_state');
     shooting_state = "Mid";
     // SetStateLong = 'true';
     // SetStateMid = 'true';
     // SetStateShort = 'true';
 
-    ErrorCatcherCAN = 'true';
-    ErrorCatcherCAN = getElement('ErrorValueCAN');
-
-    ErrorCatcherBridge = 'true';
-    ErrorCatcherBridge = getElement('ErrorValueBridge');
-
-    ErrorCatcherLimelight = 'true';
-    ErrorCatcherLimelight = getElement('ErrorValueLimelight');
-
-    ErrorCatcherMovement = 'true';
-    ErrorCatcherMovement = getElement('ErrorValueMovement');
-
 }
 
 function refresh(json) {
-    temp_string = "Ball Count: ";
-    ball_count.innerHTML = temp_string.concat(String(json['ball_count']));
 
-    if(json['ball_count'] == 0) {
-        hopper_indicator.src = "/cheems/assets/0_ball.png";
-    } else if(json['ball_count'] == 1) {
-        hopper_indicator.src = "/cheems/assets/1_ball.png";
-    } else if(json['ball_count'] == 2) {
-        hopper_indicator.src = "/cheems/assets/2_ball.png";
-    } else if(json['ball_count'] == 3) {
-        hopper_indicator.src = "/cheems/assets/3_ball.png";
-    } else {
-        hopper_indicator.src = "/cheems/assets/error_ball.png";
-    }
-    
     if (json['shooting_state'] != shooting_state){
         getElement('SetState'+shooting_state).classList.remove('green');
         getElement('SetState'+shooting_state).classList.add('grey');
@@ -63,7 +34,7 @@ function refresh(json) {
         getElement('VisionAlign').classList.remove('grey');
         getElement('VisionAlign').classList.add('green'); 
     }
-
+    /*
     if (json['ErrorCatcherCAN'] != ErrorCatcherCAN.innerHTML) {
         
         ErrorCatcherCAN.innerHTML = json['ErrorCatcherCAN'];
@@ -99,5 +70,6 @@ function refresh(json) {
     if(ErrorCatcherMovement.innerHTML == "undefined"){
         ErrorCatcherMovement.innerHTML = 'Movement has not been run yet'
     }
+    */
     
 }
