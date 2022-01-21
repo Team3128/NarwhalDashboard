@@ -92,11 +92,11 @@
     // }
 
     function toggleToSelectedLimelight(){
-        toggleCamConnection("http://"+sel_limelight+".local:5800");
+        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream");
     }
 
-    function toggleCamConnection(address) {
-        var camera_stream = getElement("top_stream");
+    function toggleCamConnection(address, streamID) {
+        var camera_stream = getElement(streamID);
         if (camera_stream.style.display === "none") {
             connectToCam(address);
         } else {
@@ -158,7 +158,6 @@
                 setup_auto_chooser();
             }
 
-            //--------------------------------------------
             if (json.hasOwnProperty('limelights')) {
                 limelights = json['limelights'];
             
@@ -248,7 +247,6 @@
         }
     }
 
-    //----------------------------------------------
     function setup_limelights() {
 
         noneElement = "";
@@ -288,7 +286,6 @@
         autoMenuVisible = true;
     }
 
-    //-----------------------------------------------
     function openLimelightMenu() {
         getElement('limelight_list').style.display = 'block';
         limelightMenuVisible = true;
@@ -304,7 +301,6 @@
         autoMenuVisible = false;
     }
 
-    //----------------------------------------------
     function closeLimelightMenu() {
         getElement('limelight_list').style.display = 'none';
         limelightMenuVisible = false;

@@ -1,11 +1,11 @@
 <div class="flexbox column squash" style="flex: 0 1 100%; align-items: stretch; padding: 16px; overflow: hidden">    
     <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
-        <div id="cam_conn_button" onclick="toggleToSelectedLimelight()" class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px; margin-bottom:">
-            <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
+        <div id="limelight_conn_button" onclick="toggleToSelectedLimelight()" class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
+            <font id="limelight_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Limelight</font>
         </div>
 
         <div>
-            <img id="top_stream" style="width: 60%; margin: auto; margin-top: 10px; display: none;" src="">
+            <img id="limelight_stream" style="width: 60%; margin: auto; margin-top: 10px; display: none;" src="">
         </div>
         
         <div id="cameraDiv">
@@ -48,18 +48,6 @@
         </div>
         <div id="ManualAlign" onclick='buttonDown("ManualAlign")' class="button grey" style="height: 50%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
             Manual Align
-        </div>
-    </div>
-    <div style="flex: 0 0 240px; margin-bottom: 12px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px; font-size: 20pt">
-        <b>Shooting Ranges<br>
-        <div id="SetStateShort" onclick='buttonDown("SetStateShort")' class="button grey" style="height: 20%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
-            Short Range
-        </div>
-        <div id="SetStateMid" onclick='buttonDown("SetStateMid")' class="button green" style="height: 20%; border-radius: 12px; padding: 8px; margin-bottom: 8px;">
-            Mid Range
-        </div>
-        <div id="SetStateLong" onclick='buttonDown("SetStateLong")' class="button grey" style="height: 20%; border-radius: 12px; padding: 8px; margin-bottom: 8px;">
-            Long Range
         </div>
     </div>
 </div>

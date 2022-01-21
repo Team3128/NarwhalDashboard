@@ -37,3 +37,8 @@
   tabs:
     - name: Dashboard
       id: dashboard
+- name: Gonzales
+  permalink: gonzales
+  tabs:
+    - name: Dashboard
+      id: dashboard
