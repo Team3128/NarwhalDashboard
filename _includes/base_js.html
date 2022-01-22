@@ -91,6 +91,25 @@
     //     }
     // }
 
+    function changeColors(match_state){
+        getElement('conn_button').classList.remove('red');
+        getElement('conn_button').classList.remove('green');
+        getElement('match_state').classList.remove('yellow'); 
+
+        if(match_state = "TELEOP") {
+            setInner('match_state_text', 'TELEOP');
+            getElement('match_state').classList.add('yellow');
+        }
+        if(match_state = "AUTO") {
+            setInner('match_state_text', 'AUTO');
+            getElement('match_state').classList.add('green');
+        }
+        if(match_state = "ENDGAME") {
+            setInner('match_state_text', 'ENDGAME');
+            getElement('match_state').classList.add('red');
+        }
+    }
+
     function toggleToSelectedLimelight(){
         toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream");
     }
