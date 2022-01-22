@@ -91,22 +91,22 @@
     //     }
     // }
 
-    function changeColors(match_state){
-        getElement('conn_button').classList.remove('red');
-        getElement('conn_button').classList.remove('green');
-        getElement('match_state').classList.remove('yellow'); 
+    function changeState(state){
+        getElement('match_state').classList.remove('red');
+        getElement('match_state').classList.remove('green');
+        getElement('match_state').classList.remove('gold'); 
+        getElement('match_state').classList.remove('black');
 
-        if(match_state = "TELEOP") {
-            setInner('match_state_text', 'TELEOP');
-            getElement('match_state').classList.add('yellow');
-        }
-        if(match_state = "AUTO") {
-            setInner('match_state_text', 'AUTO');
+        setInner("match_state_text", state);
+
+        if(state == "TELEOP") {
             getElement('match_state').classList.add('green');
-        }
-        if(match_state = "ENDGAME") {
-            setInner('match_state_text', 'ENDGAME');
+        }else if(state == "AUTO") {
+            getElement('match_state').classList.add('gold');
+        }else if(state == "ENDGAME") {
             getElement('match_state').classList.add('red');
+        }else if(state == "DISABLED"){
+            getElement('match_state').classList.add('black');
         }
     }
 

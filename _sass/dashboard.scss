@@ -23,7 +23,7 @@ body {
     z-index: 20;
 }
 
-// Container Magic
+// Container Magic (confirmed magic)
 .squash {
     padding: 0px;
     margin: 0px;
@@ -78,6 +78,11 @@ body {
     color: white;
 }
 
+.gold {
+    background: gold;
+    color: white;
+}
+
 .green {
     background: $green;
     color: white;
@@ -89,6 +94,11 @@ body {
 
 .grey {
     background: grey;
+    color: white;
+}
+
+.black {
+    background: black;
     color: white;
 }
 
