@@ -2,6 +2,7 @@
     var battGauge;
     var tx;
     var ty;
+    const match_length = 150;
     
     function updateData(json) { 
         battGauge.value = json['voltage'];
@@ -26,7 +27,7 @@
         setInner('selected_limelight', sel_limelight);
         setInner('selected_pipeline', sel_pipeline);
 
-        // Update match time (rapid react games are 2:30 or 150s long)
+        // Update match time (rapid react games are 2:30 or 150s long with 30 allocated for endgame)
 
         // As per the Timer docs:
         // At the beginning of autonomous, the time is reset to 0.0 seconds.
@@ -35,7 +36,8 @@
 
         var time = Number(json['time']).toFixed(0);
         
-        setInner('match_time', 150 - time);
+        setInner('match_time', ((match_length - time)/60).toFixed(0)+":"+((match_length - time)%60));
+        // setInner('match_time', match_length - time);
 
         if(time == 1) {
             changeState("AUTO");
