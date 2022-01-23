@@ -2,7 +2,9 @@
     var battGauge;
     var tx;
     var ty;
+    var match_start = false;
     const match_length = 150;
+
     
     function updateData(json) { 
         battGauge.value = json['voltage'];
@@ -29,24 +31,21 @@
 
         // Update match time (rapid react games are 2:30 or 150s long with 30 allocated for endgame)
 
-        // As per the Timer docs:
-        // At the beginning of autonomous, the time is reset to 0.0 seconds.
-        // At the beginning of teleop, the time is reset to +15.0 seconds.
-        // If the robot is disabled, this returns 0.0 seconds.
-
         var time = Number(json['time']).toFixed(0);
         
-        setInner('match_time', ((match_length - time)/60).toFixed(0)+":"+((match_length - time)%60));
+        setInner('match_time', Math.floor(time/60)+":"+(time%60).toString().padStart(2,'0'));
         // setInner('match_time', match_length - time);
 
-        if(time == 1) {
+        if(time == 15 &! match_start){
             changeState("AUTO");
-        }else if(time == 15) {
+        }else if(time == 135) {
             changeState("TELEOP");
-        }else if(time == 120) {
+            match_start = true;
+        }else if(time == 30) {
             changeState("ENDGAME");
         }else if(time == 0) {
             changeState("DISABLED");
+            match_start = false;
         }
 
         refresh(json);

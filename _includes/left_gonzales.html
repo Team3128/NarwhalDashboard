@@ -1,11 +1,37 @@
 <div  style="width: 100%; flex: 0 0 auto; margin-bottom: 12px;">
     <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
-        <div id="cam_conn_button" onclick='toggleCamConnection("roborio-3128-frc.local:1181","camera_stream")' class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px; margin-bottom: 10px;">
-            <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
+        <div id="limelight_conn_button" onclick='toggleToSelectedLimelight("limelight_conn_button")' class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px;">
+            <font id="limelight_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Limelight</font>
+        </div>
+        
+        <div id="cameraDiv">
+            <img id="limelight_stream" style="width:100%; margin: 0 auto; border-radius: 6px; padding: 14px; padding-left: 14px; padding-right: 14px; display: none;" src="">
+        </div>
+ 
+         <div class="royal flexbox column" style="align-items: stretch; flex-grow: 0; margin: 12px; margin-bottom: 0px; padding: 12px; border-radius: 6px; display: inline-block">
+            <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
+                <font style="font-size: 20; font-weight: 300; margin-right: 8px;">Selected Limelight:</font>
+                <font id="selected_limelight" style="font-size: 20; font-weight: 600; flex: 1 0 auto">Not connected.</font>  
+                <div onclick='toggleLimelightMenu()' class="button sapphire" style="margin-left: 10px; border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
+            </div>
+            <div id="limelight_list" style='display: none; margin-top: 10px;'>
+                <div id="limelight_choice_none" onclick="select_limelight(-1)" class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
+                    None
+                </div>
+            </div>
         </div>
 
-        <div>
-            <img id="camera_stream" style="width: 60%; margin: auto; margin-top: 10px; display: none;" src="">
+        <div class="royal flexbox column" style="align-items: stretch; flex-grow: 0; margin: 12px; margin-bottom: 0px; padding: 12px; border-radius: 6px; display: inline-block; vertical-align: top">
+            <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
+                <font style="font-size: 20; font-weight: 300; margin-right: 8px;">Selected Pipeline:</font>
+                <font id="selected_pipeline" style="font-size: 20; font-weight: 600; flex: 1 0 auto">Not connected.</font>  
+                <div onclick='togglePipelineMenu()' class="button sapphire" style="margin-left: 10px; border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
+            </div>
+            <div id="pipeline_list" style='display: none; margin-top: 10px;'>
+                <div id="pipeline_choice_none" onclick="select_pipeline(-1)" class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
+                    None
+                </div>
+            </div>
         </div>
     </div>
     <div class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 12px; border-radius: 16px;">

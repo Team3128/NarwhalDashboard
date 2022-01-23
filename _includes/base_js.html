@@ -110,37 +110,34 @@
         }
     }
 
-    function toggleToSelectedLimelight(){
-        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream");
+    function toggleToSelectedLimelight(button){
+        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream", button);
     }
 
-    function toggleCamConnection(address, streamID) {
+    function toggleCamConnection(address, streamID, button) {
         var camera_stream = getElement(streamID);
+        console.log(camera_stream);
         if (camera_stream.style.display === "none") {
-            connectToCam(address);
+            connectToCam(address, camera_stream, button);
         } else {
-            disconnectCam();
+            disconnectCam(camera_stream, button);
         }
     }
 
-    function connectToCam(address){
-        var camera_stream = getElement("top_stream");
-        camera_stream.style.display = "block";
-        getElement('cam_conn_button').classList.remove('red');
-        getElement('cam_conn_button').classList.remove('orange');
-        getElement('cam_conn_button').classList.add('green');
-        setInner('cam_conn_button_text', 'Hide Camera Stream');
-        camera_stream.src = address;
+    function connectToCam(address, stream, button){
+        stream.style.display = "block";
+        getElement(button).classList.remove('red');
+        getElement(button).classList.add('green');
+        setInner(button+"_text", 'Hide Camera Stream');
+        stream.src = address;
     }
 
-    function disconnectCam(){
-        var camera_stream = getElement("top_stream");
-        camera_stream.style.display = "none";
-        getElement('cam_conn_button').classList.remove('green');
-        getElement('cam_conn_button').classList.remove('orange');
-        getElement('cam_conn_button').classList.add('red');
-        setInner('cam_conn_button_text', 'Show Camera Stream');
-        camera_stream.src = '';
+    function disconnectCam(stream, button){
+        stream.style.display = "none";
+        getElement(button).classList.remove('green');
+        getElement(button).classList.add('red');
+        setInner(button+"_text", 'Show Camera Stream');
+        stream.src = '';
     }
 
     function connect() {
@@ -212,8 +209,6 @@
                 setInner('selected_pipeline', sel_pipeline);
 
                 setInner('match_time', Number(json['time']).toFixed(0));
-
-                console.log(json);
 
                 updater(json);
             }
@@ -373,7 +368,7 @@
         else {
             send("selectLimelight:" + limelights[Number(i)]);
         }
-        disconnectCam();
+        disconnectCam("limelight_stream", "limelight_conn_button");
         closeLimelightMenu();
     }
     function select_pipeline(i) {
