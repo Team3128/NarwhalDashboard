@@ -91,12 +91,31 @@
     //     }
     // }
 
-    function toggleToSelectedLimelight(){
-        toggleCamConnection("http://"+sel_limelight+".local:5800");
+    function changeColors(match_state){
+        getElement('conn_button').classList.remove('red');
+        getElement('conn_button').classList.remove('green');
+        getElement('match_state').classList.remove('yellow'); 
+
+        if(match_state = "TELEOP") {
+            setInner('match_state_text', 'TELEOP');
+            getElement('match_state').classList.add('yellow');
+        }
+        if(match_state = "AUTO") {
+            setInner('match_state_text', 'AUTO');
+            getElement('match_state').classList.add('green');
+        }
+        if(match_state = "ENDGAME") {
+            setInner('match_state_text', 'ENDGAME');
+            getElement('match_state').classList.add('red');
+        }
     }
 
-    function toggleCamConnection(address) {
-        var camera_stream = getElement("top_stream");
+    function toggleToSelectedLimelight(){
+        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream");
+    }
+
+    function toggleCamConnection(address, streamID) {
+        var camera_stream = getElement(streamID);
         if (camera_stream.style.display === "none") {
             connectToCam(address);
         } else {
@@ -158,7 +177,6 @@
                 setup_auto_chooser();
             }
 
-            //--------------------------------------------
             if (json.hasOwnProperty('limelights')) {
                 limelights = json['limelights'];
             
@@ -248,7 +266,6 @@
         }
     }
 
-    //----------------------------------------------
     function setup_limelights() {
 
         noneElement = "";
@@ -288,7 +305,6 @@
         autoMenuVisible = true;
     }
 
-    //-----------------------------------------------
     function openLimelightMenu() {
         getElement('limelight_list').style.display = 'block';
         limelightMenuVisible = true;
@@ -304,7 +320,6 @@
         autoMenuVisible = false;
     }
 
-    //----------------------------------------------
     function closeLimelightMenu() {
         getElement('limelight_list').style.display = 'none';
         limelightMenuVisible = false;
