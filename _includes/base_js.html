@@ -125,7 +125,7 @@
     }
 
     function connectToCam(address, stream, button){
-        stream.style.display = "block";
+        stream.style.display = "inline-block";
         getElement(button).classList.remove('red');
         getElement(button).classList.add('green');
         setInner(button+"_text", 'Hide Camera Stream');

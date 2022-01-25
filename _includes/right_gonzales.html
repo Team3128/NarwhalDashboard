@@ -1,22 +1,21 @@
 <div class="flexbox column squash" style="flex: 0 1 100%; align-items: stretch; padding: 16px; overflow: hidden">    
     <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
-        <div id="cam_conn_button" onclick='toggleCamConnection("http://roborio-3128-frc.local:1181/stream.mjpg","camera_stream", "cam_conn_button")' class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px; margin-bottom: 10px;">
+        <div id="limelight_conn_button" onclick='toggleToSelectedLimelight("limelight_conn_button")' class="button red" style="width: 40%; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px; display: inline-block;">
+            <font id="limelight_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Limelight</font>
+        </div>
+        <div id="cam_conn_button" onclick='toggleCamConnection("http://roborio-3128-frc.local:1181/stream.mjpg","camera_stream", "cam_conn_button")' class="button red" style="width: 40%; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px; margin-bottom: 10px; display: inline-block;">
             <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
         </div>
 
-        <div>
-            <img id="camera_stream" style="width: 100%; margin: auto; margin-top: 10px; display: none;" src="">
+        <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; margin-bottom: 10px;"></div>
+            <table id="camera-div">
+                <tr>
+                    <img id="limelight_stream" style="width: 50%; margin: auto; margin-top: 10px; display: none;" src="" src="">
+                    <img id="camera_stream" style="width: 50%; margin: auto; margin-top: 10px; display: none;" src="">
+                </tr>
+            </table>
+               
         </div>
+
     </div> 
-    <div style="flex: 0 0 10px; margin-bottom: 0px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px; padding-bottom: 0px; font-size: 20pt">
-        <b>Align Mode<br>
-    </div>
-    <div style="flex: 0 0 240px; display: grid; text-align: center; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 12px; font-size: 20pt">
-        <div id="VisionAlign" onclick='buttonDown("VisionAlign")' class="button green" style="height: 50%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
-            Vision Align
-        </div>
-        <div id="ManualAlign" onclick='buttonDown("ManualAlign")' class="button grey" style="height: 50%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
-            Manual Align
-        </div>
-    </div>
 </div>
