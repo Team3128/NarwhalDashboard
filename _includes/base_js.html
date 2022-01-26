@@ -23,8 +23,12 @@
     var current_tab = "dashboard";
 
     var recievedFirstJSON = false;
+
+    const debugElements = new Map();
     
     //var noneElement = "";
+
+   
 
     function getElement(id) {
         return document.getElementById(id);
@@ -52,6 +56,8 @@
     }
 
     function toggleConnection() {
+
+
         if (state == DISCONNECTED) {
             connect();
         }
@@ -138,6 +144,57 @@
         getElement(stream).src = '';
     }
 
+    function createDebugElement(key) {
+        //Create Elements
+        let newElement = document.createElement("div");
+        let debugTitle = document.createElement("span");
+        let debugInfo = document.createElement("span");
+
+        //New Element Classes
+        newElement.classList.add("flexbox");
+        newElement.classList.add("sapphire");
+        newElement.classList.add("row");
+
+        //New Element Extra Styling
+        newElement.style.alignItems = "strech";
+        newElement.style.justifyContent = "center";
+        newElement.style.margin = "10px";
+        newElement.style.padding = "5px";
+        newElement.style.height = "30px";
+        newElement.style.borderRadius = "16px";
+
+        //Debug Title Class (includes all styling)
+        debugTitle.classList.add("debug-title");
+        debugTitle.innerHTML = key;
+
+        //Debug Information Class (including all styling)
+        debugInfo.classList.add("debug-info");
+
+        //Add Debug Title/Info to Element and add Element to Debug Panel
+        newElement.appendChild(debugTitle);
+        newElement.appendChild(debugInfo);
+        getElement("debug-panel").appendChild(newElement);
+        debugElements.set(key, newElement);
+    }
+
+    function updateDebug(debugVals) {
+        debugVals.forEach((obj) => {
+            //Add Row for debug element if it doesn't exist
+
+            let key = obj["key"];
+            let value = obj["value"];
+
+            if(!debugElements.has(key)) {
+                createDebugElement(key);
+            }
+            
+            //Set the Value in the Row
+            let elList = debugElements.get(key).getElementsByClassName("debug-info");
+            if(elList.length > 0) elList[0].innerHTML = value;
+
+        });
+    }
+
     function connect() {
         //socket = new WebSocket("ws:roborio-3128-frc.local:5800");
         socket = new WebSocket("ws:10.31.28.2:5805");
@@ -182,6 +239,10 @@
                 limelightsOptions = json['limelightsOptions'];
 
                 setup_pipelines();
+            }
+
+            if(json.hasOwnProperty('debug')) {
+                updateDebug(json['debug']);
             }
 
             //console.log(json);
@@ -324,6 +385,8 @@
     }
 
     function toggleAutoMenu() {
+
+
         if (!autoMenuVisible) {
             openAutoMenu();
         }
