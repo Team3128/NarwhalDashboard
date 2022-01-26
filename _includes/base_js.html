@@ -115,29 +115,27 @@
     }
 
     function toggleCamConnection(address, streamID, button) {
-        var camera_stream = getElement(streamID);
-        console.log(camera_stream);
-        if (camera_stream.style.display === "none") {
-            connectToCam(address, camera_stream, button);
+        if (getElement(streamID).style.display === "none") {
+            connectToCam(address, streamID, button);
         } else {
-            disconnectCam(camera_stream, button);
+            disconnectCam(streamID, button);
         }
     }
 
     function connectToCam(address, stream, button){
-        stream.style.display = "inline-block";
+        getElement(stream).style.display = "inline-block";
         getElement(button).classList.remove('red');
         getElement(button).classList.add('green');
         setInner(button+"_text", 'Hide Camera Stream');
-        stream.src = address;
+        getElement(stream).src = address;
     }
 
     function disconnectCam(stream, button){
-        stream.style.display = "none";
+        getElement(stream).style.display = "none";
         getElement(button).classList.remove('green');
         getElement(button).classList.add('red');
         setInner(button+"_text", 'Show Camera Stream');
-        stream.src = '';
+        getElement(stream).src = '';
     }
 
     function connect() {
