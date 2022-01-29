@@ -1,28 +1,37 @@
 <!-- Camera Connection / Livestream / Button /-->
-    <div  style="width: 100%; flex: 0 0 auto; margin-bottom: 12px;">
-    <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
-        <div id="cam_conn_button" onclick="toggleCamConnection()" class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px; margin-bottom: 10px;">
-            <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
+<div class = "left-gonzoles">
+    <div class="stream">
+        <div id="cam_conn_button" onclick="toggleCamConnection()" class="button red">
+            <font id="cam_conn_button_text">Connect To Camera</font>
         </div>
 
 <!-- Camera Connection / Image / Probably will be moved to CSS file /-->
         <div>
-            <img id="camera_stream" style="width: 60%; margin: auto; margin-top: 10px; display: none;" src="">
+            <img id="camera_stream" src = "">
         </div>
     </div>
 
     <!-- Auto-Selection Menu / Toggle /-->
-    <div class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 12px; border-radius: 16px;">
-        <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
-            <font style="font-weight: 300; margin-right: 8px;">Selected Auto:</font> 
-            <font id="selected_auto" style="font-weight: 600; flex: 1 0 auto">Not connected.</font>
-            <div onclick='toggleAutoMenu()' class="button sapphire" style="border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
+    <div class="royal_flexbox_column">
+        <div id = "#auto_menu">
+            <font>Selected Auto:</font> 
+            <font id="selected_auto">Not connected.</font>
+            <div onclick='toggleAutoMenu()' id = "toogle_menu" class="button_sapphire">Choose</div>      
         </div>
         
     <!-- Selection / Allows you to select the Auto-Program to load /-->
-        <div id="auto_list" style='display: none; margin-top: 10px;'>
-            <div id="auto_choice_none" onclick="select_auto(-1)" class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
+        <div id="auto_list">
+            <div id="auto_choice_none" onclick="select_auto(-1)" class="button_sapphire">
                 None
+            </div>
+        </div>
+    </div>
+
+    <div id="debug-panel" class="royal flexbox column">
+        <div class="flexbox column">
+            <div class="flexbox sapphire row" id = "flexbox-sapphire-row">
+                <span class="debug-title">Shooter</span>
+                <span class="debug-info">100RPM</span>
             </div>
         </div>
     </div>

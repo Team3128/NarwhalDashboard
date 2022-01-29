@@ -32,12 +32,12 @@
         // update match_state here
         var time = Number(json['time']).toFixed(0);
         if(time == 0) {
-            changeColors("TELEOP");
-        }
-        if(time == 0) {
             changeColors("AUTO");
         }
-        if(time == 0) {
+        if(time == 15) {
+            changeColors("TELEOP");
+        }
+        if(time == 105) {
             changeColors("ENDGAME");
         }
 
