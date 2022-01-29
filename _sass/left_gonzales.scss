@@ -61,9 +61,41 @@
     flex: 1 0 auto;
 }
 
-.button_sapphire {
+#toogle_menu {
     border-radius: 6px;
     padding: 4px;
     padding-left: 14px;
     padding-right: 14px;
+}
+
+.auto_list {
+    display: none;
+    margin-top: 10px;
+}
+
+#auto_choice_none {
+    margin: 0px;
+    margin-bottom: 4px;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+#debug-panel {
+    align-items: stretch;
+    flex-grow: 0;
+    margin: 50px;
+    margin-bottom: 0px;
+    margin-top: 50px;
+    padding: 12px;
+    border-radius: 16px;
+    height:200px;
+}
+
+#flexbox-sapphire-row {
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding:5px;
+    height: 30px;
+    border-radius: 16px;
 }

@@ -16,20 +16,20 @@
         <div id = "#auto_menu">
             <font>Selected Auto:</font> 
             <font id="selected_auto">Not connected.</font>
-            <div onclick='toggleAutoMenu()' class="button_sapphire">Choose</div>      
+            <div onclick='toggleAutoMenu()' id = "toogle_menu" class="button_sapphire">Choose</div>      
         </div>
         
     <!-- Selection / Allows you to select the Auto-Program to load /-->
-        <div id="auto_list" style='display: none; margin-top: 10px;'>
-            <div id="auto_choice_none" onclick="select_auto(-1)" class="button_sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
+        <div id="auto_list">
+            <div id="auto_choice_none" onclick="select_auto(-1)" class="button_sapphire">
                 None
             </div>
         </div>
     </div>
 
-    <div id="debug-panel" class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin: 50px; margin-bottom: 0px; margin-top: 50px; padding: 12px; border-radius: 16px; height:200px;">
+    <div id="debug-panel" class="royal flexbox column">
         <div class="flexbox column">
-            <div class="flexbox sapphire row" style="align-items: center; justify-content: center; margin: 10px; padding:5px; height: 30px;  border-radius: 16px;">
+            <div class="flexbox sapphire row" id = "flexbox-sapphire-row">
                 <span class="debug-title">Shooter</span>
                 <span class="debug-info">100RPM</span>
             </div>
