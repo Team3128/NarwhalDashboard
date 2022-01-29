@@ -97,56 +97,51 @@
     //     }
     // }
 
-    function changeColors(match_state){
-        getElement('conn_button').classList.remove('red');
-        getElement('conn_button').classList.remove('green');
-        getElement('match_state').classList.remove('yellow'); 
+    function changeState(state){
+        getElement('match_state').classList.remove('red');
+        getElement('match_state').classList.remove('green');
+        getElement('match_state').classList.remove('gold'); 
+        getElement('match_state').classList.remove('black');
 
-        if(match_state = "TELEOP") {
-            setInner('match_state_text', 'TELEOP');
-            getElement('match_state').classList.add('yellow');
-        }
-        if(match_state = "AUTO") {
-            setInner('match_state_text', 'AUTO');
+        setInner("match_state_text", state);
+
+        if(state == "TELEOP") {
             getElement('match_state').classList.add('green');
-        }
-        if(match_state = "ENDGAME") {
-            setInner('match_state_text', 'ENDGAME');
+        }else if(state == "AUTO") {
+            getElement('match_state').classList.add('gold');
+        }else if(state == "ENDGAME") {
             getElement('match_state').classList.add('red');
+        }else if(state == "DISABLED"){
+            getElement('match_state').classList.add('black');
         }
     }
 
-    function toggleToSelectedLimelight(){
-        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream");
+    function toggleToSelectedLimelight(button){
+        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream", button);
     }
 
-    function toggleCamConnection(address, streamID) {
-        var camera_stream = getElement(streamID);
-        if (camera_stream.style.display === "none") {
-            connectToCam(address);
+    function toggleCamConnection(address, streamID, button) {
+        if (getElement(streamID).style.display === "none") {
+            connectToCam(address, streamID, button);
         } else {
-            disconnectCam();
+            disconnectCam(streamID, button);
         }
     }
 
-    function connectToCam(address){
-        var camera_stream = getElement("top_stream");
-        camera_stream.style.display = "block";
-        getElement('cam_conn_button').classList.remove('red');
-        getElement('cam_conn_button').classList.remove('orange');
-        getElement('cam_conn_button').classList.add('green');
-        setInner('cam_conn_button_text', 'Hide Camera Stream');
-        camera_stream.src = address;
+    function connectToCam(address, stream, button){
+        getElement(stream).style.display = "inline-block";
+        getElement(button).classList.remove('red');
+        getElement(button).classList.add('green');
+        setInner(button+"_text", 'Hide Camera Stream');
+        getElement(stream).src = address;
     }
 
-    function disconnectCam(){
-        var camera_stream = getElement("top_stream");
-        camera_stream.style.display = "none";
-        getElement('cam_conn_button').classList.remove('green');
-        getElement('cam_conn_button').classList.remove('orange');
-        getElement('cam_conn_button').classList.add('red');
-        setInner('cam_conn_button_text', 'Show Camera Stream');
-        camera_stream.src = '';
+    function disconnectCam(stream, button){
+        getElement(stream).style.display = "none";
+        getElement(button).classList.remove('green');
+        getElement(button).classList.add('red');
+        setInner(button+"_text", 'Show Camera Stream');
+        getElement(stream).src = '';
     }
 
     function createDebugElement(key) {
@@ -273,8 +268,6 @@
                 setInner('selected_pipeline', sel_pipeline);
 
                 setInner('match_time', Number(json['time']).toFixed(0));
-
-                console.log(json);
 
                 updater(json);
             }
@@ -436,7 +429,7 @@
         else {
             send("selectLimelight:" + limelights[Number(i)]);
         }
-        disconnectCam();
+        disconnectCam("limelight_stream", "limelight_conn_button");
         closeLimelightMenu();
     }
     function select_pipeline(i) {

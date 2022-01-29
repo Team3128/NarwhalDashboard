@@ -2,6 +2,9 @@
     var battGauge;
     var tx;
     var ty;
+    var match_start = false;
+    const match_length = 150;
+
     
     function updateData(json) { 
         battGauge.value = json['voltage'];
@@ -22,23 +25,27 @@
 
         //toggleToSelectedLimelight();
 
-        //sel_limelight = "pog";
         setInner('selected_auto', sel_auto);
         setInner('selected_limelight', sel_limelight);
         setInner('selected_pipeline', sel_pipeline);
-        
-        setInner('match_time', Number(json['time']).toFixed(0));
 
-        // update match_state here
+        // Update match time (rapid react games are 2:30 or 150s long with 30 allocated for endgame)
+
         var time = Number(json['time']).toFixed(0);
-        if(time == 0) {
-            changeColors("AUTO");
-        }
-        if(time == 15) {
-            changeColors("TELEOP");
-        }
-        if(time == 105) {
-            changeColors("ENDGAME");
+        
+        setInner('match_time', Math.floor(time/60)+":"+(time%60).toString().padStart(2,'0'));
+        // setInner('match_time', match_length - time);
+
+        if(time == 15 &! match_start){
+            changeState("AUTO");
+        }else if(time == 135) {
+            changeState("TELEOP");
+            match_start = true;
+        }else if(time == 30) {
+            changeState("ENDGAME");
+        }else if(time == 0) {
+            changeState("DISABLED");
+            match_start = false;
         }
 
         refresh(json);
