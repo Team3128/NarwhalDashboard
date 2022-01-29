@@ -119,7 +119,7 @@ body {
         border-radius: 12px;
         padding: 20px;
     
-        p-size: 22pt;
+        font-size: 22pt;
 
         &.h150 {
             height: 150px;
@@ -230,11 +230,11 @@ input {
     display: none;
 }
 
-}
+
 .debug-title {
     width: 50%; 
     text-align: center; 
-    p-weight: bold;
+    font-weight: bold;
 }
 .debug-info {
     width: 50%; 

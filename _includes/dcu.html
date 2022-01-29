@@ -1,12 +1,12 @@
 <div id="dcu" class="flexbox column">
-    <div class="flexbox row" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 16px; p-size: 14pt; margin: 16px;">
+    <div class="flexbox row" style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 16px; font-size: 14pt; margin: 16px;">
         <div style="padding: 0px; margin: 0px">
             <div style="text-align: center; background: white; padding: 8px; margin: 0px 0px 16px 0px">
-                <b style="p-size: 20pt; margin-bottom: 4px;">Step 1: Wheel Circumference</b><br>
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 1: Wheel Circumference</b><br>
                 
                 In order to determine wheel circumference, reset the drive encoders, and push the robot (yes, by hand) exactly 100 inches.
                 <br><br>
-                <table cellspacing="4px" style="width: 100%; p-size: 18pt; text-align: center;">
+                <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
                     <tr>
                         <td width="45%">
                             <div onmousedown='buttonDown("resetEncoders")' class="button royal flexbox" style="align-items: center; height: 150px; border-radius: 12px; padding: 20px; vertical-align: middle;">
@@ -15,7 +15,7 @@
                         </td>
                         <td>
                             <div>Wheel Circumference</div>
-                            <div id="wheel_circumference" style="p-size: 50pt; line-height: 46pt;">--</div>
+                            <div id="wheel_circumference" style="font-size: 50pt; line-height: 46pt;">--</div>
                             <div>inches</div>
                         </td>
                     </tr>
@@ -23,37 +23,37 @@
             </div>
 
             <div style="text-align: center; background: white;  padding: 8px; margin: 0px 0px 16px 0px;">
-                <b style="p-size: 20pt; margin-bottom: 4px;">Step 4: Vision PID</b>
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 4: Vision PID</b>
                 <br>
                 To tune the PID loop for the vision horizontal alignment.
                 <br>
 
                 <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 12px; margin-bottom: 8px;">
                     <div>
-                        <text style="p-size: 24pt">kP</text>
+                        <text style="font-size: 24pt">kP</text>
                         <br>
-                        <input id="vision_p" style="p-size: 24pt; width: 100%"/>
+                        <input id="vision_p" style="font-size: 24pt; width: 100%"/>
                     </div>
                     <div>
-                        <text style="p-size: 24pt">kI</text>
+                        <text style="font-size: 24pt">kI</text>
                         <br>
-                        <input id="vision_i" style="p-size: 24pt; width: 100%"/>
+                        <input id="vision_i" style="font-size: 24pt; width: 100%"/>
                     </div>
                     <div>
-                        <text style="p-size: 24pt">kD</text>
+                        <text style="font-size: 24pt">kD</text>
                         <br>
-                        <input id="vision_d" style="p-size: 24pt; width: 100%"/>
+                        <input id="vision_d" style="font-size: 24pt; width: 100%"/>
                     </div>
                 </div>
 
-                <div onclick="pushVisionPID()" class="button navy flexbox column squarish" style="p-size: 16pt; padding: 8px; text-align: center">
+                <div onclick="pushVisionPID()" class="button navy flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center">
                     <div><b>Save Vision PID Constants</b></div>
                 </div> 
             </div>
 
             <!-- <div style="padding: 0px; margin: 0px">
                 <div style="text-align: center; background: white; padding: 8px; margin: 0px 0px 16px 0px">
-                    <b style="p-size: 20pt; margin-bottom: 4px;">Step 4: Feed-Forward Power Multiplier</b>
+                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 4: Feed-Forward Power Multiplier</b>
                     <br>
                     To determine the left and right ffpms of the robot, change the left and right applied powers and run the program. Run the program with increments of 0.05 starting from -1 to 1 for both sides.
                     <br><br>
@@ -62,44 +62,44 @@
     
                     <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 8px;">
                         <div>
-                            <text style="p-size: 24pt">Left Power</text>
+                            <text style="font-size: 24pt">Left Power</text>
                             <br>
-                            <input id="l_pow_ffp" style="p-size: 24pt; width: 100%"/>
+                            <input id="l_pow_ffp" style="font-size: 24pt; width: 100%"/>
                         </div>
                         <div>
-                            <text style="p-size: 24pt">Right Power</text>
+                            <text style="font-size: 24pt">Right Power</text>
                             <br>
-                            <input id="r_pow_ffp" style="p-size: 24pt; width: 100%"/>
+                            <input id="r_pow_ffp" style="font-size: 24pt; width: 100%"/>
                         </div>
                     </div>
     
-                    <text style="p-size: 16pt">Duration (ms):</text> 
-                    <input id="ffp_dur" style="p-size: 16pt; width: 100%; margin-bottom: 12px;"/>
+                    <text style="font-size: 16pt">Duration (ms):</text> 
+                    <input id="ffp_dur" style="font-size: 16pt; width: 100%; margin-bottom: 12px;"/>
     
-                    <div onclick="ffpCalibration()" class="button navy flexbox column squarish" style="p-size: 16pt; padding: 8px; text-align: center;; margin-bottom: 8px;">
+                    <div onclick="ffpCalibration()" class="button navy flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;; margin-bottom: 8px;">
                         <div><b>Run Calibration Program</b></div>
                     </div> 
     
-                    <div style="p-size: 18pt;"><b>Most Recent Values</b></div>
+                    <div style="font-size: 18pt;"><b>Most Recent Values</b></div>
                     <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 12px;">
                         <div>
-                            <div style="p-size: 18pt;">Average<br>Angular Velocity</div>
-                            <div id="avg_w" style="p-size: 50pt; line-height: 46pt;">--</div>
+                            <div style="font-size: 18pt;">Average<br>Angular Velocity</div>
+                            <div id="avg_w" style="font-size: 50pt; line-height: 46pt;">--</div>
                             <div>degrees/second</div>
                         </div>
                         <div>
-                            <div style="p-size: 18pt;">Average<br>Left FFPM</div>
-                            <div id="avg_ffpmL" style="p-size: 50pt; line-height: 46pt;">--</div>
+                            <div style="font-size: 18pt;">Average<br>Left FFPM</div>
+                            <div id="avg_ffpmL" style="font-size: 50pt; line-height: 46pt;">--</div>
                         </div>                    
                         <div>
-                            <div style="p-size: 18pt;">Average<br>Right FFPM</div>
-                            <div id="avg_ffpmR" style="p-size: 50pt; line-height: 46pt;">--</div>
+                            <div style="font-size: 18pt;">Average<br>Right FFPM</div>
+                            <div id="avg_ffpmR" style="font-size: 50pt; line-height: 46pt;">--</div>
                         </div>
     
-                        <div onclick="buttonDown('printCSV')" class="button sapphire flexbox column squarish" style="p-size: 16pt; padding: 8px; text-align: center;">
+                        <div onclick="buttonDown('printCSV')" class="button sapphire flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;">
                             <b>Print CSV</b>
                         </div> 
-                        <div onclick="buttonDown('remLast')" class="button royal flexbox column squarish" style="p-size: 16pt; padding: 8px; text-align: center;">
+                        <div onclick="buttonDown('remLast')" class="button royal flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;">
                             <b>Remove Last Pair</b>
                         </div> 
                     </div>
@@ -109,7 +109,7 @@
         <div style="padding: 0px; margin: 0px">
             <div style="text-align: center; background: white; padding: 8px; margin: 0px 0px 16px 0px">
                 <div>
-                    <b style="p-size: 20pt; margin-bottom: 4px;">Step 2: Velocity-Based Components</b>
+                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 2: Velocity-Based Components</b>
                 </div>
                 The following elements are based on the velocities of the drive sides in various scenarios.
 
@@ -117,11 +117,11 @@
                     <b>Reset Values</b>
                 </div> 
                 
-                <table cellspacing="4px" style="width: 100%; p-size: 18pt; text-align: center;">
+                <table cellspacing="4px" style="width: 100%; font-size: 18pt; text-align: center;">
                     <tr>
                         <td colspan="2">
-                            <b style="p-size: 20pt;">Part I: Maximum Speed</b>
-                            <div style="p-size: 14pt;">
+                            <b style="font-size: 20pt;">Part I: Maximum Speed</b>
+                            <div style="font-size: 14pt;">
                                 Place the robot on the ground. Drive the robot in place by turning the joystick hard to the left; reset, then turn hard to the right. Take a value comfortably less than the least of the four speeds as the maximum speed for autonomous driving.
                             </div>
                         </td>
@@ -129,19 +129,19 @@
                     <tr>
                         <td>
                             <div>Left</div>
-                            <div id="left_max_speed" style="p-size: 60pt; line-height: 50pt;">0.0</div>
+                            <div id="left_max_speed" style="font-size: 60pt; line-height: 50pt;">0.0</div>
                             nu/100ms
                         </td>
                         <td>
                             <div>Right</div>
-                            <div id="right_max_speed" style="p-size: 60pt; line-height: 50pt;">0.0</div>
+                            <div id="right_max_speed" style="font-size: 60pt; line-height: 50pt;">0.0</div>
                             nu/100ms
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <b style="p-size: 20pt;">Part II: MotionMagic Feed-Forward Power</b>
-                            <div style="p-size: 14pt;">
+                            <b style="font-size: 20pt;">Part II: MotionMagic Feed-Forward Power</b>
+                            <div style="font-size: 14pt;">
                                 Place the robot on blocks. Drive the robot at maximum motor power; ensure to try a variety of twists to sweep the full range of motion.
                             </div>
                         </td>
@@ -149,17 +149,17 @@
                     <tr>
                         <td>
                             <div>Left</div>
-                            <div id="left_calculated_kf" style="p-size: 60pt; line-height: 50pt;">--</div>
+                            <div id="left_calculated_kf" style="font-size: 60pt; line-height: 50pt;">--</div>
                         </td>
                         <td>
                             <div>Right</div>
-                            <div id="right_calculated_kf" style="p-size: 60pt; line-height: 50pt;">--</div>
+                            <div id="right_calculated_kf" style="font-size: 60pt; line-height: 50pt;">--</div>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <b style="p-size: 20pt;">Part III: Speed Scalars</b>
-                            <div style="p-size: 14pt;">
+                            <b style="font-size: 20pt;">Part III: Speed Scalars</b>
+                            <div style="font-size: 14pt;">
                                 Place the robot on the ground. Drive the robot maximum motor power; ensure to try a variety of twists to sweep the full range of motion.
                             </div>
                         </td>
@@ -167,11 +167,11 @@
                     <tr>
                         <td>
                             <div>Left</div>
-                            <div id="left_scalar" style="p-size: 60pt; line-height: 50pt;">1.0</div>
+                            <div id="left_scalar" style="font-size: 60pt; line-height: 50pt;">1.0</div>
                         </td>
                         <td>
                             <div>Right</div>
-                            <div id="right_scalar" style="p-size: 60pt; line-height: 50pt;">1.0</div>
+                            <div id="right_scalar" style="font-size: 60pt; line-height: 50pt;">1.0</div>
                         </td>
                     </tr>
                 </table>
@@ -180,7 +180,7 @@
         </div>
         <div style="padding: 0px; margin: 0px">
             <!-- <div style="text-align: center; background: white;  padding: 8px; margin: 0px 0px 16px 0px;">
-                <b style="p-size: 20pt; margin-bottom: 4px;">Step 3: Effective Wheelbase</b>
+                <b style="font-size: 20pt; margin-bottom: 4px;">Step 3: Effective Wheelbase</b>
                 <br>
                 To determine the effective wheelbase of the robot, change the left and right applied powers and run the program. Run the program a couple of times to get a feel for what the ballpark wheelbase should be.
                 <br><br>
@@ -189,41 +189,41 @@
 
                 <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 8px;">
                     <div>
-                        <text style="p-size: 24pt">Left Power</text>
+                        <text style="font-size: 24pt">Left Power</text>
                         <br>
-                        <input id="l_pow" style="p-size: 24pt; width: 100%"/>
+                        <input id="l_pow" style="font-size: 24pt; width: 100%"/>
                     </div>
                     <div>
-                        <text style="p-size: 24pt">Right Power</text>
+                        <text style="font-size: 24pt">Right Power</text>
                         <br>
-                        <input id="r_pow" style="p-size: 24pt; width: 100%"/>
+                        <input id="r_pow" style="font-size: 24pt; width: 100%"/>
                     </div>
                 </div>
 
-                <text style="p-size: 16pt">Duration (ms):</text> 
-                <input id="wb_dur" style="p-size: 16pt; width: 100%; margin-bottom: 12px;"/>
+                <text style="font-size: 16pt">Duration (ms):</text> 
+                <input id="wb_dur" style="font-size: 16pt; width: 100%; margin-bottom: 12px;"/>
 
-                <div onclick="wheelbase()" class="button navy flexbox column squarish" style="p-size: 16pt; padding: 8px; text-align: center;; margin-bottom: 24px;">
+                <div onclick="wheelbase()" class="button navy flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;; margin-bottom: 24px;">
                     <div><b>Run Calibration Program</b></div>
                 </div> 
 
                 <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 12px;">
-                    <text style="p-size: 18pt;">Most Recent<br>Wheelbase</text>
-                    <text style="p-size: 18pt;">Running Average<br>Wheelbase</text>
+                    <text style="font-size: 18pt;">Most Recent<br>Wheelbase</text>
+                    <text style="font-size: 18pt;">Running Average<br>Wheelbase</text>
 
                     <div>
-                        <div id="prev_wb" style="p-size: 50pt; line-height: 46pt;">--</div>
+                        <div id="prev_wb" style="font-size: 50pt; line-height: 46pt;">--</div>
                         inches
                     </div>                    
                     <div>
-                        <div id="avg_wb" style="p-size: 50pt; line-height: 46pt;">--</div>
+                        <div id="avg_wb" style="font-size: 50pt; line-height: 46pt;">--</div>
                         inches
                     </div>
 
-                    <div onclick="buttonDown('add_wb_to_avg')" class="button sapphire flexbox column squarish" style="p-size: 16pt; padding: 8px; text-align: center;">
+                    <div onclick="buttonDown('add_wb_to_avg')" class="button sapphire flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;">
                         <div><b>Add to Average</b></div>
                     </div> 
-                    <div onclick="buttonDown('reset_wb_avg')" class="button royal flexbox column squarish" style="p-size: 16pt; padding: 8px; text-align: center;">
+                    <div onclick="buttonDown('reset_wb_avg')" class="button royal flexbox column squarish" style="font-size: 16pt; padding: 8px; text-align: center;">
                         <div><b>Reset Average</b></div>
                     </div> 
                 </div>
@@ -231,7 +231,7 @@
             
             <div style="background: white; padding: 8px; margin: 0px 0px 16px 0px">
                 <div style="text-align: center;">
-                    <b style="p-size: 20pt; margin-bottom: 4px;">Step 3: MotionMagic PID</b>
+                    <b style="font-size: 20pt; margin-bottom: 4px;">Step 3: MotionMagic PID</b>
                     
                     <div onmousedown='buttonDown("pidCalDrive")' class="button navy" style="flex: 0 0 auto; border-radius: 12px; padding: 10px 14px;">
                         <b>100 inch Drive Test</b>
@@ -247,48 +247,48 @@
                 </ol>
 
                 <div style="text-align: center;">
-                    <b style="p-size: 18pt; margin-bottom: 4px;">Left</b>
+                    <b style="font-size: 18pt; margin-bottom: 4px;">Left</b>
                 </div>
 
-                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 8px; p-size: 18pt;">
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 8px; font-size: 18pt;">
                     <div class="flexbox row" style="align-items: center;">
                         <div style="margin-right: 4px;">kF:</div>
-                        <input id="l_mp_f" style="p-size: 24pt; flex: 1 1 100%" />
+                        <input id="l_mp_f" style="font-size: 24pt; flex: 1 1 100%" />
                     </div>
                     <div class="flexbox row" style="align-items: center;">
                         <div style="margin-right: 4px;">kP:</div>
-                        <input id="l_mp_p" style="p-size: 24pt; flex: 1 1 100%" />
+                        <input id="l_mp_p" style="font-size: 24pt; flex: 1 1 100%" />
                     </div>
                     <div class="flexbox row" style="align-items: center;">
                         <div style="margin-right: 4px;">kI:</div>
-                        <input id="l_mp_i" style="p-size: 24pt; flex: 1 1 100%" />
+                        <input id="l_mp_i" style="font-size: 24pt; flex: 1 1 100%" />
                     </div>
                     <div class="flexbox row" style="align-items: center;">
                         <div style="margin-right: 4px;">kD:</div>
-                        <input id="l_mp_d" style="p-size: 24pt; flex: 1 1 100%" />
+                        <input id="l_mp_d" style="font-size: 24pt; flex: 1 1 100%" />
                     </div>
                 </div>
 
                 <div style="text-align: center;">
-                    <b style="p-size: 18pt; margin-bottom: 4px;">Right</b>
+                    <b style="font-size: 18pt; margin-bottom: 4px;">Right</b>
                 </div>
 
-                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 8px; p-size: 18pt;">
+                <div style="flex: 0 1 100%; display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 8px; font-size: 18pt;">
                     <div class="flexbox row" style="align-items: center;">
                         <div style="margin-right: 4px;">kF:</div>
-                        <input id="r_mp_f" style="p-size: 24pt; flex: 1 1 100%" />
+                        <input id="r_mp_f" style="font-size: 24pt; flex: 1 1 100%" />
                     </div>
                     <div class="flexbox row" style="align-items: center;">
                         <div style="margin-right: 4px;">kP:</div>
-                        <input id="r_mp_p" style="p-size: 24pt; flex: 1 1 100%" />
+                        <input id="r_mp_p" style="font-size: 24pt; flex: 1 1 100%" />
                     </div>
                     <div class="flexbox row" style="align-items: center;">
                         <div style="margin-right: 4px;">kI:</div>
-                        <input id="r_mp_i" style="p-size: 24pt; flex: 1 1 100%" />
+                        <input id="r_mp_i" style="font-size: 24pt; flex: 1 1 100%" />
                     </div>
                     <div class="flexbox row" style="align-items: center;">
                         <div style="margin-right: 4px;">kD:</div>
-                        <input id="r_mp_d" style="p-size: 24pt; flex: 1 1 100%" />
+                        <input id="r_mp_d" style="font-size: 24pt; flex: 1 1 100%" />
                     </div>
                 </div>
 
