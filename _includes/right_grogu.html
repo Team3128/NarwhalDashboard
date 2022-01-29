@@ -1,7 +1,7 @@
 <div class="flexbox column squash" style="flex: 0 1 100%; align-items: stretch; padding: 16px; overflow: hidden">    
     <div class="stream" style="text-align: center; flex: 0 0 auto; border-radius: 12px; padding: 20px; margin-bottom: 10px;">
         <div id="cam_conn_button" onclick="toggleToSelectedLimelight()" class="button red" style="flex: 0 0 auto; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px; margin-bottom:">
-            <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
+            <p id="cam_conn_button_text" style="p-size: 20; p-weight: 700">Connect To Camera</p>
         </div>
 
         <div>
@@ -13,9 +13,9 @@
         </div>
  
          <div class="royal flexbox column" style="align-items: stretch; flex-grow: 0; margin: 12px; margin-bottom: 0px; padding: 12px; border-radius: 6px; display: inline-block">
-            <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
-                <font style="font-size: 20; font-weight: 300; margin-right: 8px;">Selected Limelight:</font>
-                <font id="selected_limelight" style="font-size: 20; font-weight: 600; flex: 1 0 auto">Not connected.</font>  
+            <div style="display: flex; align-items: center; flex-direction: row; color: white; p-size: 14pt;">
+                <p style="p-size: 20; p-weight: 300; margin-right: 8px;">Selected Limelight:</p>
+                <p id="selected_limelight" style="p-size: 20; p-weight: 600; flex: 1 0 auto">Not connected.</p>  
                 <div onclick='toggleLimelightMenu()' class="button sapphire" style="margin-left: 10px; border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
             </div>
             <div id="limelight_list" style='display: none; margin-top: 10px;'>
@@ -26,9 +26,9 @@
         </div>
 
         <div class="royal flexbox column" style="align-items: stretch; flex-grow: 0; margin: 12px; margin-bottom: 0px; padding: 12px; border-radius: 6px; display: inline-block; vertical-align: top">
-            <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
-                <font style="font-size: 20; font-weight: 300; margin-right: 8px;">Selected Pipeline:</font>
-                <font id="selected_pipeline" style="font-size: 20; font-weight: 600; flex: 1 0 auto">Not connected.</font>  
+            <div style="display: flex; align-items: center; flex-direction: row; color: white; p-size: 14pt;">
+                <p style="p-size: 20; p-weight: 300; margin-right: 8px;">Selected Pipeline:</p>
+                <p id="selected_pipeline" style="p-size: 20; p-weight: 600; flex: 1 0 auto">Not connected.</p>  
                 <div onclick='togglePipelineMenu()' class="button sapphire" style="margin-left: 10px; border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
             </div>
             <div id="pipeline_list" style='display: none; margin-top: 10px;'>
@@ -39,10 +39,10 @@
         </div>
 
     </div> 
-    <div style="flex: 0 0 10px; margin-bottom: 0px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px; padding-bottom: 0px; font-size: 20pt">
+    <div style="flex: 0 0 10px; margin-bottom: 0px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px; padding-bottom: 0px; p-size: 20pt">
         <b>Align Mode<br>
     </div>
-    <div style="flex: 0 0 240px; display: grid; text-align: center; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 12px; font-size: 20pt">
+    <div style="flex: 0 0 240px; display: grid; text-align: center; grid-template-columns: repeat(2, 1fr); grid-gap: 12px; margin-bottom: 12px; p-size: 20pt">
         <div id="VisionAlign" onclick='buttonDown("VisionAlign")' class="button green" style="height: 50%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
             Vision Align
         </div>
@@ -50,7 +50,7 @@
             Manual Align
         </div>
     </div>
-    <div style="flex: 0 0 240px; margin-bottom: 12px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px; font-size: 20pt">
+    <div style="flex: 0 0 240px; margin-bottom: 12px; text-align: center; padding: 20px; padding-right: 4px; padding-left: 4px; p-size: 20pt">
         <b>Shooting Ranges<br>
         <div id="SetStateShort" onclick='buttonDown("SetStateShort")' class="button grey" style="height: 20%; border-radius: 12px; padding: 8px; margin-top: 8px; margin-bottom: 8px;">
             Short Range
