@@ -18,6 +18,8 @@
     var autoMenuVisible = false;
     var limelightMenuVisible = false;
     var pipelineMenuVisible = false;
+    var debugMenuVisibile = false;
+     
     var updater = null;
 
     var current_tab = "dashboard";
@@ -25,10 +27,9 @@
     var recievedFirstJSON = false;
 
     const debugElements = new Map();
-    
-    //var noneElement = "";
+    const debugValues = new Map();
 
-   
+    //var noneElement = "";
 
     function getElement(id) {
         return document.getElementById(id);
@@ -164,16 +165,16 @@
         newElement.style.borderRadius = "16px";
 
         //Debug Title Class (includes all styling)
-        debugTitle.classList.add("debug-title");
+        debugTitle.classList.add("debug_title");
         debugTitle.innerHTML = key;
 
         //Debug Information Class (including all styling)
-        debugInfo.classList.add("debug-info");
+        debugInfo.classList.add("debug_info");
 
         //Add Debug Title/Info to Element and add Element to Debug Panel
         newElement.appendChild(debugTitle);
         newElement.appendChild(debugInfo);
-        getElement("debug-panel").appendChild(newElement);
+        getElement("debug_panel").appendChild(newElement);
         debugElements.set(key, newElement);
     }
 
@@ -189,9 +190,10 @@
             }
             
             //Set the Value in the Row
-            let elList = debugElements.get(key).getElementsByClassName("debug-info");
+            let elList = debugElements.get(key).getElementsByClassName("debug_info");
             if(elList.length > 0) elList[0].innerHTML = value;
 
+            debugValues.set(key,value);
         });
     }
 
@@ -369,6 +371,11 @@
         pipelineMenuVisible = true;
     }
 
+    function openDebugMenu(){
+        getElement('debug_panel').style.display = 'block';
+        debugMenuVisibile = true;
+    }
+
     function closeAutoMenu() {
         getElement('auto_list').style.display = 'none';
         autoMenuVisible = false;
@@ -384,8 +391,12 @@
         pipelineMenuVisible = false;
     }
 
-    function toggleAutoMenu() {
+    function closeDebugMenu(){
+        getElement('debug_panel').style.display = 'none';
+        debugMenuVisibile = false;
+    }
 
+    function toggleAutoMenu() {
 
         if (!autoMenuVisible) {
             openAutoMenu();
@@ -410,6 +421,15 @@
         }
         else {
             closePipelineMenu();
+        }
+    }
+
+    function toggleDebugMenu(){
+        if (!debugMenuVisibile) {
+            openDebugMenu();
+        }
+        else {
+            closeDebugMenu();
         }
     }
 

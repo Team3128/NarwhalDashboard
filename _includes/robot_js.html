@@ -7,7 +7,7 @@
 
     
     function updateData(json) { 
-        battGauge.value = json['voltage'];
+        battGauge.value = debugValues.get("voltage");
         battGauge.draw();
 
         sel_auto = json['selected_auto']
@@ -31,7 +31,7 @@
 
         // Update match time (rapid react games are 2:30 or 150s long with 30 allocated for endgame)
 
-        var time = Number(json['time']).toFixed(0);
+        var time = Number(debugValues.get("time")).toFixed(0);
         
         setInner('match_time', Math.floor(time/60)+":"+(time%60).toString().padStart(2,'0'));
         // setInner('match_time', match_length - time);

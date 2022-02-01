@@ -15,11 +15,13 @@
         </div>
     </div>
 
-    <div id="debug-panel" class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin: 50px; margin-bottom: 0px; margin-top: 50px; padding: 12px; border-radius: 16px; height:200px;">
+    <div type="button" class="button sapphire" id="toggle_debug" onclick="toggleDebugMenu()" style="align-items: strech; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 12px; border-radius: 16px;" >Debug</div>
+
+    <div id="debug_panel" class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin-bottom: 0px; padding: 12px; border-radius: 16px; height:200px; overflow-y: scroll; display: none;">
         <div class="flexbox column">
             <div class="flexbox sapphire row" style="align-items: center; justify-content: center; margin: 10px; padding:5px; height: 30px;  border-radius: 16px;">
-                <span class="debug-title">Shooter</span>
-                <span class="debug-info">100RPM</span>
+                <span class="debug_title">Key</span>
+                <span class="debug_info">Value</span>
             </div>
         </div>
     </div>
