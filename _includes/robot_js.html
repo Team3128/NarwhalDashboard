@@ -53,15 +53,12 @@
 
         setInner('rpm_display', rpm);
 
-        getElement('long_range').classList.add("deselected");
-        getElement('mid_range').classList.add("deselected");
-        getElement('short_range').classList.add("deselected");
+        var range = debugValues.get("range");
 
-        var range = debugValues.get("range")
-
-        if(range < 0){
-            getElement('long_range').classList.add("selected");
-        }
+        // scale range from min to max (m) [ tbd:min , tbd:max ]
+        var max = 90;
+        var min = 0;
+        range /= (max - min);
 
         
         refresh(json);
