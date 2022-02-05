@@ -11,11 +11,11 @@
         battGauge.draw();
 
         sel_auto = json['selected_auto']
-        if (sel_auto == "null") {
+        if (sel_auto == null) {
             sel_auto = "None";
         }
         sel_limelight = json['selected_limelight']
-        if (sel_limelight == "null") {
+        if (sel_limelight == null) {
             sel_limelight = "None";
         }
         sel_pipeline = json['selected_pipeline']
@@ -25,6 +25,8 @@
 
         //toggleToSelectedLimelight();
 
+        console.log(sel_auto);
+    
         setInner('selected_auto', sel_auto);
         setInner('selected_limelight', sel_limelight);
         setInner('selected_pipeline', sel_pipeline);
@@ -34,7 +36,6 @@
         var time = Number(debugValues.get("time")).toFixed(0);
         
         setInner('match_time', Math.floor(time/60)+":"+(time%60).toString().padStart(2,'0'));
-        // setInner('match_time', match_length - time);
 
         if(time == 15 &! match_start){
             changeState("AUTO");
@@ -48,6 +49,21 @@
             match_start = false;
         }
 
+        var rpm = Number(debugValues.get("rpm")).toFixed(0);
+
+        setInner('rpm_display', rpm);
+
+        getElement('long_range').classList.add("deselected");
+        getElement('mid_range').classList.add("deselected");
+        getElement('short_range').classList.add("deselected");
+
+        var range = debugValues.get("range")
+
+        if(range < 0){
+            getElement('long_range').classList.add("selected");
+        }
+
+        
         refresh(json);
     }
 

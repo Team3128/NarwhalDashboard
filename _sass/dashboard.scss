@@ -48,6 +48,12 @@ body {
 
 
 // Backgrounded Thingies
+.white-black {
+    background: white;
+    color: black;
+    border: 3px solid black;
+}
+
 .navy {
     background: $navy;
     color: white;
@@ -71,6 +77,11 @@ body {
 .red {
     background: $red;
     color: white;
+
+    &.deselected{
+        background: darken($red,       $darken-amount);
+        color: darken(white,       $darken-amount);
+    }
 }
 
 .orange {
@@ -81,15 +92,26 @@ body {
 .gold {
     background: gold;
     color: white;
+
+    &.deselected{
+        background: darken(gold,       $darken-amount);
+        color: darken(white,       $darken-amount);
+    }
 }
 
 .green {
     background: $green;
     color: white;
+
+    &.deselected{
+        background: darken($green,       $darken-amount);
+        color: darken(white,       $darken-amount);
+    }
 }
 
 .white {
     background: white;
+    color: black;
 }
 
 .grey {
@@ -219,8 +241,10 @@ input {
 } 
 
 .container {
+    color: white;
     overflow: hidden;
     background: #333;
+    border-radius: 12px;
 }
 
 .stream {
@@ -238,3 +262,4 @@ input {
     width: 50%; 
     text-align: center;
 }
+

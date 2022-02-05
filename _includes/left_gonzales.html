@@ -1,6 +1,18 @@
 <div  style="width: 100%; flex: 0 0 auto; margin-bottom: 12px;">
+    <div class="flexbox column container" style="margin-bottom: 0;">
+        <p style="font-size: 32px; margin-top: 10px; margin-left: auto; margin-right: auto; margin-bottom: 0px;">Shooter</p>
+        <div class="flexbox row white" style="align-items: center; justify-content: center; margin: 20px 10px 10px 10px; padding:5px; border-radius: 16px;">
+            <span class="debug_title">RPM:</span>
+            <span id="rpm_display" class="debug_info">0</span>
+        </div>
+        <div class="flexbox row" style="align-items: center; justify-content: center; border-radius: 16px; margin: 0px 10px 10px 10px">
+            <span id="long_range" class="flexbox column red" style="width: 33%; align-items: center;">Long</span>
+            <span id="mid_range" class="flexbox column gold" style="width: 33%; align-items: center;">Mid</span>
+            <span id="short_range" class="flexbox column green" style="width: 33%; align-items: center;">Short</span>
+        </div>
+    </div> 
 
-    <div class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 12px; border-radius: 16px;">
+    <div class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin: 25px 5px 0px 5px; padding: 12px; border-radius: 16px;">
         <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
             <font style="font-weight: 300; margin-right: 8px;">Selected Auto:</font> 
             <font id="selected_auto" style="font-weight: 600; flex: 1 0 auto">Not connected.</font>
@@ -8,14 +20,16 @@
         </div>
         
     <!-- Selection / Allows you to select the Auto-Program to load /-->
-        <div id="auto_list" style='display: none; margin-top: 10px;'>
+        <div id="auto_list" style='display: none;'>
             <div id="auto_choice_none" onclick='select_auto(-1)' class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
                 None
             </div>
         </div>
     </div>
 
-    <div type="button" class="button sapphire" id="toggle_debug" onclick="toggleDebugMenu()" style="align-items: strech; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 12px; border-radius: 16px;" >Debug</div>
+    <div class="flexbox column button red" id="toggle_debug" onclick="toggleDebugMenu()" style="justify-content: center; margin: 25px; margin-bottom: 0px; border-radius: 16px;">
+        <span style="font-size: 20; font-weight: 700; margin: 5px auto 5px auto;">Debug<span>
+    </div>
 
     <div id="debug_panel" class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin-bottom: 0px; padding: 12px; border-radius: 16px; height:200px; overflow-y: scroll; display: none;">
         <div class="flexbox column">
@@ -25,4 +39,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
