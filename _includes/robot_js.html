@@ -55,12 +55,17 @@
 
         var range = debugValues.get("range");
 
+        range = 86;
+
         // scale range from min to max (m) [ tbd:min , tbd:max ]
-        var max = 90;
+        var max = 100;
         var min = 0;
         range /= (max - min);
 
-        
+        console.log( "0 "+range*100+"% 0 "+(100-range*100)+"%");
+
+        getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-range*100)+"%";
+
         refresh(json);
     }
 
