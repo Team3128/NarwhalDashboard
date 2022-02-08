@@ -7,7 +7,7 @@
 
     
     function updateData(json) { 
-        battGauge.value = debugValues.get("voltage");
+        battGauge.value = debugData.get("voltage");
         battGauge.draw();
 
         sel_auto = json['selected_auto']
@@ -25,15 +25,13 @@
 
         //toggleToSelectedLimelight();
 
-        console.log(sel_auto);
-    
         setInner('selected_auto', sel_auto);
         setInner('selected_limelight', sel_limelight);
         setInner('selected_pipeline', sel_pipeline);
 
         // Update match time (rapid react games are 2:30 or 150s long with 30 allocated for endgame)
 
-        var time = Number(debugValues.get("time")).toFixed(0);
+        var time = Number(debugData.get("time")).toFixed(0);
         
         setInner('match_time', Math.floor(time/60)+":"+(time%60).toString().padStart(2,'0'));
 
@@ -49,20 +47,19 @@
             match_start = false;
         }
 
-        var rpm = Number(debugValues.get("rpm")).toFixed(0);
+        var rpm = Number(debugData.get("rpm")).toFixed(0);
 
         setInner('rpm_display', rpm);
 
-        var range = debugValues.get("range");
-
-        range = 86;
+        var range = debugData.get("range");
 
         // scale range from min to max (m) [ tbd:min , tbd:max ]
+        // TODO: get actual numbers
         var max = 100;
         var min = 0;
-        range /= (max - min);
 
-        console.log( "0 "+range*100+"% 0 "+(100-range*100)+"%");
+        range -= min;
+        range /= (max - min);
 
         getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-range*100)+"%";
 

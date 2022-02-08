@@ -20,12 +20,12 @@
         <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
             <font style="font-weight: 300; margin-right: 8px;">Selected Auto:</font> 
             <font id="selected_auto" style="font-weight: 600; flex: 1 0 auto">Not connected.</font>
-            <div onclick='toggleAutoMenu()' class="button sapphire" style="border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
+            <div onclick='toggle_menu("auto")' class="button sapphire" style="border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
         </div>
         
     <!-- Selection / Allows you to select the Auto-Program to load /-->
         <div id="auto_list" style='display: none;'>
-            <div id="auto_choice_none" onclick='select_auto(-1)' class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
+            <div id="auto_choice_none" onclick='menu_select("auto",-1)' class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
                 None
             </div>
         </div>
