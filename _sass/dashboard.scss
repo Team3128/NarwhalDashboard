@@ -247,6 +247,20 @@ input {
     border-radius: 12px;
 }
 
+.container_buttons {
+    justify-content: center;
+    flex-direction: row;
+    padding: 1vw;
+    align-content: center;
+    width: 100%;
+}
+
+.table_row {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
 .stream {
     width: 50%; 
     margin: auto; 
