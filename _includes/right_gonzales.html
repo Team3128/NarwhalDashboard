@@ -1,39 +1,39 @@
 <!-- Limelight Connection / Livestream (LL) / Button /-->
-<div class="flexbox column squash" style="flex: 0 1 100%; align-items: stretch; padding: 16px; overflow: hidden">    
-    <div class="container" style="text-align: center; flex: 0 0 auto; padding: 20px; margin-bottom: 10px; overflow: visible;">
-        <div id="limelight_conn_button" onclick='toggleToSelectedLimelight("limelight_conn_button")' class="button red" style="width: 40%; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px; display: inline-block;">
-            <font id="limelight_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Limelight</font>
+<div class="flexbox column squash limelight_info">    
+    <div class="container limelight_container">
+        <div onclick='toggleToSelectedLimelight("limelight_conn_button")' class="button red conn_button">
+            <p class="conn_button_text">Connect To Limelight</p>
         </div>
-        <div id="cam_conn_button" onclick='toggleCamConnection("http://roborio-3128-frc.local:1181/stream.mjpg","camera_stream", "cam_conn_button")' class="button red" style="width: 40%; border-radius: 6px; padding: 10px; padding-left: 14px; padding-right: 14px; margin-bottom: 10px; display: inline-block;">
-            <font id="cam_conn_button_text" style="font-size: 20; font-weight: 700">Connect To Camera</font>
+        <div onclick='toggleCamConnection("http://roborio-3128-frc.local:1181/stream.mjpg","camera_stream", "cam_conn_button")' class="button red conn_button">
+            <p class="conn_button_text">Connect To Camera</p>
         </div>
         <table id="cameras">
             <tr>
-                <img id="limelight_stream" style="width: 50%; margin: auto; margin-top: 10px; display: none;" src="">
-                <img id="camera_stream" style="width: 50%; margin: auto; margin-top: 10px; display: none;" src="">
+                <img class="stream" src="">
+                <img class="stream" src="">
             </tr>
             <tr>
-                <div class="royal flexbox column" style="align-items: stretch; flex-grow: 0; margin: 12px; margin-bottom: 0px; padding: 12px; border-radius: 6px; display: inline-block">
-                    <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
-                        <font style="font-size: 20; font-weight: 300; margin-right: 8px;">Selected Limelight:</font>
-                        <font id="selected_limelight" style="font-size: 20; font-weight: 600; flex: 1 0 auto">Not connected.</font>  
-                        <div onclick='toggleLimelightMenu()' class="button sapphire" style="margin-left: 10px; border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
+                <div class="royal flexbox column lime_pipe">
+                    <div class="lime_pipe_div">
+                        <p class="lime_pipe_div_title">Selected Limelight:</p>
+                        <p class="lime_pipe_selected">Not connected.</p>  
+                        <div onclick='toggleLimelightMenu()' class="button sapphire lime_pipe_menu">Choose</div>      
                     </div>
-                    <div id="limelight_list" style='display: none; margin-top: 10px;'>
-                        <div id="limelight_choice_none" onclick="select_limelight(-1)" class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
+                    <div class="lime_pipe_list">
+                        <div onclick="select_limelight(-1)" class="button sapphire lime_pipe_choice_none">
                             None
                         </div>
                     </div>
                 </div>
         
-                <div class="royal flexbox column" style="align-items: stretch; flex-grow: 0; margin: 12px; margin-bottom: 0px; padding: 12px; border-radius: 6px; display: inline-block; vertical-align: top">
-                    <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
-                        <font style="font-size: 20; font-weight: 300; margin-right: 8px;">Selected Pipeline:</font>
-                        <font id="selected_pipeline" style="font-size: 20; font-weight: 600; flex: 1 0 auto">Not connected.</font>  
-                        <div onclick='togglePipelineMenu()' class="button sapphire" style="margin-left: 10px; border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
+                <div class="royal flexbox column lime_pipe">
+                    <div class="lime_pipe_div">
+                        <p class="lime_pipe_div_title">Selected Pipeline:</p>
+                        <p class="lime_pipe_selected">Not connected.</p>  
+                        <div onclick='togglePipelineMenu()' class="button sapphire lime_pipe_menu">Choose</div>      
                     </div>
-                    <div id="pipeline_list" style='display: none; margin-top: 10px;'>
-                        <div id="pipeline_choice_none" onclick="select_pipeline(-1)" class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
+                    <div class="lime_pipe_list">
+                        <div onclick="select_pipeline(-1)" class="button sapphire lime_pipe_choice_none">
                             None
                         </div>
                     </div>

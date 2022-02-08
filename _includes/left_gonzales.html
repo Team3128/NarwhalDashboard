@@ -1,13 +1,13 @@
-<div  style="width: 100%; flex: 0 0 auto; margin-bottom: 12px;">
-    <div class="flexbox column container" style="margin-bottom: 0;">
-        <p style="font-size: 32px; margin-top: 10px; margin-left: auto; margin-right: auto; margin-bottom: 0px;">Shooter</p>
-        <div class="flexbox row white" style="align-items: center; justify-content: center; margin: 20px 10px 10px 10px; padding:5px; border-radius: 16px;">
-            <span class="debug_title">RPM:</span>
-            <span id="rpm_display" class="debug_info">0</span>
+<div class="shooter_info">
+    <div class="flexbox column container shooter_box">
+        <p class="shooter_title" >Shooter</p>
+        <div class="flexbox row white shooter_rpm_box">
+            <span class="debug_key">RPM:</span>
+            <span class="debug_value">0</span>
         </div>
 
-        <div id="range_bar" class="flexbox row" style="align-items: center; justify-content: center; margin: 0px 10px 10px 10px;">
-            <img id="range_indicator" src="/gonzales/black_triangle.png" style="width: 15px; height: 20px; margin-right: 0%; margin-left: 0%;">
+        <div class="flexbox row shooter_range_bar">
+            <img class="shooter_range_indicator" src="/gonzales/black_triangle.png">
         </div>
         <!-- <div class="flexbox row" style="align-items: center; justify-content: center; border-radius: 16px; margin: 0px 10px 10px 10px">
             <span id="long_range" class="flexbox column red" style="width: 33%; align-items: center;">Long</span>
@@ -16,30 +16,30 @@
         </div> -->
     </div> 
 
-    <div class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin: 25px 5px 0px 5px; padding: 12px; border-radius: 16px;">
-        <div style="display: flex; align-items: center; flex-direction: row; color: white; font-size: 14pt;">
-            <font style="font-weight: 300; margin-right: 8px;">Selected Auto:</font> 
-            <font id="selected_auto" style="font-weight: 600; flex: 1 0 auto">Not connected.</font>
-            <div onclick='toggleAutoMenu()' class="button sapphire" style="border-radius: 6px; padding: 4px; padding-left: 14px; padding-right: 14px;">Choose</div>      
+    <div class="royal flexbox column auto_info">
+        <div class="auto_box">
+            <p class="auto_title">Selected Auto:</p> 
+            <p class="auto_selected">Not connected.</p>
+            <div onclick='toggleAutoMenu()' class="button sapphire auto_choose">Choose</div>      
         </div>
         
     <!-- Selection / Allows you to select the Auto-Program to load /-->
-        <div id="auto_list" style='display: none;'>
-            <div id="auto_choice_none" onclick='select_auto(-1)' class="button sapphire" style="margin: 0px; margin-bottom: 4px; padding: 8px; border-radius: 6px;">
+        <div class="auto_list">
+            <div onclick='select_auto(-1)' class="button sapphire auto_choice_none">
                 None
             </div>
         </div>
     </div>
 
-    <div class="flexbox column button red" id="toggle_debug" onclick="toggleDebugMenu()" style="justify-content: center; margin: 25px; margin-bottom: 0px; border-radius: 16px;">
-        <span style="font-size: 20; font-weight: 700; margin: 5px auto 5px auto;">Debug<span>
+    <div class="flexbox column button red debug_toggle" onclick="toggleDebugMenu()">
+        <span class="debug_title">Debug<span>
     </div>
 
-    <div id="debug_panel" class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin-bottom: 0px; padding: 12px; border-radius: 16px; height:200px; overflow-y: scroll; display: none;">
+    <div class="royal flexbox column debug_panel">
         <div class="flexbox column">
-            <div class="flexbox sapphire row" style="align-items: center; justify-content: center; margin: 10px; padding:5px; height: 30px;  border-radius: 16px;">
-                <span class="debug_title">Key</span>
-                <span class="debug_info">Value</span>
+            <div class="flexbox sapphire row debug_info">
+                <span class="debug_key">Key</span>
+                <span class="debug_value">Value</span>
             </div>
         </div>
     </div>
