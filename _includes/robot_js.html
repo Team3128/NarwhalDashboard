@@ -7,15 +7,15 @@
 
     
     function updateData(json) { 
-        battGauge.value = json['voltage'];
+        battGauge.value = debugData.get("voltage");
         battGauge.draw();
 
         sel_auto = json['selected_auto']
-        if (sel_auto == "null") {
+        if (sel_auto == null) {
             sel_auto = "None";
         }
         sel_limelight = json['selected_limelight']
-        if (sel_limelight == "null") {
+        if (sel_limelight == null) {
             sel_limelight = "None";
         }
         sel_pipeline = json['selected_pipeline']
@@ -31,10 +31,9 @@
 
         // Update match time (rapid react games are 2:30 or 150s long with 30 allocated for endgame)
 
-        var time = Number(json['time']).toFixed(0);
+        var time = Number(debugData.get("time")).toFixed(0);
         
         setInner('match_time', Math.floor(time/60)+":"+(time%60).toString().padStart(2,'0'));
-        // setInner('match_time', match_length - time);
 
         if(time == 15 &! match_start){
             changeState("AUTO");
@@ -47,6 +46,22 @@
             changeState("DISABLED");
             match_start = false;
         }
+
+        var rpm = Number(debugData.get("rpm")).toFixed(0);
+
+        setInner('rpm_display', rpm);
+
+        var range = debugData.get("range");
+
+        // scale range from min to max (inches) [ 0 , 100 ]
+        // TODO: get actual numbers
+        var max = 100;
+        var min = 0;
+
+        range -= min;
+        range /= (max - min);
+
+        getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-range*100)+"%";
 
         refresh(json);
     }
