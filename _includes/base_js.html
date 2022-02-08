@@ -12,19 +12,14 @@
 
     var current_tab = "dashboard";
 
-    const menuData = new Map();
-    const menuVisibility = new Map();
+    var menuData = new Map();
+    const debugElements = new Map();
 
     var sel_auto;
     var sel_limelight;
     var sel_pipeline;
 
     var recievedFirstJSON = false;
-
-    const debugElements = new Map();
-    const debugData = new Map();
-
-    var debugMenuVisibile = false;
 
     function getElement(id) {
         return document.getElementById(id);
@@ -52,8 +47,6 @@
     }
 
     function toggleConnection() {
-
-
         if (state == DISCONNECTED) {
             connect();
         }
@@ -114,22 +107,9 @@
 
     function createDebugElement(key) {
         //Create Elements
-        let newElement = document.createElement("div");
+        let newElement = getElement("debug_header").cloneNode(true);
         let debugTitle = document.createElement("span");
         let debugInfo = document.createElement("span");
-
-        //New Element Classes
-        newElement.classList.add("flexbox");
-        newElement.classList.add("sapphire");
-        newElement.classList.add("row");
-
-        //New Element Extra Styling
-        newElement.style.alignItems = "strech";
-        newElement.style.justifyContent = "center";
-        newElement.style.margin = "10px";
-        newElement.style.padding = "5px";
-        newElement.style.height = "30px";
-        newElement.style.borderRadius = "16px";
 
         //Debug Title Class (includes all styling)
         debugTitle.classList.add("debug_title");
@@ -141,11 +121,15 @@
         //Add Debug Title/Info to Element and add Element to Debug Panel
         newElement.appendChild(debugTitle);
         newElement.appendChild(debugInfo);
-        getElement("debug_panel").appendChild(newElement);
+        getElement("debug_list").appendChild(newElement);
         debugElements.set(key, newElement);
     }
 
     function updateDebug(debugVals) {
+
+        let visibility = menuData.get('debug')[0];
+        let debugMap = menuData.get('debug')[1];
+
         debugVals.forEach((obj) => {
             //Add Row for debug element if it doesn't exist
 
@@ -160,8 +144,10 @@
             let elList = debugElements.get(key).getElementsByClassName("debug_info");
             if(elList.length > 0) elList[0].innerHTML = value;
 
-            debugData.set(key,value);
+            debugMap.set(key, value);
         });
+
+        menuData.set('debug',[visibility, debugMap]);
     }
 
     function connect() {
@@ -193,7 +179,6 @@
             // get menus and values 
             // TODO: Do this better
 
-
             if(!recievedFirstJSON) {
 
                 // first element is visibility, second element contains all data
@@ -201,11 +186,14 @@
                 menuData.set('limelight',[false, json['limelight']]);
                 menuData.set('pipeline',[false, json['pipeline']]);
 
+                // debug needs to be setup after normal menus
                 setup_menus();
+                menuData.set('debug',[false, new Map()]);
 
                 recievedFirstJSON = true;
             }
 
+            // debug menu uses a map within the main map to store data
             if(json.hasOwnProperty('debug')) {
                 updateDebug(json['debug']);
             }

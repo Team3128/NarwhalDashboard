@@ -7,6 +7,9 @@
 
     
     function updateData(json) { 
+
+        let debugData = menuData.get("debug")[1];
+
         battGauge.value = debugData.get("voltage");
         battGauge.draw();
 

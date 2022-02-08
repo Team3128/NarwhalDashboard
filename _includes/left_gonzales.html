@@ -31,13 +31,13 @@
         </div>
     </div>
 
-    <div class="flexbox column button red" id="toggle_debug" onclick="toggleDebugMenu()" style="justify-content: center; margin: 25px; margin-bottom: 0px; border-radius: 16px;">
+    <div class="flexbox column button red" onclick='toggle_menu("debug")' style="justify-content: center; margin: 25px; margin-bottom: 0px; border-radius: 16px;">
         <span style="font-size: 20; font-weight: 700; margin: 5px auto 5px auto;">Debug<span>
     </div>
 
-    <div id="debug_panel" class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin-bottom: 0px; padding: 12px; border-radius: 16px; height:200px; overflow-y: scroll; display: none;">
+    <div id="debug_list" class="royal flexbox column" style="align-items: strech; flex-grow: 0; margin-bottom: 0px; padding: 12px; border-radius: 16px; height:200px; overflow-y: scroll; display: none;">
         <div class="flexbox column">
-            <div class="flexbox sapphire row" style="align-items: center; justify-content: center; margin: 10px; padding:5px; height: 30px;  border-radius: 16px;">
+            <div id="debug_header" class="flexbox sapphire row" style="align-items: center; justify-content: center; margin: 10px; padding:5px; height: 30px;  border-radius: 16px;">
                 <span class="debug_title">Key</span>
                 <span class="debug_info">Value</span>
             </div>
