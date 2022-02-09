@@ -20,12 +20,12 @@
         <div class="auto_box">
             <p class="auto_title">Selected Auto:</p> 
             <p class="auto_selected">Not connected.</p>
-            <div onclick='toggleAutoMenu()' class="button sapphire auto_choose">Choose</div>      
+            <div onclick='toggle_menu("auto")' class="button sapphire auto_choose">Choose</div>      
         </div>
         
     <!-- Selection / Allows you to select the Auto-Program to load /-->
         <div class="auto_list">
-            <div onclick='select_auto(-1)' class="button sapphire auto_choice_none">
+            <div onclick='menu_select("auto",-1)' class="button sapphire auto_choice_none">
                 None
             </div>
         </div>

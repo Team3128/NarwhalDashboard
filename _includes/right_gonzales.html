@@ -17,10 +17,10 @@
                     <div class="lime_pipe_div">
                         <p class="lime_pipe_div_title">Selected Limelight:</p>
                         <p class="lime_pipe_selected">Not connected.</p>  
-                        <div onclick='toggleLimelightMenu()' class="button sapphire lime_pipe_menu">Choose</div>      
+                        <div onclick='toggle_menu("limelight")' class="button sapphire lime_pipe_menu">Choose</div>      
                     </div>
                     <div class="lime_pipe_list">
-                        <div onclick="select_limelight(-1)" class="button sapphire lime_pipe_choice_none">
+                        <div onclick='menu_select("limelight", -1)' class="button sapphire lime_pipe_choice_none">
                             None
                         </div>
                     </div>
@@ -30,10 +30,10 @@
                     <div class="lime_pipe_div">
                         <p class="lime_pipe_div_title">Selected Pipeline:</p>
                         <p class="lime_pipe_selected">Not connected.</p>  
-                        <div onclick='togglePipelineMenu()' class="button sapphire lime_pipe_menu">Choose</div>      
+                        <div onclick='toggle_menu("pipeline")' class="button sapphire lime_pipe_menu">Choose</div>      
                     </div>
                     <div class="lime_pipe_list">
-                        <div onclick="select_pipeline(-1)" class="button sapphire lime_pipe_choice_none">
+                        <div onclick='select_pipeline("pipeline", -1)' class="button sapphire lime_pipe_choice_none">
                             None
                         </div>
                     </div>
