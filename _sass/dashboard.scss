@@ -279,9 +279,15 @@ input {
 
 #range_bar {
     background-image: url("/gonzales/range_bar.png");
-    height: 20px;
+    background-clip: content-box;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-size: cover;
-    color: black;
+    min-height: 20px;
+
+    flex-grow: 1;
+
+    align-items: center; 
+    justify-content: center; 
+    margin: 0px 10px 10px 10px;
 }
 
