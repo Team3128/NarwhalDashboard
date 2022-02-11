@@ -13,7 +13,7 @@
     var current_tab = "dashboard";
 
     var menuData = new Map();
-    const debugElements = new Map();
+    var debugElements = new Map();
 
     var sel_auto;
     var sel_limelight;
@@ -214,23 +214,16 @@
             getElement('conn_button').classList.add('red');
             setInner('conn_button_text', 'Disconnected');
 
-            getElement("cover").style.display = 'block';
-
-            menuData = new Map();
-
-            menuData.set('auto', [false, json['auto']]);
-            menuData.set('limelight',[false, json['limelight']]);
-            menuData.set('pipeline',[false, json['pipeline']]);
-
-            // autos = [];
-            // limelights = [];
-            // limelightsOptions = [];
-
-            setup_menus();
-
             getElement('selected_auto').innerHTML = "Not Connected."
             getElement('selected_limelight').innerHTML = "Not Connected."
             getElement('selected_pipeline').innerHTML = "Not Connected."
+
+            getElement("cover").style.display = 'block';
+
+            menuData = new Map();
+            debugElements = new Map();
+
+            recievedFirstJSON = false;
         };
     }
 
