@@ -230,7 +230,22 @@ input {
     border-radius: 12px;
 }
 
+.container_buttons {
+    justify-content: center;
+    flex-direction: row;
+    padding: 1vw;
+    align-content: center;
+    width: 100%;
+}
+
+.table_row {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
 .stream {
+    flex-basis: 50;
     width: 50%; 
     margin: auto; 
     margin-top: 10px; 
@@ -258,22 +273,6 @@ input {
     margin: 20px 10px 10px 10px; 
     padding:5px; 
     border-radius: 16px;
-}
-.shooter_range_bar {
-    background-image: url("/gonzales/range_bar.png");
-    height: 20px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: black;
-    align-items: center; 
-    justify-content: center; 
-    margin: 15px 10px 15px 10px;
-}
-.shooter_range_indicator {
-    width: 15px; 
-    height: 20px; 
-    margin-right: 0%; 
-    margin-left: 0%;
 }
 
 .auto_info {
@@ -353,12 +352,27 @@ input {
     text-align: center;
 }
 
+#range_bar {
+    background-image: url("/gonzales/range_bar.png");
+    background-clip: content-box;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    min-height: 20px;
+
+    flex-grow: 1;
+
+    align-items: center; 
+    justify-content: center; 
+    margin: 0px 10px 10px 10px;
+}
+  
 .limelight_info {
     flex: 0 1 100%; 
     align-items: stretch; 
     padding: 16px; 
     overflow: hidden;
 }
+
 .limelight_container {
     text-align: center; 
     flex: 0 0 auto; 
@@ -396,6 +410,8 @@ input {
     flex-direction: row; 
     color: white; 
     font-size: 14pt;
+    margin-top: -5px; 
+    margin-bottom: -5px;
 }
 .lime_pipe_div_title {
     font-size: 20; 

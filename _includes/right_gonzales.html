@@ -1,44 +1,46 @@
 <!-- Limelight Connection / Livestream (LL) / Button /-->
 <div class="flexbox column squash limelight_info">    
     <div class="container limelight_container">
-        <div onclick='toggleToSelectedLimelight("limelight_conn_button")' class="button red conn_button">
-            <p class="conn_button_text">Connect To Limelight</p>
+        <div id="limelight_conn_button" onclick='toggleToSelectedLimelight("limelight_conn_button")' class="button red conn_button">
+            <p class="conn_button_text" id="limelight_conn_button_text">Connect To Limelight</p>
         </div>
-        <div onclick='toggleCamConnection("http://roborio-3128-frc.local:1181/stream.mjpg","camera_stream", "cam_conn_button")' class="button red conn_button">
-            <p class="conn_button_text">Connect To Camera</p>
+        <div id="cam_conn_button" onclick='toggleCamConnection("http://roborio-3128-frc.local:1181/stream.mjpg","camera_stream", "cam_conn_button")' class="button red conn_button">
+            <p id="cam_conn_button_text" class = "conn_button_text">Connect To Camera</p>
         </div>
-        <table id="cameras">
-            <tr>
-                <img class="stream" src="">
-                <img class="stream" src="">
-            </tr>
-            <tr>
-                <div class="royal flexbox column lime_pipe">
-                    <div class="lime_pipe_div">
-                        <p class="lime_pipe_div_title">Selected Limelight:</p>
-                        <p class="lime_pipe_selected">Not connected.</p>  
-                        <div onclick='toggle_menu("limelight")' class="button sapphire lime_pipe_menu">Choose</div>      
+        <div id="cameras" style = "display: flex; flex-direction: column;">
+            <div class = "table_row" style = "display: flex; justify-content: center; flex-direction: row; align-items: center;">
+                <img id="limelight_stream" class="stream" src="">
+                <img id="camera_stream"  class="stream" src="">
+            </div>
+            <div class = "table_row">
+                <div class = "container_buttons">
+                    <div class="royal flexbox column lime_pipe">
+                        <div class="lime_pipe_div">
+                            <p class="lime_pipe_div_title">Selected Limelight:</p>
+                            <p class="lime_pipe_selected" id="selected_limelight">Not connected.</p>  
+                            <div onclick='toggle_menu("limelight")'class="button sapphire lime_pipe_menu">Choose</div>      
+                        </div>
+                        <div id="limelight_list" class="lime_pipe_list">
+                            <div id="limelight_choice_none" onclick='menu_select("limelight",-1)' class="button sapphire lime_pipe_choice_none">
+                                None
+                            </div>
+                        </div>
                     </div>
-                    <div class="lime_pipe_list">
-                        <div onclick='menu_select("limelight", -1)' class="button sapphire lime_pipe_choice_none">
-                            None
+            
+                    <div class="royal flexbox column lime_pipe">
+                        <div class="lime_pipe_div">
+                            <p class="lime_pipe_div_title">Selected Pipeline:</p>
+                            <p id="selected_pipeline" class="lime_pipe_selected">Not connected.</p>  
+                            <div onclick='toggle_menu("pipeline")' class="button sapphire lime_pipe_menu">Choose</div>      
+                        </div>
+                        <div id="pipeline_list" class="lime_pipe_list">
+                            <div id="pipeline_choice_none" onclick='select_pipeline("pipeline",-1)' class="button sapphire lime_pipe_choice_none">
+                                None
+                            </div>
                         </div>
                     </div>
                 </div>
-        
-                <div class="royal flexbox column lime_pipe">
-                    <div class="lime_pipe_div">
-                        <p class="lime_pipe_div_title">Selected Pipeline:</p>
-                        <p class="lime_pipe_selected">Not connected.</p>  
-                        <div onclick='toggle_menu("pipeline")' class="button sapphire lime_pipe_menu">Choose</div>      
-                    </div>
-                    <div class="lime_pipe_list">
-                        <div onclick='select_pipeline("pipeline", -1)' class="button sapphire lime_pipe_choice_none">
-                            None
-                        </div>
-                    </div>
-                </div>
-            </tr>
-        </table>
+            </div>
+        </div>
     </div> 
 </div>
