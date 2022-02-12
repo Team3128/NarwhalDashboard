@@ -4,7 +4,6 @@
     var ty;
     var match_start = false;
     const match_length = 150;
-
     
     function updateData(json) { 
 
@@ -56,6 +55,14 @@
 
         var range = debugData.get("range");
 
+        getElement('range_indicator').style.display = "block";
+        getElement('no_target').style.display = "none";
+        if(range == -1){
+            getElement('range_indicator').style.display = "none";
+            getElement('no_target').style.display = "block";
+        }
+
+
         // scale range from min to max (inches) [ 0 , 100 ]
         // TODO: get actual numbers
         var max = 100;
@@ -68,7 +75,8 @@
             range = 1;
         }else if(range < 0){
             range = 0;
-        }
+        } 
+
 
         getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-(range*100))+"%";
 

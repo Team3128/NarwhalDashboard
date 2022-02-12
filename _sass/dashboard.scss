@@ -303,7 +303,7 @@ input {
     margin-left: 14px; 
     margin-right: 14px;
 }
-.auto_list {
+#auto_list {
     display: none;
 }
 .auto_choice_none {
@@ -324,7 +324,7 @@ input {
     font-weight: 700; 
     margin: 5px auto 5px auto;
 }
-.debug_panel {
+#debug_list {
     align-items: strech; 
     flex-grow: 0; 
     margin-bottom: 0px; 

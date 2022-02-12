@@ -107,16 +107,22 @@
 
     function createDebugElement(key) {
         //Create Elements
-        let newElement = getElement("debug_header").cloneNode(true);
+        let newElement = document.createElement("div");
         let debugTitle = document.createElement("span");
         let debugInfo = document.createElement("span");
 
+        //New Element Classes
+        newElement.classList.add("flexbox");
+        newElement.classList.add("sapphire");
+        newElement.classList.add("row");
+        newElement.classList.add("debug_info");
+
         //Debug Title Class (includes all styling)
-        debugTitle.classList.add("debug_title");
+        debugTitle.classList.add("debug_key");
         debugTitle.innerHTML = key;
 
         //Debug Information Class (including all styling)
-        debugInfo.classList.add("debug_info");
+        debugInfo.classList.add("debug_value");
 
         //Add Debug Title/Info to Element and add Element to Debug Panel
         newElement.appendChild(debugTitle);
@@ -126,7 +132,6 @@
     }
 
     function updateDebug(debugVals) {
-
         let visibility = menuData.get('debug')[0];
         let debugMap = menuData.get('debug')[1];
 
@@ -141,7 +146,7 @@
             }
             
             //Set the Value in the Row
-            let elList = debugElements.get(key).getElementsByClassName("debug_info");
+            let elList = debugElements.get(key).getElementsByClassName("debug_value");
             if(elList.length > 0) elList[0].innerHTML = value;
 
             debugMap.set(key, value);
@@ -223,7 +228,7 @@
             menuData = new Map();
             debugElements = new Map();
 
-            recievedFirstJSON = false;
+            //recievedFirstJSON = false;
         };
     }
 
@@ -237,6 +242,7 @@
 
             let noneElement = getElement(menu+"_choice_none");
 
+            console.log(menu);
             for (let i = 0; i < menuData.get(menu)[1].length; i++) {
                 var element = noneElement.cloneNode(true);
 
