@@ -6,29 +6,20 @@
     var socket;
     var state = DISCONNECTED;
 
-    var autos = [];
-    var limelights = [];
-    var limelightsOptions = [];
     var json;
+    
+    var updater = null;
+
+    var current_tab = "dashboard";
+
+    var menuData = new Map();
+    var debugElements = new Map();
 
     var sel_auto;
     var sel_limelight;
     var sel_pipeline;
 
-    var autoMenuVisible = false;
-    var limelightMenuVisible = false;
-    var pipelineMenuVisible = false;
-    var updater = null;
-
-    var current_tab = "dashboard";
-
     var recievedFirstJSON = false;
-
-    const debugElements = new Map();
-    
-    //var noneElement = "";
-
-   
 
     function getElement(id) {
         return document.getElementById(id);
@@ -56,8 +47,6 @@
     }
 
     function toggleConnection() {
-
-
         if (state == DISCONNECTED) {
             connect();
         }
@@ -69,84 +58,51 @@
         }
     }
 
-    // function toggleCamConnection(addresses, ids) {
-    //     for(var i = 0; i < addresses.length; i++) {
-    //         var camera_stream = getElement(ids[i]);
-    //         if (camera_stream.style.display === "none") {
-    //             camera_stream.style.display = "block";
-    //             if(i == 0){
-    //                 getElement('cam_conn_button').classList.remove('red');
-    //                 getElement('cam_conn_button').classList.remove('orange');
-    //                 getElement('cam_conn_button').classList.add('green');
-    //                 setInner('cam_conn_button_text', 'Hide Camera Stream');
-    //                 camera_stream.style = 'width: 100%; margin: 8px 0px 0px 0px; display: none;';
-    //             }
-    //             camera_stream.src = addresses[i];
-    //             //'http://10.31.28.2:1181/stream.mjpg'
-    //         } else {
-    //             camera_stream.style.display = "none";
-    //             if(i == 0){
-    //                 getElement('cam_conn_button').classList.remove('green');
-    //                 getElement('cam_conn_button').classList.remove('orange');
-    //                 getElement('cam_conn_button').classList.add('red');
-    //                 setInner('cam_conn_button_text', 'Show Camera Stream');
-    //                 camera_stream.style = 'width: 0%; margin: 8px 0px 0px 0px; display: none;';
-    //             }
-    //             camera_stream.src = '';
-    //         }
-    //     }
-    // }
+    function changeState(state){
+        getElement('match_state').classList.remove('red');
+        getElement('match_state').classList.remove('green');
+        getElement('match_state').classList.remove('gold'); 
+        getElement('match_state').classList.remove('black');
 
-    function changeColors(match_state){
-        getElement('conn_button').classList.remove('red');
-        getElement('conn_button').classList.remove('green');
-        getElement('match_state').classList.remove('yellow'); 
+        setInner("match_state_text", state);
 
-        if(match_state = "TELEOP") {
-            setInner('match_state_text', 'TELEOP');
-            getElement('match_state').classList.add('yellow');
-        }
-        if(match_state = "AUTO") {
-            setInner('match_state_text', 'AUTO');
+        if(state == "TELEOP") {
             getElement('match_state').classList.add('green');
-        }
-        if(match_state = "ENDGAME") {
-            setInner('match_state_text', 'ENDGAME');
+        }else if(state == "AUTO") {
+            getElement('match_state').classList.add('gold');
+        }else if(state == "ENDGAME") {
             getElement('match_state').classList.add('red');
+        }else if(state == "DISABLED"){
+            getElement('match_state').classList.add('black');
         }
     }
 
-    function toggleToSelectedLimelight(){
-        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream");
+    function toggleToSelectedLimelight(button){
+        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream", button);
     }
 
-    function toggleCamConnection(address, streamID) {
-        var camera_stream = getElement(streamID);
-        if (camera_stream.style.display === "none") {
-            connectToCam(address);
+    function toggleCamConnection(address, streamID, button) {
+        if (getElement(streamID).style.display === "none") {
+            connectToCam(address, streamID, button);
         } else {
-            disconnectCam();
+            disconnectCam(streamID, button);
         }
     }
 
-    function connectToCam(address){
-        var camera_stream = getElement("top_stream");
-        camera_stream.style.display = "block";
-        getElement('cam_conn_button').classList.remove('red');
-        getElement('cam_conn_button').classList.remove('orange');
-        getElement('cam_conn_button').classList.add('green');
-        setInner('cam_conn_button_text', 'Hide Camera Stream');
-        camera_stream.src = address;
+    function connectToCam(address, stream, button){
+        getElement(stream).style.display = "inline-block";
+        getElement(button).classList.remove('red');
+        getElement(button).classList.add('green');
+        setInner(button+"_text", 'Hide Camera Stream');
+        getElement(stream).src = address;
     }
 
-    function disconnectCam(){
-        var camera_stream = getElement("top_stream");
-        camera_stream.style.display = "none";
-        getElement('cam_conn_button').classList.remove('green');
-        getElement('cam_conn_button').classList.remove('orange');
-        getElement('cam_conn_button').classList.add('red');
-        setInner('cam_conn_button_text', 'Show Camera Stream');
-        camera_stream.src = '';
+    function disconnectCam(stream, button){
+        getElement(stream).style.display = "none";
+        getElement(button).classList.remove('green');
+        getElement(button).classList.add('red');
+        setInner(button+"_text", 'Show Camera Stream');
+        getElement(stream).src = '';
     }
 
     function createDebugElement(key) {
@@ -159,30 +115,26 @@
         newElement.classList.add("flexbox");
         newElement.classList.add("sapphire");
         newElement.classList.add("row");
-
-        //New Element Extra Styling
-        newElement.style.alignItems = "strech";
-        newElement.style.justifyContent = "center";
-        newElement.style.margin = "10px";
-        newElement.style.padding = "5px";
-        newElement.style.height = "30px";
-        newElement.style.borderRadius = "16px";
+        newElement.classList.add("debug_info");
 
         //Debug Title Class (includes all styling)
-        debugTitle.classList.add("debug-title");
+        debugTitle.classList.add("debug_key");
         debugTitle.innerHTML = key;
 
         //Debug Information Class (including all styling)
-        debugInfo.classList.add("debug-info");
+        debugInfo.classList.add("debug_value");
 
         //Add Debug Title/Info to Element and add Element to Debug Panel
         newElement.appendChild(debugTitle);
         newElement.appendChild(debugInfo);
-        getElement("debug-panel").appendChild(newElement);
+        getElement("debug_list").appendChild(newElement);
         debugElements.set(key, newElement);
     }
 
     function updateDebug(debugVals) {
+        let visibility = menuData.get('debug')[0];
+        let debugMap = menuData.get('debug')[1];
+
         debugVals.forEach((obj) => {
             //Add Row for debug element if it doesn't exist
 
@@ -194,10 +146,13 @@
             }
             
             //Set the Value in the Row
-            let elList = debugElements.get(key).getElementsByClassName("debug-info");
+            let elList = debugElements.get(key).getElementsByClassName("debug_value");
             if(elList.length > 0) elList[0].innerHTML = value;
 
+            debugMap.set(key, value);
         });
+
+        menuData.set('debug',[visibility, debugMap]);
     }
 
     function connect() {
@@ -213,69 +168,42 @@
 
         socket.onopen = function (event) {
             console.log("Connected.")
+
+            getElement('conn_button').classList.remove('red');
+            getElement('conn_button').classList.remove('orange');
+            getElement('conn_button').classList.add('green');
+            setInner('conn_button_text', 'Connected');
+            state = CONNECTED;
+
+            getElement('cover').style.display = 'none';
         };
 
         socket.onmessage = function (event) {
             json = JSON.parse(event.data);
 
-            if (!recievedFirstJSON) {
-                getElement('conn_button').classList.remove('red');
-                getElement('conn_button').classList.remove('orange');
-                getElement('conn_button').classList.add('green');
-                setInner('conn_button_text', 'Connected');
-                state = CONNECTED;
+            // get menus and values 
+            // TODO: Do this better
 
-                getElement("cover").style.display = 'none';
+            if(!recievedFirstJSON) {
+
+                // first element is visibility, second element contains all data
+                menuData.set('auto', [false, json['auto']]);
+                menuData.set('limelight',[false, json['limelight']]);
+                menuData.set('pipeline',[false, json['pipeline']]);
+
+                // debug needs to be setup after normal menus
+                setup_menus();
+                menuData.set('debug',[false, new Map()]);
+
+                recievedFirstJSON = true;
             }
 
-            if (json.hasOwnProperty('auto_programs')) {
-                autos = json['auto_programs'];
-
-                setup_auto_chooser();
-            }
-
-            if (json.hasOwnProperty('limelights')) {
-                limelights = json['limelights'];
-            
-                setup_limelights();
-            }
-
-            if (json.hasOwnProperty('limelightsOptions')) {
-                limelightsOptions = json['limelightsOptions'];
-
-                setup_pipelines();
-            }
-
+            // debug menu uses a map within the main map to store data
             if(json.hasOwnProperty('debug')) {
                 updateDebug(json['debug']);
             }
-
-            //console.log(json);
-
+            
             if (updater != null) {
-
-                sel_auto = json['selected_auto']
-                if (sel_auto == "null") {
-                    sel_auto = "None";
-                }
-
-                sel_limelight = json['selected_limelight']
-                if (sel_limelight == "null") {
-                    sel_limelight = "None";
-                }
-                sel_pipeline = json['selected_pipeline']
-                if (sel_pipeline == "null") {
-                    sel_pipeline = "None";
-                }
-
-                setInner('selected_auto', sel_auto);
-                setInner('selected_limelight', sel_limelight);
-                setInner('selected_pipeline', sel_pipeline);
-
-                setInner('match_time', Number(json['time']).toFixed(0));
-
-                console.log(json);
-
                 updater(json);
             }
         };
@@ -285,25 +213,22 @@
             // automatically try to reconnect.)
 
             state = DISCONNECTED;
-            recievedFirstJSON = false;
 
             getElement('conn_button').classList.remove('green');
             getElement('conn_button').classList.remove('orange');
             getElement('conn_button').classList.add('red');
             setInner('conn_button_text', 'Disconnected');
 
-            getElement("cover").style.display = 'block';
-
-            autos = [];
-            limelights = [];
-            limelightsOptions = [];
-
-            setup_auto_chooser();
-            setup_limelights();
-
             getElement('selected_auto').innerHTML = "Not Connected."
             getElement('selected_limelight').innerHTML = "Not Connected."
             getElement('selected_pipeline').innerHTML = "Not Connected."
+
+            getElement("cover").style.display = 'block';
+
+            menuData = new Map();
+            debugElements = new Map();
+
+            //recievedFirstJSON = false;
         };
     }
 
@@ -311,142 +236,51 @@
         updater = u;
     }
 
-    function setup_auto_chooser() {
-        noneElement = getElement("auto_choice_none");
+    function setup_menus() {
 
-        getElement("auto_list").innerHTML = noneElement.outerHTML;
+        for(let menu of menuData.keys()){
 
-        for (var i = 0; i < autos.length; i++) {
-            var element = noneElement.cloneNode(true);
+            let noneElement = getElement(menu+"_choice_none");
 
-            element.id = "auto_choice_" + i;
-            element.setAttribute('onclick', "select_auto(" + i + ")");
-            element.innerHTML = autos[i];
+            console.log(menu);
+            for (let i = 0; i < menuData.get(menu)[1].length; i++) {
+                var element = noneElement.cloneNode(true);
 
-            getElement("auto_list").appendChild(element);
+                element.id = menu + "_choice_" + i;
+                element.setAttribute('onclick', "menu_select(\"" + menu + "\"," + i + ")");
+
+                element.innerHTML = menuData.get(menu)[1][i];
+
+                getElement(menu+"_list").appendChild(element);
+            }
         }
     }
 
-    function setup_limelights() {
+    function open_menu(menu){
+        getElement(menu + "_list").style.display = 'block';
+        menuData.get(menu)[0] = true;
+    }
 
-        noneElement = "";
-        noneElement = getElement("limelight_choice_none");
+    function close_menu(menu){
+        getElement(menu + "_list").style.display = 'none';
+        menuData.get(menu)[0] = false;
+    }
 
-        getElement("limelight_list").innerHTML = noneElement.outerHTML;
-
-        for (var i = 0; i < limelights.length; i++) {
-            var element = noneElement.cloneNode(true);
-
-            element.id = "limelight_choice_" + i;
-            element.setAttribute('onclick', "select_limelight(" + i + ")");
-            element.innerHTML = limelights[i];
-
-            getElement("limelight_list").appendChild(element);
+    function toggle_menu(menu){
+        if(!menuData.get(menu)[0]){
+            open_menu(menu);
+        }else{
+            close_menu(menu);
         }
     }
 
-    function setup_pipelines(){
-
-        noneElement = "";
-        noneElement = getElement("pipeline_choice_none");
-
-        for (var i = 0; i < limelightsOptions.length; i++) {
-            var element = noneElement.cloneNode(true);
-
-            element.id = "pipeline_choice_" + i;
-            element.setAttribute('onclick', "select_pipeline(" + i + ")");
-            element.innerHTML = limelightsOptions[i];
-
-            getElement("pipeline_list").appendChild(element);
-        }
-    }
-
-    function openAutoMenu() {
-        getElement('auto_list').style.display = 'block';
-        autoMenuVisible = true;
-    }
-
-    function openLimelightMenu() {
-        getElement('limelight_list').style.display = 'block';
-        limelightMenuVisible = true;
-    }
-
-    function openPipelineMenu() {
-        getElement('pipeline_list').style.display = 'block';
-        pipelineMenuVisible = true;
-    }
-
-    function closeAutoMenu() {
-        getElement('auto_list').style.display = 'none';
-        autoMenuVisible = false;
-    }
-
-    function closeLimelightMenu() {
-        getElement('limelight_list').style.display = 'none';
-        limelightMenuVisible = false;
-    }
-
-    function closePipelineMenu() {
-        getElement('pipeline_list').style.display = 'none';
-        pipelineMenuVisible = false;
-    }
-
-    function toggleAutoMenu() {
-
-
-        if (!autoMenuVisible) {
-            openAutoMenu();
-        }
-        else {
-            closeAutoMenu();
-        }
-    }
-
-    function toggleLimelightMenu() {
-        if (!limelightMenuVisible) {
-            openLimelightMenu();
-        }
-        else {
-            closeLimelightMenu();
-        }
-    }
-
-    function togglePipelineMenu() {
-        if (!pipelineMenuVisible) {
-            openPipelineMenu();
-        }
-        else {
-            closePipelineMenu();
-        }
-    }
-
-    function select_auto(i) {
+    function menu_select(menu, i){
         if (i == "-1") {
-            send("selectAuto:null");
+            send("select" + menu + ":null");
+        } else {
+            send("select"+ menu +":" + menuData.get(menu)[1][Number(i)]);
         }
-        else {
-            send("selectAuto:" + autos[Number(i)]);
-        }
-        closeAutoMenu();
-    }
-    function select_limelight(i) {
-        if (i == "-1") {
-            send("selectLimelight:null");
-        }
-        else {
-            send("selectLimelight:" + limelights[Number(i)]);
-        }
-        disconnectCam();
-        closeLimelightMenu();
-    }
-    function select_pipeline(i) {
-        if (i == "-1") {
-            send("selectPipeline:null");
-        }
-        else {
-            send("selectPipeline:" + limelightsOptions[Number(i)]);
-        }
-        closePipelineMenu();
+        close_menu(menu);
     }
 
     function buttonDown(name) {
