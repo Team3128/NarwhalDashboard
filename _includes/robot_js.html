@@ -3,6 +3,7 @@
     var tx;
     var ty;
     var match_start = false;
+    var prev_auto;
     const match_length = 150;
     
     function updateData(json) { 
@@ -89,8 +90,23 @@
             range = 0;
         } 
 
-
         getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-(range*100))+"%";
+
+        // ------------------------------------------------
+        // Update Auto Display -------------------------
+        // ------------------------------------------------
+
+        let curr_auto = getElement('selected_auto').innerHTML;
+
+        if(!(curr_auto === prev_auto)){
+            getElement('auto_img').style.display = "flex";
+            getElement('auto_img').style.width = "100%";
+            getElement('auto_img').src = "/gonzales/"+curr_auto+".png";
+        }else if (curr_auto === "None") {
+            getElement('auto_img').style.display = "none";
+        }
+
+        prev_auto = curr_auto;
 
         // ------------------------------------------------
         // ------------------------------------------------
