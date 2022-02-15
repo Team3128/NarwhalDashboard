@@ -9,8 +9,9 @@
 
         let debugData = menuData.get("debug")[1];
 
-        battGauge.value = debugData.get("voltage");
-        battGauge.draw();
+        // ------------------------------------------------
+        // Update Menus -----------------------------------
+        // ------------------------------------------------
 
         sel_auto = json['selected_auto']
         if (sel_auto == null) {
@@ -25,11 +26,20 @@
             sel_pipeline = "None";
         }
 
-        //toggleToSelectedLimelight();
-
         setInner('selected_auto', sel_auto);
         setInner('selected_limelight', sel_limelight);
         setInner('selected_pipeline', sel_pipeline);
+
+        // ------------------------------------------------
+        // Update Battery Gauge ---------------------------
+        // ------------------------------------------------
+        
+        battGauge.value = debugData.get("voltage");
+        battGauge.draw();
+
+        // ------------------------------------------------
+        // Update Match State -----------------------------
+        // ------------------------------------------------
 
         // Update match time (rapid react games are 2:30 or 150s long with 30 allocated for endgame)
 
@@ -49,6 +59,10 @@
             match_start = false;
         }
 
+        // ------------------------------------------------
+        // Update Shooter Display -------------------------
+        // ------------------------------------------------
+
         var rpm = Number(debugData.get("rpm")).toFixed(0);
 
         setInner('rpm_display', rpm);
@@ -62,9 +76,7 @@
             getElement('no_target').style.display = "block";
         }
 
-
         // scale range from min to max (inches) [ 0 , 100 ]
-        // TODO: get actual numbers
         var max = 100;
         var min = 0;
 
@@ -79,6 +91,10 @@
 
 
         getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-(range*100))+"%";
+
+        // ------------------------------------------------
+        // ------------------------------------------------
+        // ------------------------------------------------
 
         refresh(json);
     }
