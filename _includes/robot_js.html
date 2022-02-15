@@ -4,7 +4,6 @@
     var ty;
     var match_start = false;
     const match_length = 150;
-
     
     function updateData(json) { 
 
@@ -88,7 +87,8 @@
             range = 1;
         }else if(range < 0){
             range = 0;
-        }
+        } 
+
 
         getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-(range*100))+"%";
 
