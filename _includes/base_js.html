@@ -12,12 +12,17 @@
 
     var current_tab = "dashboard";
 
+    // Map of two-element arrays to string keys
+    // menuData.get("x")[0] returns the visibility of menu x
+    // menuData.get("x")[1] returns the data of menu x
     var menuData = new Map();
     var debugElements = new Map();
 
     var sel_auto;
     var sel_limelight;
     var sel_pipeline;
+
+    var blink_counter = 0;
 
     var recievedFirstJSON = false;
 
@@ -141,7 +146,7 @@
             }
             
             //Set the Value in the Row
-            let elList = debugElements.get(key).getElementsByClassName("debug_info");
+            let elList = debugElements.get(key).getElementsByClassName('debug_value');
             if(elList.length > 0) elList[0].innerHTML = value;
 
             debugMap.set(key, value);
@@ -201,6 +206,20 @@
             if (updater != null) {
                 updater(json);
             }
+
+            // blink warning elements
+            blink_counter=(blink_counter+1)%25;
+            if(blink_counter == 0){
+                let warnings = document.getElementsByClassName('blinking');
+                for(let element of warnings){
+                    element.style.borderStyle;
+                    if(element.style.borderStyle == "solid"){
+                        element.style.borderStyle = "hidden";
+                    }else{
+                        element.style.borderStyle = "solid"
+                    }
+                }
+            }
         };
 
         socket.onclose = function (event) {
@@ -223,7 +242,7 @@
             menuData = new Map();
             debugElements = new Map();
 
-            recievedFirstJSON = false;
+            // recievedFirstJSON = false;
         };
     }
 
