@@ -71,10 +71,10 @@
         var range = debugData.get("range");
 
         getElement('range_indicator').style.display = "block";
-        getElement('no_target').style.display = "none";
-        if(range == -1){
+        getElement('shooter_info').classList.remove("blinking");
+        if(range <= -1){
             getElement('range_indicator').style.display = "none";
-            getElement('no_target').style.display = "block";
+            getElement('shooter_info').classList.add("blinking");
         }
 
         // scale range from min to max (inches) [ 0 , 100 ]

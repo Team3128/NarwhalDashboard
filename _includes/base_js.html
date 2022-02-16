@@ -68,6 +68,7 @@
         getElement('match_state').classList.remove('green');
         getElement('match_state').classList.remove('gold'); 
         getElement('match_state').classList.remove('black');
+        getElement('match_state').classList.remove('blinking');
 
         setInner("match_state_text", state);
 
@@ -79,6 +80,7 @@
             getElement('match_state').classList.add('red');
         }else if(state == "DISABLED"){
             getElement('match_state').classList.add('black');
+            getElement('match_state').classList.add('blinking');
         }
     }
 
@@ -213,15 +215,14 @@
             }
 
             // blink warning elements
-            blink_counter=(blink_counter+1)%25;
+            blink_counter=(blink_counter+1)%5;
             if(blink_counter == 0){
                 let warnings = document.getElementsByClassName('blinking');
                 for(let element of warnings){
-                    element.style.borderStyle;
-                    if(element.style.borderStyle == "solid"){
-                        element.style.borderStyle = "hidden";
+                    if(element.style.outlineStyle == 'solid'){
+                        element.style.outlineStyle = 'none';
                     }else{
-                        element.style.borderStyle = "solid"
+                        element.style.outlineStyle = 'solid';
                     }
                 }
             }

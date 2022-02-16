@@ -452,7 +452,8 @@ input {
 
 .blinking { 
     border-radius: 6px;
-    border-style: "hidden";
-    border-width: 7px;
-    border-color: red;
+    outline-style: solid;
+    outline-width: 7px;
+    outline-color: red;
+    outline-offset: -7px;
 }
