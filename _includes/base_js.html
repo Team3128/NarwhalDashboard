@@ -232,6 +232,8 @@
             // TODO: If disconnected by robot (i.e. not due to user manually clicking the connection button,
             // automatically try to reconnect.)
 
+            document.location.reload();
+
             state = DISCONNECTED;
 
             getElement('conn_button').classList.remove('green');
@@ -248,7 +250,7 @@
             menuData = new Map();
             debugElements = new Map();
 
-            //recievedFirstJSON = false;
+            recievedFirstJSON = false;
         };
     }
 

@@ -4,6 +4,7 @@
     var ty;
     var match_start = false;
     var prev_auto;
+    var range_list = [];
     const match_length = 150;
     
     function updateData(json) { 
@@ -75,6 +76,8 @@
         if(range <= -1){
             getElement('range_indicator').style.display = "none";
             getElement('shooter_info').classList.add("blinking");
+        }else{
+
         }
 
         // scale range from min to max (inches) [ 0 , 100 ]
@@ -90,7 +93,21 @@
             range = 0;
         } 
 
-        getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-(range*100))+"%";
+        // why 
+        if(range_list.length == 10){
+            range_list.reverse();
+            range_list.pop();
+            range_list.reverse();
+        }
+        range_list.push(range);
+
+        let avg = 0;
+        for(let r of range_list){
+            avg+=r;
+        }
+        avg/=range_list.length;
+
+        getElement('range_indicator').style.margin = "0 "+avg*100+"% 0 "+(100-(avg*100))+"%";
 
         // ------------------------------------------------
         // Update Auto Display -------------------------
