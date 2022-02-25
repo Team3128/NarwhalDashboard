@@ -47,8 +47,6 @@
 
         getElement(current_tab + '_tab').classList.add('active');
         getElement(current_tab).classList.remove('invisible');
-
-        //toggleConnection();
     }
 
     function toggleConnection() {
@@ -84,8 +82,14 @@
         }
     }
 
-    function toggleToSelectedLimelight(button){
-        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream", button);
+    function toggleLimelights(button){
+        let limelights = menuData.get('limelight')[1];
+        for(let ind in limelights){
+            if(getElement("limelight_stream_"+ind) == null){
+               // make new stream window 
+            }
+            toggleCamConnection("http://"+limelights[ind]+".local:5800", "limelight_stream_"+ind, button);
+        }
     }
 
     function toggleCamConnection(address, streamID, button) {
@@ -232,6 +236,8 @@
             // TODO: If disconnected by robot (i.e. not due to user manually clicking the connection button,
             // automatically try to reconnect.)
 
+            // Reset variables and page elements using a page reload
+
             document.location.reload();
 
             state = DISCONNECTED;
@@ -264,7 +270,6 @@
 
             let noneElement = getElement(menu+"_choice_none");
 
-            console.log(menu);
             for (let i = 0; i < menuData.get(menu)[1].length; i++) {
                 var element = noneElement.cloneNode(true);
 
