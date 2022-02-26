@@ -324,15 +324,16 @@ input {
     font-weight: 700; 
     margin: 5px auto 5px auto;
 }
-#debug_list {
+.debug_list {
     align-items: strech; 
     flex-grow: 0; 
-    margin-bottom: 0px; 
+    margin-top: 10px; 
     padding: 12px; 
     border-radius: 16px; 
-    height:200px; 
+    height: auto; 
     overflow-y: scroll; 
     display: none;
+    font-size: 30px;
 }
 .debug_info {
     align-items: center; 

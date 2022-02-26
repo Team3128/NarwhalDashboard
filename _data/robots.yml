@@ -42,3 +42,5 @@
   tabs:
     - name: Dashboard
       id: dashboard
+    - name: Debug
+      id: debug
