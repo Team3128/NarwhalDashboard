@@ -327,7 +327,7 @@ input {
 .debug_list {
     align-items: strech; 
     flex-grow: 0; 
-    margin-top: 10px; 
+    margin: 15px 25px 0px 25px;
     padding: 12px; 
     border-radius: 16px; 
     height: auto; 
@@ -346,7 +346,8 @@ input {
 .debug_key {
     width: 50%; 
     text-align: center; 
-    font-weight: bold;
+    font-weight: 650;
+    padding-bottom: 5px;
 }
 .debug_value {
     width: 50%; 
