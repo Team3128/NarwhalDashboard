@@ -449,6 +449,11 @@ input {
     padding: 8px; 
     border-radius: 6px;
 }
+  
+  @include keyframes(blink) {
+    0% { outline-style: solid; }
+    90% { outline-style: none; }
+  }
 
 .blinking { 
     border-radius: 6px;
@@ -456,4 +461,6 @@ input {
     outline-width: 7px;
     outline-color: red;
     outline-offset: -7px;
+
+    @include animation('blink 1s infinite')
 }
