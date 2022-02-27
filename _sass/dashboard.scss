@@ -320,28 +320,40 @@ input {
     border-radius: 16px;
 }
 .debug_title {
-    font-size: 20; 
+    font-size: 25; 
     font-weight: 700; 
     margin: 5px auto 5px auto;
 }
+
+.debug_panel {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+}
+
 .debug_list {
     align-items: strech; 
     flex-grow: 0; 
     margin: 15px 25px 0px 25px;
     padding: 12px; 
     border-radius: 16px; 
-    height: auto; 
-    overflow-y: scroll; 
+    height: auto;
     display: none;
     font-size: 30px;
 }
 .debug_info {
     align-items: center; 
+    min-width: 275px;
     justify-content: center; 
-    margin: 10px; 
-    padding:5px; 
+    margin: 0px 10px 0px 10px; 
+    padding:10px; 
     height: 30px; 
-    border-radius: 16px;
+}
+.debug_section {
+    margin: 10px;
+    border-radius: 15px;
 }
 .debug_key {
     width: 50%; 
