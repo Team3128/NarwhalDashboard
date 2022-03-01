@@ -362,7 +362,7 @@ input {
 }
 
 #range_bar {
-    background-image: url("/gonzales/range_bar.png");
+    background-image: url("/garrison/range_bar.png");
     background-clip: content-box;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -449,6 +449,18 @@ input {
     padding: 8px; 
     border-radius: 6px;
 }
+  
+@mixin animate($animation,$duration,$method,$times){
+    animation: $animation $duration $method $times;
+}
+
+@mixin keyframes($name){
+    @keyframes #{$name}{
+        @content;
+    }
+}
+
+// Yes
 
 .blinking { 
     border-radius: 6px;
@@ -456,4 +468,11 @@ input {
     outline-width: 7px;
     outline-color: red;
     outline-offset: -7px;
+
+    @include keyframes(blink) {
+        0% { outline-style: solid; }
+        100% { outline-style: none; }
+      }
+
+    @include animate(blink, 1s, linear, infinite);
 }

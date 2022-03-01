@@ -76,8 +76,6 @@
         if(range <= -1){
             getElement('range_indicator').style.display = "none";
             getElement('shooter_info').classList.add("blinking");
-        }else{
-
         }
 
         // scale range from min to max (inches) [ 0 , 100 ]
@@ -118,7 +116,7 @@
         if(!(curr_auto === prev_auto)){
             getElement('auto_img').style.display = "flex";
             getElement('auto_img').style.width = "100%";
-            getElement('auto_img').src = "/gonzales/autos"+curr_auto+".png";
+            getElement('auto_img').src = "/garrison/autos"+curr_auto+".png";
         }else if (curr_auto === "None") {
             getElement('auto_img').style.display = "none";
         }
