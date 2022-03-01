@@ -338,7 +338,7 @@ input {
     flex-grow: 0; 
     margin: 15px 25px 0px 25px;
     padding: 12px; 
-    border-radius: 16px; 
+    border-radius: 20px; 
     height: auto;
     display: none;
     font-size: 30px;
@@ -351,6 +351,11 @@ input {
     padding:10px; 
     height: 30px; 
 }
+
+.debug_info:nth-of-type(even) {
+    background-color: $pacific;
+}
+
 .debug_section {
     margin: 10px;
     border-radius: 15px;
@@ -359,9 +364,11 @@ input {
     width: 50%; 
     text-align: center; 
     font-weight: 650;
+    font-size: 25px;
     padding-bottom: 5px;
 }
 .debug_value {
+    font-size: 25px;
     width: 50%; 
     text-align: center;
 }
