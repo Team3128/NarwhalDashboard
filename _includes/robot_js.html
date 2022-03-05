@@ -5,6 +5,9 @@
     var match_start = false;
     var prev_auto;
     var range_list = [];
+    var battery_list = [];
+    const max = 100;
+    const min = 0;
     const match_length = 150;
     
     function updateData(json) { 
@@ -36,8 +39,29 @@
         // Update Battery Gauge ---------------------------
         // ------------------------------------------------
         
-        battGauge.value = debugData.get("voltage");
+        let voltage = debugData.get("voltage");
+
+        battGauge.value = voltage;
         battGauge.draw();
+
+        if(battery_list.length == 100){
+            battery_list.reverse();
+            battery_list.pop();
+            battery_list.reverse();
+        }
+        battery_list.push(voltage)
+
+        let avg = 0;
+        for(let b of battery_list){
+            console.log(avg);
+            avg+=Number(b);
+        }
+        avg/=battery_list.length;
+
+        getElement('battery').classList.remove('blinking');
+        if(avg < 12.2){
+            getElement('battery').classList.add('blinking');
+        }
 
         // ------------------------------------------------
         // Update Match State -----------------------------
@@ -65,11 +89,11 @@
         // Update Shooter Display -------------------------
         // ------------------------------------------------
 
-        var rpm = Number(debugData.get("rpm")).toFixed(0);
+        let rpm = Number(debugData.get("rpm")).toFixed(0);
 
         setInner('rpm_display', rpm);
 
-        var range = debugData.get("range");
+        let range = debugData.get("range");
 
         getElement('range_indicator').style.display = "block";
         getElement('shooter_info').classList.remove("blinking");
@@ -79,8 +103,7 @@
         }
 
         // scale range from min to max (inches) [ 0 , 100 ]
-        var max = 100;
-        var min = 0;
+        
 
         range -= min;
         range /= (max - min);
@@ -99,7 +122,7 @@
         }
         range_list.push(range);
 
-        let avg = 0;
+        avg = 0;
         for(let r of range_list){
             avg+=r;
         }
