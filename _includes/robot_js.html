@@ -113,13 +113,13 @@
 
         let curr_auto = getElement('selected_auto').innerHTML;
 
-        if (curr_auto === "None") {
-            getElement('auto_img').style.display = "none";
-        }
         if(!(curr_auto === prev_auto)){
             getElement('auto_img').style.display = "flex";
             getElement('auto_img').style.width = "100%";
             getElement('auto_img').src = "/garrison/autos"+curr_auto+".png";
+        }
+        if (curr_auto === "None") {
+            getElement('auto_img').style.display = "none";
         }
 
         prev_auto = curr_auto;
