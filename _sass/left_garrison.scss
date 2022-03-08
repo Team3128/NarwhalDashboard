@@ -1,5 +1,5 @@
 // Overall Flex Box
-.left-gonzoles {
+.left-garrison {
     width: 100%;
     flex: 0 0 auto;
     margin: 12px;
@@ -80,15 +80,8 @@
     border-radius: 6px;
 }
 
-#debug-panel {
-    align-items: stretch;
-    flex-grow: 0;
-    margin: 50px;
-    margin-bottom: 0px;
-    margin-top: 50px;
-    padding: 12px;
-    border-radius: 16px;
-    height:200px;
+#auto_img {
+    display: none;
 }
 
 #flexbox-sapphire-row {

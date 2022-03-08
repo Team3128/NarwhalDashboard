@@ -3,6 +3,11 @@
     var tx;
     var ty;
     var match_start = false;
+    var prev_auto;
+    var range_list = [];
+    var battery_list = [];
+    const max = 100;
+    const min = 0;
     const match_length = 150;
     
     function updateData(json) { 
@@ -34,8 +39,29 @@
         // Update Battery Gauge ---------------------------
         // ------------------------------------------------
         
-        battGauge.value = debugData.get("voltage");
+        let voltage = debugData.get("voltage");
+
+        battGauge.value = voltage;
         battGauge.draw();
+
+        if(battery_list.length == 100){
+            battery_list.reverse();
+            battery_list.pop();
+            battery_list.reverse();
+        }
+        battery_list.push(voltage)
+
+        let avg = 0;
+        for(let b of battery_list){
+            console.log(avg);
+            avg+=Number(b);
+        }
+        avg/=battery_list.length;
+
+        getElement('battery').classList.remove('blinking');
+        if(avg < 12.2){
+            getElement('battery').classList.add('blinking');
+        }
 
         // ------------------------------------------------
         // Update Match State -----------------------------
@@ -63,22 +89,21 @@
         // Update Shooter Display -------------------------
         // ------------------------------------------------
 
-        var rpm = Number(debugData.get("rpm")).toFixed(0);
+        let rpm = Number(debugData.get("rpm")).toFixed(0);
 
         setInner('rpm_display', rpm);
 
-        var range = debugData.get("range");
+        let range = debugData.get("range");
 
         getElement('range_indicator').style.display = "block";
-        getElement('no_target').style.display = "none";
-        if(range == -1){
+        getElement('shooter_info').classList.remove("blinking");
+        if(range <= -1){
             getElement('range_indicator').style.display = "none";
-            getElement('no_target').style.display = "block";
+            getElement('shooter_info').classList.add("blinking");
         }
 
         // scale range from min to max (inches) [ 0 , 100 ]
-        var max = 100;
-        var min = 0;
+        
 
         range -= min;
         range /= (max - min);
@@ -89,8 +114,38 @@
             range = 0;
         } 
 
+        // why 
+        if(range_list.length == 10){
+            range_list.reverse();
+            range_list.pop();
+            range_list.reverse();
+        }
+        range_list.push(range);
 
-        getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-(range*100))+"%";
+        avg = 0;
+        for(let r of range_list){
+            avg+=r;
+        }
+        avg/=range_list.length;
+
+        getElement('range_indicator').style.margin = "0 "+avg*100+"% 0 "+(100-(avg*100))+"%";
+
+        // ------------------------------------------------
+        // Update Auto Display -------------------------
+        // ------------------------------------------------
+
+        let curr_auto = getElement('selected_auto').innerHTML;
+
+        if(!(curr_auto === prev_auto)){
+            getElement('auto_img').style.display = "flex";
+            getElement('auto_img').style.width = "100%";
+            getElement('auto_img').src = "/garrison/autos"+curr_auto+".png";
+        }
+        if (curr_auto === "None") {
+            getElement('auto_img').style.display = "none";
+        }
+
+        prev_auto = curr_auto;
 
         // ------------------------------------------------
         // ------------------------------------------------

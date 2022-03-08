@@ -1,15 +1,13 @@
 <div class="shooter_info">
-    <div class="flexbox column container shooter_box">
+    <div id="shooter_info" class="flexbox column container shooter_box">
         <p class="shooter_title" >Shooter</p>
         <div class="flexbox row white shooter_rpm_box">
             <span class="debug_key">RPM:</span>
             <span id="rpm_display" class="debug_value">0</span>
         </div>
 
-        <p id="no_target" style="font-size: 32; color: red; display: none; align-items: center; margin: auto auto auto auto;">No Target!</p>
-
         <div id="range_bar" class="flexbox column">
-            <img id="range_indicator" src="/gonzales/black_triangle.png" style="width: 15px; height: 20px; margin-right: 0%; margin-left: 0%;">
+            <img id="range_indicator" src="/garrison/black_triangle.png" style="width: 15px; height: 20px; margin-right: 0%; margin-left: 0%;">
         </div>
         <!-- <div class="flexbox row" style="align-items: center; justify-content: center; border-radius: 16px; margin: 0px 10px 10px 10px">
             <span id="long_range" class="flexbox column red" style="width: 33%; align-items: center;">Long</span>
@@ -20,9 +18,12 @@
 
     <div class="royal flexbox column auto_info">
         <div class="auto_box">
-            <p class="auto_title">Selected Auto:</p> 
-            <p id="selected_auto" class="auto_selected">Not connected.</p>
-            <div onclick='toggle_menu("auto")' class="button sapphire auto_choose">Choose</div>      
+            <div class = "auto_options">
+                <p class="auto_title">Selected Auto:</p> 
+                <p id="selected_auto" class="auto_selected">Not connected.</p>
+                <div onclick='toggle_menu("auto")' class="button sapphire auto_choose">Choose</div>
+            </div>     
+            <img id="auto_img" src=""></img> 
         </div>
         
     <!-- Selection / Allows you to select the Auto-Program to load /-->

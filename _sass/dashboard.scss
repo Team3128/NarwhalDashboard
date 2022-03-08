@@ -284,11 +284,19 @@ input {
 }
 .auto_box {
     display: flex;
-    align-items: center; 
-    flex-direction: row; 
-    color: white; 
+    flex-direction: column; 
+    color: white;
+    padding-bottom: 8px;
     font-size: 14pt;
 }
+
+.auto_options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .auto_title {
     font-weight: 300; 
     margin-right: 8px;
@@ -300,9 +308,10 @@ input {
 .auto_choose {
     border-radius: 6px; 
     padding: 4px; 
-    margin-left: 14px; 
+    margin-left: 28px; 
     margin-right: 14px;
 }
+
 #auto_list {
     display: none;
 }
@@ -374,7 +383,7 @@ input {
 }
 
 #range_bar {
-    background-image: url("/gonzales/range_bar.png");
+    background-image: url("/garrison/range_bar.png");
     background-clip: content-box;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -461,10 +470,30 @@ input {
     padding: 8px; 
     border-radius: 6px;
 }
+  
+@mixin animate($animation,$duration,$method,$times){
+    animation: $animation $duration $method $times;
+}
+
+@mixin keyframes($name){
+    @keyframes #{$name}{
+        @content;
+    }
+}
+
+// Yes
 
 .blinking { 
     border-radius: 6px;
-    border-style: "hidden";
-    border-width: 7px;
-    border-color: red;
+    outline-style: solid;
+    outline-width: 7px;
+    outline-color: red;
+    outline-offset: -7px;
+
+    @include keyframes(blink) {
+        0% { outline-style: solid; }
+        100% { outline-style: none; }
+      }
+
+    @include animate(blink, 1s, linear, infinite);
 }

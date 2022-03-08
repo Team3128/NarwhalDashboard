@@ -1,16 +1,13 @@
 <!-- Limelight Connection / Livestream (LL) / Button /-->
 <div class="flexbox column squash limelight_info">    
     <div class="container limelight_container">
-        <div id="limelight_conn_button" onclick='toggleToSelectedLimelight("limelight_conn_button")' class="button red conn_button">
+        <div id="limelight_conn_button" onclick='toggleLimelights("limelight_conn_button")' class="button red conn_button">
             <p class="conn_button_text" id="limelight_conn_button_text">Connect To Limelight</p>
-        </div>
-        <div id="cam_conn_button" onclick='toggleCamConnection("http://roborio-3128-frc.local:1181/stream.mjpg","camera_stream", "cam_conn_button")' class="button red conn_button">
-            <p id="cam_conn_button_text" class = "conn_button_text">Connect To Camera</p>
         </div>
         <div id="cameras" style = "display: flex; flex-direction: column;">
             <div class = "table_row" style = "display: flex; justify-content: center; flex-direction: row; align-items: center;">
-                <img id="limelight_stream" class="stream" src="">
-                <img id="camera_stream"  class="stream" src="">
+                <img id="limelight_stream_0" class="stream" src="">
+                <img id="limelight_stream_1"  class="stream" src="">
             </div>
             <div class = "table_row">
                 <div class = "container_buttons">
