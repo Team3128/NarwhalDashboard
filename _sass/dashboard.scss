@@ -368,6 +368,9 @@ input {
 .debug_section {
     margin: 10px;
     border-radius: 15px;
+    align-items: left; 
+    display: flex; 
+    justify-content: left;
 }
 .debug_key {
     width: 50%; 
@@ -376,6 +379,12 @@ input {
     font-size: 25px;
     padding-bottom: 5px;
 }
+
+.const_key {
+    flex-basis: 33.33%;
+    @extend .debug_key;
+}
+
 .debug_value {
     font-size: 25px;
     width: 50%; 

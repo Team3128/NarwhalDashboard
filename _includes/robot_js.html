@@ -12,7 +12,39 @@
     
     function updateData(json) { 
 
-        let debugData = menuData.get("debug")[1];
+        // ------------------------------------------------
+        // Update Debug -----------------------------------
+        // ------------------------------------------------
+
+        let debugVals = json['debug'];
+
+        let visibility = menuData.get('debug')[0];
+        let debugMap = menuData.get('debug')[1];
+
+        debugVals.forEach((obj) => {
+            //Add Row for debug element if it doesn't exist
+
+            let key = obj["key"];
+            let value = obj["value"];
+
+            if(!debugElements.has(key)) {
+                createDebugElement(key);
+            }
+            
+            //Set the Value in the Row
+            let elList = debugElements.get(key).getElementsByClassName("debug_value");
+            if(elList.length > 0) elList[0].innerHTML = value;
+
+            debugMap.set(key, value);
+        });
+
+        menuData.set('debug',[visibility, debugMap]);
+
+        let debugData = menuData.get('debug')[1];
+
+        // ------------------------------------------------
+        // Update Constants Editor ------------------------
+        // ------------------------------------------------
 
         // ------------------------------------------------
         // Update Menus -----------------------------------
@@ -45,15 +77,12 @@
         battGauge.draw();
 
         if(battery_list.length == 100){
-            battery_list.reverse();
-            battery_list.pop();
-            battery_list.reverse();
+            battery_list.splice(0,1);
         }
         battery_list.push(voltage)
 
         let avg = 0;
         for(let b of battery_list){
-            console.log(avg);
             avg+=Number(b);
         }
         avg/=battery_list.length;
@@ -103,7 +132,6 @@
         }
 
         // scale range from min to max (inches) [ 0 , 100 ]
-        
 
         range -= min;
         range /= (max - min);
@@ -114,11 +142,8 @@
             range = 0;
         } 
 
-        // why 
         if(range_list.length == 10){
-            range_list.reverse();
-            range_list.pop();
-            range_list.reverse();
+            range_list.splice(0,1);
         }
         range_list.push(range);
 
@@ -131,7 +156,7 @@
         getElement('range_indicator').style.margin = "0 "+avg*100+"% 0 "+(100-(avg*100))+"%";
 
         // ------------------------------------------------
-        // Update Auto Display -------------------------
+        // Update Auto Display ----------------------------
         // ------------------------------------------------
 
         let curr_auto = getElement('selected_auto').innerHTML;
@@ -139,7 +164,7 @@
         if(!(curr_auto === prev_auto)){
             getElement('auto_img').style.display = "flex";
             getElement('auto_img').style.width = "100%";
-            getElement('auto_img').src = "/garrison/autos"+curr_auto+".png";
+            getElement('auto_img').src = "/garrison/autos/"+curr_auto+".png";
         }
         if (curr_auto === "None") {
             getElement('auto_img').style.display = "none";
