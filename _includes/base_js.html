@@ -160,8 +160,6 @@
 
                 recievedFirstJSON = true;
             }
-    
-            console.log(json);
             
             if (updater != null) {
                 updater(json);
@@ -246,53 +244,60 @@
     }
 
     function setupConstants(constantsVals) {
-        for(let cat in constantsVals){
-            createConstantsCat(cat, constantsVals[cat]);
+        for(let key in constantsVals){
+            
+            let values = constantsVals[key];
+
+            // Create Elements
+            let list = document.createElement("div");
+            let constTitleBox = document.createElement("div");
+            let constTitle = document.createElement("span");
+
+            // Outer Box
+            list.classList.add("flexbox","royal","column","debug_list");
+            list.style.display = "block";
+
+            // Constants Title Class
+            constTitleBox.classList.add("flexbox","sapphire","row","debug_info","debug_section");
+            constTitle.classList.add("const_key");
+            constTitle.innerHTML = key;
+            constTitleBox.appendChild(constTitle);
+            list.appendChild(constTitleBox);
+
+            for(let val of values){
+                let constCont = document.createElement("div");
+                let constKey = document.createElement("span");
+                let constVal = document.createElement("span");
+
+                constCont.classList.add("flexbox","sapphire","row","debug_info");
+
+                constKey.classList.add("debug_key");
+                constKey.innerHTML = val['key'];
+
+                constVal.classList.add("debug_value");
+                constVal.addEventListener("input", function(){
+                    if(constVal.innerHTML.indexOf('<div>') != -1){
+                        // bruh
+                        constVal.innerHTML = constVal.innerHTML.replaceAll('<div>','');
+                        constVal.innerHTML = constVal.innerHTML.replaceAll('</div>','');
+                        constVal.innerHTML = constVal.innerHTML.replaceAll('<br>','');
+
+                        send("changeconstant:"+key+":"+constKey.innerHTML+":"+constVal.innerHTML);
+                    }
+                }, false);
+
+                constVal.innerHTML = val['value'];
+                constVal.contentEditable = "true";
+
+                constCont.append(constKey,constVal);
+
+                list.appendChild(constCont);
+            }
+
+            // Add Category to Constants Editor
+            getElement("constants_editor").appendChild(list);
+            debugElements.set(key, list);
         }
-    }
-
-    function createConstantsCat(key,values) {
-        // Create Elements
-        let list = document.createElement("div");
-        let constTitleBox = document.createElement("div");
-        let constTitle = document.createElement("span");
-
-        // Outer Box
-        list.classList.add("flexbox","royal","column","debug_list");
-        list.style.display = "block";
-
-        // Constants Title Class
-        constTitleBox.classList.add("flexbox","sapphire","row","debug_info","debug_section");
-        constTitle.classList.add("const_key");
-        constTitle.innerHTML = key;
-        constTitleBox.appendChild(constTitle);
-        list.appendChild(constTitleBox);
-
-        for(let val of values){
-            let constCont = document.createElement("div");
-            let constKey = document.createElement("span");
-            let constVal = document.createElement("span");
-
-            constCont.classList.add("flexbox","sapphire","row","debug_info");
-
-            constKey.classList.add("debug_key");
-            constKey.innerHTML = val['key'];
-
-            constVal.classList.add("debug_value");
-            constVal.onclick = () => {
-
-            } 
-
-            constVal.innerHTML = val['value'];
-
-            constCont.append(constKey,constVal);
-
-            list.appendChild(constCont);
-        }
-
-        // Add Category to Constants Editor
-        getElement("constants_editor").appendChild(list);
-        debugElements.set(key, list);
     }
 
     function open_menu(menu){

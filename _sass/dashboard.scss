@@ -343,7 +343,7 @@ input {
 }
 
 .debug_list {
-    align-items: strech; 
+    align-items: stretch; 
     flex-grow: 0; 
     margin: 15px 25px 0px 25px;
     padding: 12px; 
@@ -355,10 +355,10 @@ input {
 .debug_info {
     align-items: center; 
     min-width: 275px;
-    justify-content: center; 
+    justify-content: space-around; 
     margin: 0px 10px 0px 10px; 
     padding:10px; 
-    height: 30px; 
+    height: fit-content; 
 }
 
 .debug_info:nth-of-type(even) {
@@ -373,11 +373,13 @@ input {
     justify-content: left;
 }
 .debug_key {
-    width: 50%; 
-    text-align: center; 
+    //width: 50%; 
+    text-align: center;
+    text-justify: left; 
     font-weight: 650;
     font-size: 25px;
     padding-bottom: 5px;
+    padding-right: 10px;
 }
 
 .const_key {
@@ -387,8 +389,10 @@ input {
 
 .debug_value {
     font-size: 25px;
-    width: 50%; 
+    //width: 50%; 
     text-align: center;
+    text-justify: right; 
+    padding-left: 10px;
 }
 
 #range_bar {
@@ -489,8 +493,6 @@ input {
         @content;
     }
 }
-
-// Yes
 
 .blinking { 
     border-radius: 6px;
