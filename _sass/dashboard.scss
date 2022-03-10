@@ -329,36 +329,70 @@ input {
     border-radius: 16px;
 }
 .debug_title {
-    font-size: 20; 
+    font-size: 25; 
     font-weight: 700; 
     margin: 5px auto 5px auto;
 }
-#debug_list {
-    align-items: strech; 
+
+.debug_panel {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+}
+
+.debug_list {
+    align-items: stretch; 
     flex-grow: 0; 
-    margin-bottom: 0px; 
+    margin: 15px 25px 0px 25px;
     padding: 12px; 
-    border-radius: 16px; 
-    height:200px; 
-    overflow-y: scroll; 
+    border-radius: 20px; 
+    height: auto;
     display: none;
+    font-size: 30px;
 }
 .debug_info {
     align-items: center; 
-    justify-content: center; 
-    margin: 10px; 
-    padding:5px; 
-    height: 30px; 
-    border-radius: 16px;
+    min-width: 275px;
+    justify-content: space-around; 
+    margin: 0px 10px 0px 10px; 
+    padding:10px; 
+    height: fit-content; 
+}
+
+.debug_info:nth-of-type(even) {
+    background-color: $pacific;
+}
+
+.debug_section {
+    margin: 10px;
+    border-radius: 15px;
+    align-items: left; 
+    display: flex; 
+    justify-content: left;
 }
 .debug_key {
-    width: 50%; 
-    text-align: center; 
-    font-weight: bold;
-}
-.debug_value {
-    width: 50%; 
+    //width: 50%; 
     text-align: center;
+    text-justify: left; 
+    font-weight: 650;
+    font-size: 25px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+}
+
+.const_key {
+    flex-basis: 33.33%;
+    @extend .debug_key;
+}
+
+.debug_value {
+    font-size: 25px;
+    //width: 50%; 
+    text-align: center;
+    text-justify: right; 
+    padding-left: 10px;
 }
 
 #range_bar {
@@ -459,8 +493,6 @@ input {
         @content;
     }
 }
-
-// Yes
 
 .blinking { 
     border-radius: 6px;
