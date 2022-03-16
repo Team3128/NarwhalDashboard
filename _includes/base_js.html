@@ -149,8 +149,8 @@
 
                 // first element is visibility, second element contains all data
                 menuData.set('auto', [false, json['auto']]);
-                menuData.set('limelight',[false, json['limelight']]);
-                menuData.set('pipeline',[false, json['pipeline']]);
+                // menuData.set('limelight',[false, json['limelight']]);
+                // menuData.set('pipeline',[false, json['pipeline']]);
 
                 // debug needs to be setup after normal menus
                 setup_menus();
@@ -160,6 +160,8 @@
 
                 recievedFirstJSON = true;
             }
+
+            // console.log(json);
             
             if (updater != null) {
                 updater(json);
@@ -276,11 +278,8 @@
 
                 constVal.classList.add("debug_value");
                 constVal.addEventListener("input", function(){
-                    if(constVal.innerHTML.indexOf('<div>') != -1){
-                        // bruh
-                        constVal.innerHTML = constVal.innerHTML.replaceAll('<div>','');
-                        constVal.innerHTML = constVal.innerHTML.replaceAll('</div>','');
-                        constVal.innerHTML = constVal.innerHTML.replaceAll('<br>','');
+                    if(constVal.innerHTML.indexOf('/') != -1){
+                        constVal.innerHTML = constVal.innerHTML.replaceAll('/','');
 
                         send("changeconstant:"+key+":"+constKey.innerHTML+":"+constVal.innerHTML);
                     }
