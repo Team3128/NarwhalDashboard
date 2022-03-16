@@ -246,7 +246,7 @@ input {
 
 .stream {
     flex-basis: 50;
-    width: 50%; 
+    width: 100%;
     margin: auto; 
     margin-top: 10px; 
     display: none;
@@ -411,6 +411,7 @@ input {
   
 .limelight_info {
     flex: 0 1 100%; 
+    width: 100%;
     align-items: stretch; 
     padding: 16px; 
     overflow: hidden;
@@ -419,7 +420,7 @@ input {
 .limelight_container {
     text-align: center; 
     flex: 0 0 auto; 
-    padding: 20px; 
+    padding: 10px; 
     margin-bottom: 10px; 
     overflow: visible;
 }

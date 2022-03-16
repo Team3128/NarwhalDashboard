@@ -1,15 +1,15 @@
 <!-- Limelight Connection / Livestream (LL) / Button /-->
 <div class="flexbox column squash limelight_info">    
     <div class="container limelight_container">
-        <div id="limelight_conn_button" onclick='toggleLimelights("limelight_conn_button")' class="button red conn_button">
+        <div id="limelight_conn_button" onclick='toggleCamConnection("http://10.31.28.26:5800", "limelight_stream_0", "limelight_conn_button");' class="button red conn_button">
             <p class="conn_button_text" id="limelight_conn_button_text">Connect To Limelight</p>
         </div>
-        <div id="cameras" style = "display: flex; flex-direction: column;">
-            <div class = "table_row" style = "display: flex; justify-content: center; flex-direction: row; align-items: center;">
+        <div id="cameras" style = "display: flex; flex-direction: column; height: 100%">
+            <div class = "table_row" style = "display: flex; justify-content: center; flex-direction: row; align-items: center; height: 100%;">
                 <img id="limelight_stream_0" class="stream" src="">
                 <img id="limelight_stream_1"  class="stream" src="">
             </div>
-            <div class = "table_row">
+            <!-- <div class = "table_row">
                 <div class = "container_buttons">
                     <div class="royal flexbox column lime_pipe">
                         <div class="lime_pipe_div">
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div> 
 </div>
