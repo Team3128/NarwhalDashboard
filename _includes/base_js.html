@@ -26,14 +26,6 @@
 
     var recievedFirstJSON = false;
 
-    const field_ctx;
-    const field_img = new Image(); 
-          field_img.src = "fields/2022-field.png";
-          field_img.onload(() =>{
-
-          });
-          
-
     function getElement(id) {
         return document.getElementById(id);
     }
@@ -124,9 +116,7 @@
         getElement(stream).src = '';
     }
 
-    function connect() {9
-        field_ctx = getElement('field');
-
+    function connect() {
         //socket = new WebSocket("ws:roborio-3128-frc.local:5800");
         socket = new WebSocket("ws:10.31.28.2:5805");
         //socket = new WebSocket("ws:roborio-3128-frc.local:5805");
@@ -342,25 +332,6 @@
 
     function buttonUp(name) {
         send("button:" + name + ":up");
-    }
-
-    function drawField(x,y,theta){
-        let canvas_w = getElement("field").width;
-        let canvas_h = getElement("field").height;
-        field_ctx.clearRect(0,0,canvas_w,canvas_h);
-    
-        field_ctx.save();
-
-        field_ctx.translate(canvas_w/2,canvas_h/2);
-
-        field_ctx.rotate(theta);
-
-        // TODO: does not place at x,y 
-        field_ctx.drawImage(field_img,-field_img.width/2,-field_img.height/2);
-
-        field_ctx.drawImage(field_img,x,y);
-
-        field_ctx.restore();
     }
 
     function send(string_data) {
