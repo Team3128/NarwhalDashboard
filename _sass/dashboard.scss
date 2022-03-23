@@ -509,3 +509,7 @@ input {
 
     @include animate(blink, 1s, linear, infinite);
 }
+
+#field {
+    width: 70%;
+}
