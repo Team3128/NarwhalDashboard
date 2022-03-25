@@ -27,8 +27,7 @@
     var recievedFirstJSON = false;
 
     var field;
-    const field_img = new Image(); 
-          field_img.src = "/fields/2022-field.png";
+
     const robot_img = new Image();
           robot_img.src = "/fields/robot.png"
 
@@ -123,22 +122,6 @@
     }
 
     function connect() {
-        field = getElement('field');
-        let context = field.getContext('2d');
-        context.drawImage(field_img,0,0,field_img.width,field_img.height,0,0,field.width,field.height);
-
-        context.save();
-
-        context.translate(field.width/2,field.height/2);
-
-        context.rotate(1.5);
-
-        let x=200
-        let y=100;
-
-        context.drawImage(robot_img,0,0, robot_img.width, robot_img.height, x-robot_img.width/2, y-robot_img.height/2, x+robot_img.width/2, y+robot_img.height/2);
-
-        context.restore();
 
         //socket = new WebSocket("ws:roborio-3128-frc.local:5800");
         socket = new WebSocket("ws:10.31.28.2:5805");
