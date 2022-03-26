@@ -9,14 +9,14 @@
     const max = 100;
     const min = 0;
     const match_length = 150;
+    const odo_to_pixel = 1859/16.5;
 
     const field_img = new Image(); 
           field_img.src = "/fields/2022-field.png";
           field_img.onload = function() {
-              console.log(field_img.width);
               let can = getElement('field');
-              can.thisNaturalWidth = field_img.width;
-              can.thisNaturalHeight = field_img.height;
+              can.width = field_img.width;
+              can.height = field_img.height;
           }
     
     function updateData(json) { 
@@ -188,22 +188,21 @@
         refresh(json);
     }
 
-    function fieldInit(){
+    function drawField(x,y,theta){
         let field = getElement('field');
         let context = field.getContext('2d');
-        // context.imageSmoothingEnabled = false;
+
+        context.clearRect(0,0,field.width,field.height);
+
         context.drawImage(field_img,0,0,field_img.width,field_img.height,0,0,field.width,field.height);
 
         context.save();
 
-        context.translate(field.width/2,field.height/2);
+        context.translate(x * odo_to_pixel + robot_img.width/2, y * odo_to_pixel + robot_img.height/2);
 
-        context.rotate(1.5);
+        context.rotate(theta-Math.PI/2);
 
-        let x=200
-        let y=100;
-
-        context.drawImage(robot_img,0,0, robot_img.width, robot_img.height, x-robot_img.width/2, y-robot_img.height/2, x+robot_img.width/2, y+robot_img.height/2);
+        context.drawImage(robot_img, -robot_img.width/2, -robot_img.height/2);
 
         context.restore();
     }
@@ -228,7 +227,6 @@
         battGauge.draw();
 
         initialize();
-        fieldInit();
 
         addUpdater(updateData);
     }

@@ -167,6 +167,11 @@
                 recievedFirstJSON = true;
             }
 
+            if(json['pose']){
+                let pose = json['pose'];
+                drawField(pose['x'],pose['y'],pose['theta']);
+            }
+
             // console.log(json);
             
             if (updater != null) {

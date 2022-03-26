@@ -15,7 +15,7 @@ body {
     width: 100%;
     height: 100%;
     
-    display: none;
+    display: block;
     position: absolute;
 
     opacity: 0.7;
@@ -511,7 +511,7 @@ input {
 }
 
 #field {
-    // width: 70vw;
+    width: 70%;
     border-style: visible;
     border-width: 5px;
     border-color: blue;
