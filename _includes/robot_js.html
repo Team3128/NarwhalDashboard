@@ -6,8 +6,8 @@
     var prev_auto;
     var range_list = [];
     var battery_list = [];
-    const max = 100;
-    const min = 0;
+    const max_range = 100;
+    const min_range = 0;
     const match_length = 150;
     const odo_to_pixel = 1859/16.5;
 
@@ -142,8 +142,8 @@
 
         // scale range from min to max (inches) [ 0 , 100 ]
 
-        range -= min;
-        range /= (max - min);
+        range -= min_range;
+        range /= (max_range - min_range);
 
         if(range > 1){
             range = 1;
@@ -180,6 +180,12 @@
         }
 
         prev_auto = curr_auto;
+
+        // ------------------------------------------------
+        // Update Pose Tracker ----------------------------
+        // ------------------------------------------------
+
+        drawField(debugData.get('x'),debugData.get('y'),debugData.get('theta'));
 
         // ------------------------------------------------
         // ------------------------------------------------
