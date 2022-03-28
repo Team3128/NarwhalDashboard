@@ -185,7 +185,9 @@
         // Update Pose Tracker ----------------------------
         // ------------------------------------------------
 
-        drawField(debugData.get('x'),debugData.get('y'),debugData.get('theta'));
+        if(current_tab === "poseTracker"){
+            drawField(debugData.get('x'),debugData.get('y'),debugData.get('theta'));
+        }
 
         // ------------------------------------------------
         // ------------------------------------------------
