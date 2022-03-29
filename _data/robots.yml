@@ -44,3 +44,5 @@
       id: dashboard
     - name: Debug
       id: debug
+    - name: Field
+      id: poseTracker
