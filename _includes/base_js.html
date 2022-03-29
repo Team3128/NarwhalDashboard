@@ -337,26 +337,6 @@
         send("button:" + name + ":up");
     }
 
-    function drawField(x,y,theta){
-        let context = field.getContext('2d');
-        let canvas_w = field.width;
-        let canvas_h = field.height;
-        context.clearRect(0,0,canvas_w,canvas_h);
-
-        context.drawImage(field_img,0,0)
-    
-        context.save();
-
-        context.translate(canvas_w/2,canvas_h/2);
-
-        context.rotate(theta);
-
-        // TODO: does not place at x,y 
-        context.drawImage(robot_img,-field_img.width/2,-field_img.height/2);
-
-        context.restore();
-    }
-
     function send(string_data) {
         if (state == CONNECTED) {
             socket.send(string_data);
