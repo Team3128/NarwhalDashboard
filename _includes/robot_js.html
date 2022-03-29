@@ -206,9 +206,9 @@
 
         context.save();
 
-        context.translate(x * odo_to_pixel + robot_img.width/2, y * odo_to_pixel + robot_img.height/2);
+        context.translate(x * odo_to_pixel + robot_img.width/2, 949 - (y * odo_to_pixel + robot_img.height/2));
 
-        context.rotate(theta-Math.PI/2);
+        context.rotate(-theta+Math.PI/2);
 
         context.drawImage(robot_img, -robot_img.width/2, -robot_img.height/2);
 
