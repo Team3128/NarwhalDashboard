@@ -6,9 +6,21 @@
     var prev_auto;
     var range_list = [];
     var battery_list = [];
-    const max = 100;
-    const min = 0;
+    const max_range = 100;
+    const min_range = 0;
     const match_length = 150;
+    const odo_to_pixel = 1859/16.5;
+
+    const robot_img = new Image();
+    robot_img.src = "/fields/robot.png"
+
+    const field_img = new Image(); 
+          field_img.src = "/fields/2022-field.png";
+          field_img.onload = function() {
+              let can = getElement('field');
+              can.width = field_img.width;
+              can.height = field_img.height;
+          }
     
     function updateData(json) { 
 
@@ -133,8 +145,8 @@
 
         // scale range from min to max (inches) [ 0 , 100 ]
 
-        range -= min;
-        range /= (max - min);
+        range -= min_range;
+        range /= (max_range - min_range);
 
         if(range > 1){
             range = 1;
@@ -173,10 +185,37 @@
         prev_auto = curr_auto;
 
         // ------------------------------------------------
+        // Update Pose Tracker ----------------------------
+        // ------------------------------------------------
+
+        if(current_tab === "poseTracker"){
+            drawField(debugData.get('x'),debugData.get('y'),debugData.get('theta'));
+        }
+
+        // ------------------------------------------------
         // ------------------------------------------------
         // ------------------------------------------------
 
         refresh(json);
+    }
+
+    function drawField(x,y,theta){
+        let field = getElement('field');
+        let context = field.getContext('2d');
+
+        context.clearRect(0,0,field.width,field.height);
+
+        context.drawImage(field_img,0,0,field_img.width,field_img.height,0,0,field.width,field.height);
+
+        context.save();
+
+        context.translate(x * odo_to_pixel + robot_img.width/2, 949 - (y * odo_to_pixel + robot_img.height/2));
+
+        context.rotate(-theta+Math.PI/2);
+
+        context.drawImage(robot_img, -robot_img.width/2, -robot_img.height/2);
+
+        context.restore();
     }
 
     function bodyLoad() {

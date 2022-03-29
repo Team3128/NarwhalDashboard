@@ -509,3 +509,10 @@ input {
 
     @include animate(blink, 1s, linear, infinite);
 }
+
+#field {
+    width: 70%;
+    border-style: visible;
+    border-width: 5px;
+    border-color: blue;
+}
