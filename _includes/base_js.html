@@ -307,8 +307,10 @@
     }
 
     function add_constant() {
-        let newCategory = prompt("What is the name of the category for the new constant?");
-        let newConstant = prompt("What is the name of the new constant?");
+        // let newCategory = prompt("What is the name of the category for the new constant?");
+        // let newConstant = prompt("What is the name of the new constant?");
+        let newCategory = getElement("add_constants_category").innerHTML;
+        let newConstant = getElement("add_constants_name").innerHTML;
         send("newconstant:"+newCategory+":"+newConstant);
         shouldUpdateConstantsEditor = true;
     }

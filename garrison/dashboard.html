@@ -10,8 +10,16 @@ permalink: /garrison/
         <span class="debug_title">Debug<span>
     </div>
 
-    <div class="flexbox column button add_constants" onclick="add_constant()">
-        <span class="debug_title">Add Constants</span>
+    <div class="flexbox row add_constants sapphire">
+        <div class="add_constants_input">
+            <span id="add_constants_category" contenteditable="true">Category</span>
+        </div>
+        <div class="add_constants_input">
+            <span id="add_constants_name" contenteditable="true">Name</span>
+        </div>
+        <div class="button add_constants_button royal" onclick="add_constant()">
+            <span>Add Constants</span>
+        </div>
     </div>
 
     <div id="debug_list" class="royal flexbox column debug_list">
