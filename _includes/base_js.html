@@ -25,6 +25,7 @@
     var blink_counter = 0;
 
     var recievedFirstJSON = false;
+    var shouldUpdateConstantsEditor = true;
   
     function getElement(id) {
         return document.getElementById(id);
@@ -162,8 +163,11 @@
             }
 
             // console.log(json);
-            
-            if (updater != null) {
+            if(json["error"]) {
+                    alert(json["error"]);
+                    shouldUpdateConstantsEditor = false;
+            }
+            else if (updater != null) {
                 updater(json);
             }
         };
@@ -246,6 +250,7 @@
     }
 
     function setupConstants(constantsVals) {
+        getElement('constants_editor').innerHTML = '';
         for(let key in constantsVals){
             
             let values = constantsVals[key];
@@ -282,6 +287,7 @@
                         constVal.innerHTML = constVal.innerHTML.replaceAll('/','');
 
                         send("changeconstant:"+key+":"+constKey.innerHTML+":"+constVal.innerHTML);
+                        
                     }
                 }, false);
 
@@ -296,7 +302,15 @@
             // Add Category to Constants Editor
             getElement("constants_editor").appendChild(list);
             debugElements.set(key, list);
+            shouldUpdateConstantsEditor = false;
         }
+    }
+
+    function add_constant() {
+        let newCategory = prompt("What is the name of the category for the new constant?");
+        let newConstant = prompt("What is the name of the new constant?");
+        send("newconstant:"+newCategory+":"+newConstant);
+        shouldUpdateConstantsEditor = true;
     }
 
     function open_menu(menu){
