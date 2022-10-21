@@ -1,0 +1,41 @@
+---
+layout: dashboard
+robot: Garrison
+
+permalink: /garrison/
+---
+
+<div id="debug">
+    <div class="flexbox column button red debug_toggle" onclick="toggle_menu('debug')">
+        <span class="debug_title">Debug<span>
+    </div>
+
+    <div class="flexbox row add_constants sapphire">
+        <div class="add_constants_input">
+            <span id="add_constants_category" contenteditable="true">Category</span>
+        </div>
+        <div class="add_constants_input">
+            <span id="add_constants_name" contenteditable="true">Name</span>
+        </div>
+        <div class="button add_constants_button royal" onclick="add_constant()">
+            <span>Add Constants</span>
+        </div>
+    </div>
+
+    <div id="debug_list" class="royal flexbox column debug_list">
+        <div class="flexbox column">
+            <div class="flexbox sapphire row debug_info">
+                <span class="debug_key">Key</span>
+                <span class="debug_value">Value</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="constants_editor" class = "flexbox row debug_panel" style="overflow-y: visible;">
+        
+    </div>
+</div>
+
+<div id="poseTracker">
+    <canvas id="field"></canvas>
+</div>
