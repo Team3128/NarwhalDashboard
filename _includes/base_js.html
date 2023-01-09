@@ -26,6 +26,9 @@
 
     var recievedFirstJSON = false;
     var shouldUpdateConstantsEditor = true;
+
+    var allDisplayedConstants = [];
+
   
     function getElement(id) {
         return document.getElementById(id);
@@ -157,9 +160,11 @@
                 setup_menus();
                 menuData.set('debug',[false, new Map()]);
 
-                setupConstants(json['constants']);
-
                 recievedFirstJSON = true;
+            }
+
+            if(json["constants"]) {
+                setupConstants(json['constants']);
             }
 
             // console.log(json);
@@ -250,6 +255,36 @@
     }
 
     function setupConstants(constantsVals) {
+
+        if(allDisplayedConstants.length == 0) {
+            allDisplayedConstants = constantsVals;
+        }
+        else {
+
+            for(let categoryName in constantsVal) {
+                if(allDisplayedConstants[categoryName] == null) {
+                    return;
+                }
+            }
+              
+
+            //Go through allDisplayedConstants and add any new constants
+            let shouldUpdate = false;
+            for(let constantName in constantsVal[categoryName]) {
+                if(allDisplayedConstants[categoryName][constantName] == null) {
+                    allDisplayedConstants[categoryName][constantName] = constantsVal[categoryName][constantName];
+                    shouldUpdate = true;
+                }
+            }
+
+
+            //If no new constants, then we can return since there is no need to redo the HTML
+            if(!shouldUpdate) {
+                return;
+            }
+        }
+        
+
         getElement('constants_editor').innerHTML = '';
         for(let key in constantsVals){
             
@@ -287,7 +322,6 @@
                         constVal.innerHTML = constVal.innerHTML.replaceAll('/','');
 
                         send("changeconstant:"+key+":"+constKey.innerHTML+":"+constVal.innerHTML);
-                        
                     }
                 }, false);
 
@@ -311,8 +345,8 @@
         // let newConstant = prompt("What is the name of the new constant?");
         let newCategory = getElement("add_constants_category").innerHTML;
         let newConstant = getElement("add_constants_name").innerHTML;
-        send("newconstant:"+newCategory+":"+newConstant);
         shouldUpdateConstantsEditor = true;
+        send("newconstant:"+newCategory+":"+newConstant);
     }
 
     function open_menu(menu){
