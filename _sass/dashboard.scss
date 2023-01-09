@@ -246,7 +246,7 @@ input {
 
 .stream {
     flex-basis: 50;
-    width: 50%; 
+    width: 100%;
     margin: auto; 
     margin-top: 10px; 
     display: none;
@@ -284,11 +284,19 @@ input {
 }
 .auto_box {
     display: flex;
-    align-items: center; 
-    flex-direction: row; 
-    color: white; 
+    flex-direction: column; 
+    color: white;
+    padding-bottom: 8px;
     font-size: 14pt;
 }
+
+.auto_options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .auto_title {
     font-weight: 300; 
     margin-right: 8px;
@@ -300,9 +308,10 @@ input {
 .auto_choose {
     border-radius: 6px; 
     padding: 4px; 
-    margin-left: 14px; 
+    margin-left: 28px; 
     margin-right: 14px;
 }
+
 #auto_list {
     display: none;
 }
@@ -320,40 +329,74 @@ input {
     border-radius: 16px;
 }
 .debug_title {
-    font-size: 20; 
+    font-size: 25; 
     font-weight: 700; 
     margin: 5px auto 5px auto;
 }
-#debug_list {
-    align-items: strech; 
+
+.debug_panel {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+}
+
+.debug_list {
+    align-items: stretch; 
     flex-grow: 0; 
-    margin-bottom: 0px; 
+    margin: 15px 25px 0px 25px;
     padding: 12px; 
-    border-radius: 16px; 
-    height:200px; 
-    overflow-y: scroll; 
+    border-radius: 20px; 
+    height: auto;
     display: none;
+    font-size: 30px;
 }
 .debug_info {
     align-items: center; 
-    justify-content: center; 
-    margin: 10px; 
-    padding:5px; 
-    height: 30px; 
-    border-radius: 16px;
+    min-width: 275px;
+    justify-content: space-around; 
+    margin: 0px 10px 0px 10px; 
+    padding:10px; 
+    height: fit-content; 
+}
+
+.debug_info:nth-of-type(even) {
+    background-color: $pacific;
+}
+
+.debug_section {
+    margin: 10px;
+    border-radius: 15px;
+    align-items: left; 
+    display: flex; 
+    justify-content: left;
 }
 .debug_key {
-    width: 50%; 
-    text-align: center; 
-    font-weight: bold;
-}
-.debug_value {
-    width: 50%; 
+    //width: 50%; 
     text-align: center;
+    text-justify: left; 
+    font-weight: 650;
+    font-size: 25px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+}
+
+.const_key {
+    flex-basis: 33.33%;
+    @extend .debug_key;
+}
+
+.debug_value {
+    font-size: 25px;
+    //width: 50%; 
+    text-align: center;
+    text-justify: right; 
+    padding-left: 10px;
 }
 
 #range_bar {
-    background-image: url("/gonzales/range_bar.png");
+    background-image: url("/garrison/range_bar.png");
     background-clip: content-box;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -368,6 +411,7 @@ input {
   
 .limelight_info {
     flex: 0 1 100%; 
+    width: 100%;
     align-items: stretch; 
     padding: 16px; 
     overflow: hidden;
@@ -376,7 +420,7 @@ input {
 .limelight_container {
     text-align: center; 
     flex: 0 0 auto; 
-    padding: 20px; 
+    padding: 10px; 
     margin-bottom: 10px; 
     overflow: visible;
 }
@@ -440,10 +484,35 @@ input {
     padding: 8px; 
     border-radius: 6px;
 }
+  
+@mixin animate($animation,$duration,$method,$times){
+    animation: $animation $duration $method $times;
+}
+
+@mixin keyframes($name){
+    @keyframes #{$name}{
+        @content;
+    }
+}
 
 .blinking { 
     border-radius: 6px;
-    border-style: "hidden";
-    border-width: 7px;
-    border-color: red;
+    outline-style: solid;
+    outline-width: 7px;
+    outline-color: red;
+    outline-offset: -7px;
+
+    @include keyframes(blink) {
+        0% { outline-style: solid; }
+        100% { outline-style: none; }
+      }
+
+    @include animate(blink, 1s, linear, infinite);
+}
+
+#field {
+    width: 70%;
+    border-style: visible;
+    border-width: 5px;
+    border-color: blue;
 }

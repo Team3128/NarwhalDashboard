@@ -3,11 +3,60 @@
     var tx;
     var ty;
     var match_start = false;
+    var prev_auto;
+    var range_list = [];
+    var battery_list = [];
+    const max_range = 100;
+    const min_range = 0;
     const match_length = 150;
+    const odo_to_pixel = 1859/16.5;
+
+    const robot_img = new Image();
+    robot_img.src = "/fields/robot.png"
+
+    const field_img = new Image(); 
+          field_img.src = "/fields/2022-field.png";
+          field_img.onload = function() {
+              let can = getElement('field');
+              can.width = field_img.width;
+              can.height = field_img.height;
+          }
     
     function updateData(json) { 
 
-        let debugData = menuData.get("debug")[1];
+        // ------------------------------------------------
+        // Update Debug -----------------------------------
+        // ------------------------------------------------
+
+        let debugVals = json['debug'];
+
+        let visibility = menuData.get('debug')[0];
+        let debugMap = menuData.get('debug')[1];
+
+        debugVals.forEach((obj) => {
+            //Add Row for debug element if it doesn't exist
+
+            let key = obj["key"];
+            let value = obj["value"];
+
+            if(!debugElements.has(key)) {
+                createDebugElement(key);
+            }
+            
+            //Set the Value in the Row
+            let elList = debugElements.get(key).getElementsByClassName("debug_value");
+            if(elList.length > 0) elList[0].innerHTML = value;
+
+            debugMap.set(key, value);
+        });
+
+        menuData.set('debug',[visibility, debugMap]);
+
+        let debugData = menuData.get('debug')[1];
+
+        // ------------------------------------------------
+        // Update Constants Editor ------------------------
+        // ------------------------------------------------
 
         // ------------------------------------------------
         // Update Menus -----------------------------------
@@ -27,15 +76,33 @@
         }
 
         setInner('selected_auto', sel_auto);
-        setInner('selected_limelight', sel_limelight);
-        setInner('selected_pipeline', sel_pipeline);
+        // setInner('selected_limelight', sel_limelight);
+        // setInner('selected_pipeline', sel_pipeline);
 
         // ------------------------------------------------
         // Update Battery Gauge ---------------------------
         // ------------------------------------------------
         
-        battGauge.value = debugData.get("voltage");
+        let voltage = debugData.get("voltage");
+
+        battGauge.value = voltage;
         battGauge.draw();
+
+        if(battery_list.length == 100){
+            battery_list.splice(0,1);
+        }
+        battery_list.push(voltage)
+
+        let avg = 0;
+        for(let b of battery_list){
+            avg+=Number(b);
+        }
+        avg/=battery_list.length;
+
+        getElement('battery').classList.remove('blinking');
+        if(avg < 12.2){
+            getElement('battery').classList.add('blinking');
+        }
 
         // ------------------------------------------------
         // Update Match State -----------------------------
@@ -63,25 +130,23 @@
         // Update Shooter Display -------------------------
         // ------------------------------------------------
 
-        var rpm = Number(debugData.get("rpm")).toFixed(0);
+        let rpm = Number(debugData.get("rpm")).toFixed(0);
 
         setInner('rpm_display', rpm);
 
-        var range = debugData.get("range");
+        let range = debugData.get("range");
 
         getElement('range_indicator').style.display = "block";
-        getElement('no_target').style.display = "none";
-        if(range == -1){
+        getElement('shooter_info').classList.remove("blinking");
+        if(range <= -1){
             getElement('range_indicator').style.display = "none";
-            getElement('no_target').style.display = "block";
+            getElement('shooter_info').classList.add("blinking");
         }
 
         // scale range from min to max (inches) [ 0 , 100 ]
-        var max = 100;
-        var min = 0;
 
-        range -= min;
-        range /= (max - min);
+        range -= min_range;
+        range /= (max_range - min_range);
 
         if(range > 1){
             range = 1;
@@ -89,14 +154,68 @@
             range = 0;
         } 
 
+        if(range_list.length == 10){
+            range_list.splice(0,1);
+        }
+        range_list.push(range);
 
-        getElement('range_indicator').style.margin = "0 "+range*100+"% 0 "+(100-(range*100))+"%";
+        avg = 0;
+        for(let r of range_list){
+            avg+=r;
+        }
+        avg/=range_list.length;
+
+        getElement('range_indicator').style.margin = "0 "+avg*100+"% 0 "+(100-(avg*100))+"%";
+
+        // ------------------------------------------------
+        // Update Auto Display ----------------------------
+        // ------------------------------------------------
+
+        let curr_auto = getElement('selected_auto').innerHTML;
+
+        if(!(curr_auto === prev_auto)){
+            getElement('auto_img').style.display = "flex";
+            getElement('auto_img').style.width = "100%";
+            getElement('auto_img').src = "/garrison/autos/"+curr_auto+".png";
+        }
+        if (curr_auto === "None") {
+            getElement('auto_img').style.display = "none";
+        }
+
+        prev_auto = curr_auto;
+
+        // ------------------------------------------------
+        // Update Pose Tracker ----------------------------
+        // ------------------------------------------------
+
+        if(current_tab === "poseTracker"){
+            drawField(debugData.get('x'),debugData.get('y'),debugData.get('theta'));
+        }
 
         // ------------------------------------------------
         // ------------------------------------------------
         // ------------------------------------------------
 
         refresh(json);
+    }
+
+    function drawField(x,y,theta){
+        let field = getElement('field');
+        let context = field.getContext('2d');
+
+        context.clearRect(0,0,field.width,field.height);
+
+        context.drawImage(field_img,0,0,field_img.width,field_img.height,0,0,field.width,field.height);
+
+        context.save();
+
+        context.translate(x * odo_to_pixel + robot_img.width/2, 949 - (y * odo_to_pixel + robot_img.height/2));
+
+        context.rotate(-theta+Math.PI/2);
+
+        context.drawImage(robot_img, -robot_img.width/2, -robot_img.height/2);
+
+        context.restore();
     }
 
     function bodyLoad() {

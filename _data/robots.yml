@@ -37,8 +37,12 @@
   tabs:
     - name: Dashboard
       id: dashboard
-- name: Gonzales
-  permalink: gonzales
+- name: Garrison
+  permalink: garrison
   tabs:
     - name: Dashboard
       id: dashboard
+    - name: Debug
+      id: debug
+    - name: Field
+      id: poseTracker

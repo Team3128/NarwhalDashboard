@@ -25,7 +25,7 @@
     var blink_counter = 0;
 
     var recievedFirstJSON = false;
-
+  
     function getElement(id) {
         return document.getElementById(id);
     }
@@ -47,8 +47,6 @@
 
         getElement(current_tab + '_tab').classList.add('active');
         getElement(current_tab).classList.remove('invisible');
-
-        //toggleConnection();
     }
 
     function toggleConnection() {
@@ -68,6 +66,7 @@
         getElement('match_state').classList.remove('green');
         getElement('match_state').classList.remove('gold'); 
         getElement('match_state').classList.remove('black');
+        getElement('match_state').classList.remove('blinking');
 
         setInner("match_state_text", state);
 
@@ -79,11 +78,18 @@
             getElement('match_state').classList.add('red');
         }else if(state == "DISABLED"){
             getElement('match_state').classList.add('black');
+            getElement('match_state').classList.add('blinking');
         }
     }
 
-    function toggleToSelectedLimelight(button){
-        toggleCamConnection("http://"+sel_limelight+".local:5800", "limelight_stream", button);
+    function toggleLimelights(button){
+        let limelights = menuData.get('limelight')[1];
+        for(let ind in limelights){
+            if(getElement("limelight_stream_"+ind) == null){
+               // make new stream window 
+            }
+            toggleCamConnection("http://"+limelights[ind]+".local:5800", "limelight_stream_"+ind, button);
+        }
     }
 
     function toggleCamConnection(address, streamID, button) {
@@ -110,58 +116,12 @@
         getElement(stream).src = '';
     }
 
-    function createDebugElement(key) {
-        //Create Elements
-        let newElement = document.createElement("div");
-        let debugTitle = document.createElement("span");
-        let debugInfo = document.createElement("span");
-
-        //New Element Classes
-        newElement.classList.add("flexbox");
-        newElement.classList.add("sapphire");
-        newElement.classList.add("row");
-        newElement.classList.add("debug_info");
-
-        //Debug Title Class (includes all styling)
-        debugTitle.classList.add("debug_key");
-        debugTitle.innerHTML = key;
-
-        //Debug Information Class (including all styling)
-        debugInfo.classList.add("debug_value");
-
-        //Add Debug Title/Info to Element and add Element to Debug Panel
-        newElement.appendChild(debugTitle);
-        newElement.appendChild(debugInfo);
-        getElement("debug_list").appendChild(newElement);
-        debugElements.set(key, newElement);
-    }
-
-    function updateDebug(debugVals) {
-        let visibility = menuData.get('debug')[0];
-        let debugMap = menuData.get('debug')[1];
-
-        debugVals.forEach((obj) => {
-            //Add Row for debug element if it doesn't exist
-
-            let key = obj["key"];
-            let value = obj["value"];
-
-            if(!debugElements.has(key)) {
-                createDebugElement(key);
-            }
-            
-            //Set the Value in the Row
-            let elList = debugElements.get(key).getElementsByClassName("debug_value");
-            if(elList.length > 0) elList[0].innerHTML = value;
-
-            debugMap.set(key, value);
-        });
-
-        menuData.set('debug',[visibility, debugMap]);
-    }
-
     function connect() {
         //socket = new WebSocket("ws:roborio-3128-frc.local:5800");
+        
+        //USE THIS IP IF YOU WANT TO CONNECT NARWHAL DASHBOARD TO WPILIB SIMULATION (when no robot to test)
+        //socket = new WebSocket("ws:localhost:5805");
+        
         socket = new WebSocket("ws:10.31.28.2:5805");
         //socket = new WebSocket("ws:roborio-3128-frc.local:5805");
         
@@ -193,43 +153,32 @@
 
                 // first element is visibility, second element contains all data
                 menuData.set('auto', [false, json['auto']]);
-                menuData.set('limelight',[false, json['limelight']]);
-                menuData.set('pipeline',[false, json['pipeline']]);
+                // menuData.set('limelight',[false, json['limelight']]);
+                // menuData.set('pipeline',[false, json['pipeline']]);
 
                 // debug needs to be setup after normal menus
                 setup_menus();
                 menuData.set('debug',[false, new Map()]);
 
+                setupConstants(json['constants']);
+
                 recievedFirstJSON = true;
             }
 
-            // debug menu uses a map within the main map to store data
-            if(json.hasOwnProperty('debug')) {
-                updateDebug(json['debug']);
-            }
+            // console.log(json);
             
             if (updater != null) {
                 updater(json);
-            }
-
-            // blink warning elements
-            blink_counter=(blink_counter+1)%25;
-            if(blink_counter == 0){
-                let warnings = document.getElementsByClassName('blinking');
-                for(let element of warnings){
-                    element.style.borderStyle;
-                    if(element.style.borderStyle == "solid"){
-                        element.style.borderStyle = "hidden";
-                    }else{
-                        element.style.borderStyle = "solid"
-                    }
-                }
             }
         };
 
         socket.onclose = function (event) {
             // TODO: If disconnected by robot (i.e. not due to user manually clicking the connection button,
             // automatically try to reconnect.)
+
+            // Reset variables and page elements using a page reload
+
+            document.location.reload();
 
             state = DISCONNECTED;
 
@@ -247,7 +196,7 @@
             menuData = new Map();
             debugElements = new Map();
 
-            //recievedFirstJSON = false;
+            recievedFirstJSON = false;
         };
     }
 
@@ -261,7 +210,6 @@
 
             let noneElement = getElement(menu+"_choice_none");
 
-            console.log(menu);
             for (let i = 0; i < menuData.get(menu)[1].length; i++) {
                 var element = noneElement.cloneNode(true);
 
@@ -272,6 +220,86 @@
 
                 getElement(menu+"_list").appendChild(element);
             }
+        }
+    }
+    
+    function createDebugElement(key) {
+        //Create Elements
+        let newElement = document.createElement("div");
+        let debugTitle = document.createElement("span");
+        let debugInfo = document.createElement("span");
+
+        //New Element Classes
+        newElement.classList.add("flexbox");
+        newElement.classList.add("sapphire");
+        newElement.classList.add("row");
+        newElement.classList.add("debug_info");
+
+        //Debug Title Class (includes all styling)
+        debugTitle.classList.add("debug_key");
+        debugTitle.innerHTML = key;
+
+        //Debug Information Class (including all styling)
+        debugInfo.classList.add("debug_value");
+
+        //Add Debug Title/Info to Element and add Element to Debug Panel
+        newElement.appendChild(debugTitle);
+        newElement.appendChild(debugInfo);
+        getElement("debug_list").appendChild(newElement);
+        debugElements.set(key, newElement);
+    }
+
+    function setupConstants(constantsVals) {
+        for(let key in constantsVals){
+            
+            let values = constantsVals[key];
+
+            // Create Elements
+            let list = document.createElement("div");
+            let constTitleBox = document.createElement("div");
+            let constTitle = document.createElement("span");
+
+            // Outer Box
+            list.classList.add("flexbox","royal","column","debug_list");
+            list.style.display = "block";
+
+            // Constants Title Class
+            constTitleBox.classList.add("flexbox","sapphire","row","debug_info","debug_section");
+            constTitle.classList.add("const_key");
+            constTitle.innerHTML = key;
+            constTitleBox.appendChild(constTitle);
+            list.appendChild(constTitleBox);
+
+            for(let val of values){
+                let constCont = document.createElement("div");
+                let constKey = document.createElement("span");
+                let constVal = document.createElement("span");
+
+                constCont.classList.add("flexbox","sapphire","row","debug_info");
+
+                constKey.classList.add("debug_key");
+                constKey.innerHTML = val['key'];
+
+                constVal.classList.add("debug_value");
+                constVal.addEventListener("input", function(){
+                    if(constVal.innerHTML.indexOf('/') != -1){
+                        constVal.innerHTML = constVal.innerHTML.replaceAll('/','');
+
+                        send("changeconstant:"+key+":"+constKey.innerHTML+":"+constVal.innerHTML);
+                    }
+                }, false);
+
+                constVal.innerHTML = val['value'];
+                constVal.contentEditable = "true";
+
+                constCont.append(constKey,constVal);
+
+                list.appendChild(constCont);
+            }
+
+            // Add Category to Constants Editor
+            getElement("constants_editor").appendChild(list);
+            debugElements.set(key, list);
         }
     }
 
