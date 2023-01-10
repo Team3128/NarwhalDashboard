@@ -55,3 +55,12 @@
       id: debug
     - name: Field
       id: poseTracker
+- name: Guggal
+  permalink: guggal
+  tabs:
+    - name: Dashboard
+      id: dashboard
+    - name: Debug
+      id: debug
+    - name: Field
+      id: poseTracker

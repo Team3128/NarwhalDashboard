@@ -24,10 +24,10 @@ layout: default
             </div>
 
             <div class="flexbox column" style="align-items: strech; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 0px; border-radius: 16px;">
-                {% include left_{{ page.robot | downcase }}.html %}
+                {% include robot/left_{{ page.robot | downcase }}.html %}
             </div>
         </div>
-        {% include right_{{ page.robot | downcase }}.html %}
+        {% include robot/right_{{ page.robot | downcase }}.html %}
     </div>
 </div>
 
