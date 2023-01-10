@@ -122,7 +122,7 @@
 
     function connect() {
         //socket = new WebSocket("ws:roborio-3128-frc.local:5800");
-        socket = new WebSocket("ws:10.31.28.2:5805");
+        socket = new WebSocket("ws:localhost:5805");
         //socket = new WebSocket("ws:roborio-3128-frc.local:5805");
         
         getElement('conn_button').classList.remove('red');
@@ -254,28 +254,28 @@
         debugElements.set(key, newElement);
     }
 
-    function setupConstants(constantsVals) {
+    function setupConstants(constantsVal) {
 
         if(allDisplayedConstants.length == 0) {
-            allDisplayedConstants = constantsVals;
+            allDisplayedConstants = constantsVal;
         }
         else {
 
+            let shouldUpdate = false;
             for(let categoryName in constantsVal) {
                 if(allDisplayedConstants[categoryName] == null) {
                     return;
                 }
-            }
-              
 
-            //Go through allDisplayedConstants and add any new constants
-            let shouldUpdate = false;
-            for(let constantName in constantsVal[categoryName]) {
+                for(let constantName in constantsVal[categoryName]) {
                 if(allDisplayedConstants[categoryName][constantName] == null) {
                     allDisplayedConstants[categoryName][constantName] = constantsVal[categoryName][constantName];
                     shouldUpdate = true;
                 }
             }
+            }
+            
+            
 
 
             //If no new constants, then we can return since there is no need to redo the HTML
@@ -286,9 +286,9 @@
         
 
         getElement('constants_editor').innerHTML = '';
-        for(let key in constantsVals){
+        for(let key in constantsVal){
             
-            let values = constantsVals[key];
+            let values = constantsVal[key];
 
             // Create Elements
             let list = document.createElement("div");
