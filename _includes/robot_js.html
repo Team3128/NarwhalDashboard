@@ -176,6 +176,8 @@
         if(!(curr_auto === prev_auto)){
             getElement('auto_img').style.display = "flex";
             getElement('auto_img').style.width = "100%";
+
+            //Might have to change path from /garrison to something expressed by the current robot
             getElement('auto_img').src = "/garrison/autos/"+curr_auto+".png";
         }
         if (curr_auto === "None") {

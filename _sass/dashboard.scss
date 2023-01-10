@@ -322,6 +322,28 @@ input {
     border-radius: 6px;
 }
 
+.add_constants {
+    justify-content: center;
+    margin: 7.5px 20px 7.5px 20px;
+    border-radius: 10px;
+    font-size: 25;
+    font-weight: 700;
+}
+
+.add_constants_input {
+    margin-bottom: 5px;
+    border-radius: 8px;
+    margin: 5px auto 5px auto;
+    padding: 10px;
+}
+
+.add_constants_button {
+    margin-bottom: 5px;
+    border-radius: 16px;
+    padding: 10px 12.5px;
+    margin: 7.5px auto 7.5px auto;
+}
+
 .debug_toggle {
     justify-content: center; 
     margin: 25px; 
