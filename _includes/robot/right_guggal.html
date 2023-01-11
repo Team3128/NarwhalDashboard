@@ -1,0 +1,62 @@
+<div class = "flexbox column squash" style="justify-content: center; flex-grow: 1; ">
+    <!-- Limelight Connection / Livestream (LL) / Button /-->
+    <div class="flexbox column squash limelight_info">    
+        <div class="container limelight_container">
+            <div id="limelight_conn_button" onclick='toggleCamConnection("http://10.31.28.26:5800", "limelight_stream_0", "limelight_conn_button");' class="button red conn_button">
+                <p class="conn_button_text" id="limelight_conn_button_text">Connect To Limelight</p>
+            </div>
+            <div id="cameras" style = "display: flex; flex-direction: column; height: 100%">
+                <div class = "table_row" style = "display: flex; justify-content: center; flex-direction: row; align-items: center; height: 100%;">
+                    <img id="limelight_stream_0" class="stream" src="">
+                    <img id="limelight_stream_1"  class="stream" src="">
+                </div>
+                <!-- <div class = "table_row">
+                    <div class = "container_buttons">
+                        <div class="royal flexbox column lime_pipe">
+                            <div class="lime_pipe_div">
+                                <p class="lime_pipe_div_title">Selected Limelight:</p>
+                                <p id="selected_limelight" class="selected_limelight" >Not connected.</p>  
+                                <div onclick='toggle_menu("limelight")'class="button sapphire lime_pipe_menu">Choose</div>      
+                            </div>
+                            <div id="limelight_list" class="lime_pipe_list">
+                                <div id="limelight_choice_none" onclick='menu_select("limelight",-1)' class="button sapphire lime_pipe_choice_none">
+                                    None
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="royal flexbox column lime_pipe">
+                            <div class="lime_pipe_div">
+                                <p class="lime_pipe_div_title">Selected Pipeline:</p>
+                                <p id="selected_pipeline" class="lime_pipe_selected">Not connected.</p>  
+                                <div onclick='toggle_menu("pipeline")' class="button sapphire lime_pipe_menu">Choose</div>      
+                            </div>
+                            <div id="pipeline_list" class="lime_pipe_list">
+                                <div id="pipeline_choice_none" onclick='select_pipeline("pipeline",-1)' class="button sapphire lime_pipe_choice_none">
+                                    None
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div> 
+    </div>
+    <div class="royal flexbox column auto_info">
+        <div class="auto_box">
+            <div class = "auto_options">
+                <p class="auto_title">Selected Auto:</p> 
+                <p id="selected_auto" class="auto_selected">Not connected.</p>
+                <div onclick='toggle_menu("auto")' class="button sapphire auto_choose">Choose</div>
+            </div>     
+            <img id="auto_img" src=""></img> 
+        </div>
+        
+    <!-- Selection / Allows you to select the Auto-Program to load /-->
+        <div id="auto_list">
+            <div id="auto_choice_none" onclick='menu_select("auto",-1)' class="button sapphire auto_choice_none">
+                None
+            </div>
+        </div>
+    </div>
+</div>

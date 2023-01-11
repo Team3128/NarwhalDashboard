@@ -92,3 +92,40 @@
     height: 30px;
     border-radius: 16px;
 }
+
+.shooter_info {
+    width: 100%; 
+    flex: 0 0 auto;
+    margin-bottom: 12px;
+}
+.shooter_box {
+    margin-bottom: 0;
+}
+.shooter_title {
+    font-size: 32px; 
+    margin-top: 10px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-bottom: 0px;
+}
+.shooter_rpm_box {
+    align-items: center; 
+    justify-content: center; 
+    margin: 20px 10px 10px 10px; 
+    padding:5px; 
+    border-radius: 16px;
+}
+
+#range_bar {
+    background-image: url("/garrison/range_bar.png");
+    background-clip: content-box;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    min-height: 20px;
+
+    flex-grow: 1;
+
+    align-items: center; 
+    justify-content: center; 
+    margin: 0px 10px 10px 10px;
+}
