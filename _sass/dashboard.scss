@@ -501,3 +501,76 @@ input {
     border-width: 5px;
     border-color: blue;
 }
+
+
+// ALL GRID STYLING BELOW
+.grid_info {
+    color: #333;
+    flex-direction: column;
+}
+
+.grid_flex {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 90px;
+}
+
+.grid_item {
+    margin: 8px;
+    width: 90px;
+    height: auto;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .grid_flex .cube {
+    background: purple;
+  }
+
+  .grid_flex .cone {
+    background: gold;
+  }
+
+  .grid_flex .unisex {
+    background: mediumseagreen;
+  }
+
+  .cone .shape {
+    width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-bottom: 50px solid rgb(255, 153, 0);
+  }
+
+  .cube .shape {
+    width: 48px;
+    height: 48px;
+    background-color: blueviolet;
+    border-radius: 15%;
+  }
+
+  .unisex .tri {
+    position: relative;
+    width: 0;
+	height: 0;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	border-bottom: 60px solid gold;
+  }
+
+  .unisex .sq {
+    margin-top: 25px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: blueviolet;
+    border-radius: 15%;
+  }
