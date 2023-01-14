@@ -4,7 +4,7 @@ layout: default
 
 <div id="dashboard" style="margin: 25px;">
     <div class="flexbox row squash" style="align-items: stretch;">
-        <div class="flexbox column squash" style="flex: 0 0 40%;">
+        <div class="flexbox column squash" style="flex: 0 0 30%;">
             <div class="flexbox row" style="align-items: center; flex-grow: 0; margin-right: 25px; padding: 8px; background: white; border-radius: 20px;">
                 <div id="battery" style="flex: 0 0 160px; height: 160px; background: #b0b0b0; border-radius: 14px; padding: 8px; color: white; text-align: center; vertical-align: middle;">
                     <font style="font-size: 18pt; line-height: 12pt;">Battery</font>
@@ -14,7 +14,7 @@ layout: default
                 <div style="flex: 1 0 auto; text-align: center; vertical-align: middle;">
                     <font id="match_time" style="font-size: 60pt; line-height: 64pt">0s</font>
                     <br>
-                    <font style="font-size: 1.5vw; line-height: 20pt">Match Time Remaining</font>
+                    <font style="font-size: 1.2vw; line-height: 20pt">Match Time Remaining</font>
                     <br>
 
                     <div id="match_state" class="black flexbox" style="align-items: center; flex-grow: 0; margin: 25px; margin-bottom: 0px; padding: 12px; border-radius: 16px; display: inline-block;">
@@ -27,7 +27,16 @@ layout: default
                 {% include robot/left_{{ page.robot | downcase }}.html %}
             </div>
         </div>
-        {% include robot/right_{{ page.robot | downcase }}.html %}
+        {% if page.robot == "Guggal" or page.robot == "guggal" %}
+            <div class="flexbox column squash" style="flex: 0 0 40%;">
+                {% include robot/middle_{{ page.robot | downcase }}.html %}
+            </div>
+            {% include robot/right_{{ page.robot | downcase }}.html %}
+        {% else %}
+            <div>
+                {% include robot/right_{{ page.robot | downcase }}.html %}
+            </div>
+        {% endif %}
     </div>
 </div>
 
