@@ -27,7 +27,9 @@ layout: default
                 {% include robot/left_{{ page.robot | downcase }}.html %}
             </div>
         </div>
-        {% if page.robot == "Guggal" or page.robot == "guggal" %}
+        
+        
+        {% if page.hasMiddle %}
             <div class="flexbox column squash" style="flex: 0 0 45%;">
                 {% include robot/middle_{{ page.robot | downcase }}.html %}
             </div>
