@@ -29,7 +29,7 @@ layout: default
         </div>
         
         
-        {% if page.hasMiddle %}
+        {% if page.hasMiddle and page.hasMiddle == true %}
             <div class="flexbox column squash" style="flex: 0 0 45%;">
                 {% include robot/middle_{{ page.robot | downcase }}.html %}
             </div>
