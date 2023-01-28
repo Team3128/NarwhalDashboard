@@ -528,18 +528,30 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
+    &:hover {
+        cursor: pointer;
+    }
   }
   
   .grid_flex .cube {
     background: purple;
+    &:hover {
+        background: tomato;
+    }
   }
 
   .grid_flex .cone {
-    background: gold;
+    background: rgb(255, 153, 0);
+    &:hover {
+        background: tomato;
+    }
   }
 
   .grid_flex .unisex {
     background: mediumseagreen;
+    &:hover {
+        background: tomato;
+    }
   }
 
   .cone .shape {
@@ -547,7 +559,7 @@ input {
 	height: 0;
 	border-left: 25px solid transparent;
 	border-right: 25px solid transparent;
-	border-bottom: 50px solid rgb(255, 153, 0);
+	border-bottom: 50px solid gold;
   }
 
   .cube .shape {
