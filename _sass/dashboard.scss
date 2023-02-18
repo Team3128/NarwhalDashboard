@@ -535,21 +535,22 @@ input {
   
   .grid_flex .cube {
     background: purple;
-    &:hover {
+    &.grid_glow {
         background: tomato;
     }
   }
 
   .grid_flex .cone {
     background: rgb(255, 153, 0);
-    &:hover {
+    &.grid_glow {
         background: tomato;
     }
   }
+  
 
   .grid_flex .unisex {
     background: mediumseagreen;
-    &:hover {
+    &.grid_glow {
         background: tomato;
     }
   }

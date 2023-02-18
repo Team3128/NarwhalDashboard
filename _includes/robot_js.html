@@ -200,6 +200,7 @@
 
 
         //Glow Grid Box
+        console.log(json["selectedGridCell"]);
         if(json["selectedGridCell"]) {
             glowBox(json["selectedGridCell"]["x"], json["selectedGridCell"]["y"]);
         }
@@ -251,8 +252,8 @@
     }
     function  glowBox(boxposx, boxposy){
         boxGlow = document.getElementsByClassName("grid_info")[0].children[boxposy].children[boxposx];
-        boxGlow.style.border = "thick solid #0000FF"
-        setTimeout(()=> {boxGlow.style.border= ""}, 500)
+        boxGlow.classList.add("grid_glow");
+        setTimeout(()=> {boxGlow.classList.remove("grid_glow");}, 250)
     }
 </script>
 
