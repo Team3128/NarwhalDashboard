@@ -130,42 +130,42 @@
         // Update Shooter Display -------------------------
         // ------------------------------------------------
 
-        let rpm = Number(debugData.get("rpm")).toFixed(0);
+        // let rpm = Number(debugData.get("rpm")).toFixed(0);
 
-        setInner('rpm_display', rpm);
+        // setInner('rpm_display', rpm);
 
-        let range = debugData.get("range");
+        // let range = debugData.get("range");
 
-        getElement('range_indicator').style.display = "block";
-        getElement('shooter_info').classList.remove("blinking");
-        if(range <= -1){
-            getElement('range_indicator').style.display = "none";
-            getElement('shooter_info').classList.add("blinking");
-        }
+        // getElement('range_indicator').style.display = "block";
+        // getElement('shooter_info').classList.remove("blinking");
+        // if(range <= -1){
+        //     getElement('range_indicator').style.display = "none";
+        //     getElement('shooter_info').classList.add("blinking");
+        // }
 
         // scale range from min to max (inches) [ 0 , 100 ]
 
-        range -= min_range;
-        range /= (max_range - min_range);
+        // range -= min_range;
+        // range /= (max_range - min_range);
 
-        if(range > 1){
-            range = 1;
-        }else if(range < 0){
-            range = 0;
-        } 
+        // if(range > 1){
+        //     range = 1;
+        // }else if(range < 0){
+        //     range = 0;
+        // } 
 
-        if(range_list.length == 10){
-            range_list.splice(0,1);
-        }
-        range_list.push(range);
+        // if(range_list.length == 10){
+        //     range_list.splice(0,1);
+        // }
+        // range_list.push(range);
 
-        avg = 0;
-        for(let r of range_list){
-            avg+=r;
-        }
-        avg/=range_list.length;
+        // avg = 0;
+        // for(let r of range_list){
+        //     avg+=r;
+        // }
+        // avg/=range_list.length;
 
-        getElement('range_indicator').style.margin = "0 "+avg*100+"% 0 "+(100-(avg*100))+"%";
+        // getElement('range_indicator').style.margin = "0 "+avg*100+"% 0 "+(100-(avg*100))+"%";
 
         // ------------------------------------------------
         // Update Auto Display ----------------------------
@@ -197,6 +197,12 @@
         // ------------------------------------------------
         // ------------------------------------------------
         // ------------------------------------------------
+
+
+        //Glow Grid Box
+        if(json["selectedGridCell"]) {
+            glowBox(json["selectedGridCell"]["x"], json["selectedGridCell"]["y"]);
+        }
 
         refresh(json);
     }
@@ -242,6 +248,11 @@
         initialize();
 
         addUpdater(updateData);
+    }
+    function  glowBox(boxposx, boxposy){
+        boxGlow = document.getElementsByClassName("grid_info")[0].children[boxposy].children[boxposx];
+        boxGlow.style.border = "thick solid #0000FF"
+        setTimeout(()=> {boxGlow.style.border= ""}, 500)
     }
 </script>
 

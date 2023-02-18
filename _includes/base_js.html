@@ -8,7 +8,7 @@
 
     var json;
     
-    var updater = null;
+    var updaters = [];
 
     var current_tab = "dashboard";
 
@@ -176,9 +176,9 @@
                     alert(json["error"]);
                     shouldUpdateConstantsEditor = false;
             }
-            else if (updater != null) {
-                updater(json);
-            }
+                for(let updater of updaters) {
+                    updater(json);
+                }
         };
 
         socket.onclose = function (event) {
@@ -210,7 +210,7 @@
     }
 
     function addUpdater(u) {
-        updater = u;
+        updaters.push(u);
     }
 
     function setup_menus() {
