@@ -11,6 +11,10 @@
     const match_length = 150;
     const odo_to_pixel = 1859/16.5;
 
+    //Lighting Up Grid
+    var previousGlowX = -1;
+    var previousGlowY = -1;
+
     const robot_img = new Image();
     robot_img.src = "/fields/robot.png"
 
@@ -250,10 +254,14 @@
 
         addUpdater(updateData);
     }
-    function  glowBox(boxposx, boxposy){
+    function glowBox(boxposx, boxposy){
+
+        if(previousGlowX != -1 && previousGlowY != -1){
+            document.getElementsByClassName("grid_info")[0].children[previousGlowY].children[previousGlowX].classList.remove("grid_glow");
+        }
+
         boxGlow = document.getElementsByClassName("grid_info")[0].children[boxposy].children[boxposx];
         boxGlow.classList.add("grid_glow");
-        setTimeout(()=> {boxGlow.classList.remove("grid_glow");}, 250)
     }
 </script>
 
