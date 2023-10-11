@@ -121,13 +121,16 @@
     }
 
     function connect() {
-        //socket = new WebSocket("ws:roborio-3128-frc.local:5800");
-        socket = new WebSocket("ws:localhost:5805");
+        // socket = new WebSocket("ws:roborio-318-frc.local:5800");
         
         //USE THIS IP IF YOU WANT TO CONNECT NARWHAL DASHBOARD TO WPILIB SIMULATION (when no robot to test)
-        //socket = new WebSocket("ws:localhost:5805");
+        // socket = new WebSocket("ws:localhost:5805");
 
-        //socket = new WebSocket("ws:roborio-3128-frc.local:5805");
+    
+        // socket = new WebSocket("ws:roborio-3128-frc.local:5805");
+        var ip_address = "10.31.28.2";
+        socket = new WebSocket("ws:" + ip_address+ ":5805")
+        console.log(socket);
         
         getElement('conn_button').classList.remove('red');
         getElement('conn_button').classList.remove('green');
